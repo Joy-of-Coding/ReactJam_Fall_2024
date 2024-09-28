@@ -1,3 +1,13 @@
+# ReactJam_Fall_2024
+
+React Jam Fall 2024 entry
+
+```
+cd JamCrawler
+npm install
+npm run dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
