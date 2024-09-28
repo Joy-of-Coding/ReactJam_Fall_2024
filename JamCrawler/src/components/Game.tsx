@@ -1,58 +1,24 @@
 // src/components/Game.tsx
 
 import React, { useState, useEffect, useCallback } from 'react';
-
-const GRID_SIZE = 10;
-const PLAYER_CHAR = '@';
-const WALL_CHAR = '#';
-const EMPTY_CHAR = '.';
-const POTION_CHAR = '!';
-const SWORD_CHAR = '+';
-const LUCK_CHAR = '*';
-
-type Position = { x: number; y: number };
-
-type Item = {
-  name: string;
-  symbol: string;
-  effect: (player: Player) => Player;
-};
-
-type Player = {
-  position: Position;
-  strength: number;
-  stamina: number;
-  health: number;
-  luck: number;
-  inventory: Item[];
-};
-
-type Todo = {
-  id: number;
-  text: string;
-  completed: boolean;
-};
-
-const ITEMS: { [key: string]: Item } = {
-  healthPotion: {
-    name: 'Health Potion',
-    symbol: POTION_CHAR,
-    effect: (player) => ({ ...player, health: Math.min(player.health + 20, 100) }),
-  },
-  sword: {
-    name: 'Sword',
-    symbol: SWORD_CHAR,
-    effect: (player) => ({ ...player, strength: player.strength + 5 }),
-  },
-  luckCharm: {
-    name: 'Luck Charm',
-    symbol: LUCK_CHAR,
-    effect: (player) => ({ ...player, luck: player.luck + 5 }),
-  },
-};
+import Dungeon from './Dungeon';
+import PlayerStats from './PlayerStats';
+import Inventory from './Inventory';
+import Controls from './Controls';
+import TodoList from './TodoList';
+import {
+  GRID_SIZE,
+  ITEMS,
+  EMPTY_CHAR,
+  WALL_CHAR,
+  POTION_CHAR,
+  SWORD_CHAR,
+  LUCK_CHAR,
+} from '../constants/constants';
+import { Player, Todo, DungeonGrid } from '../types/types';
 
 export default function Game() {
-  const [dungeon, setDungeon] = useState<string[][]>([]);
+  const [dungeon, setDungeon] = useState<DungeonGrid>([]);
   const [player, setPlayer] = useState<Player>({
     position: { x: 1, y: 1 },
     strength: 10,
@@ -62,7 +28,6 @@ export default function Game() {
     inventory: [],
   });
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState('');
 
   const generateDungeon = useCallback(() => {
     const newDungeon = Array.from({ length: GRID_SIZE }, () =>
@@ -164,25 +129,9 @@ export default function Game() {
     });
   };
 
-  const renderDungeon = () => {
-    return dungeon.map((row, y) => (
-      <div key={y}>
-        {row.map((cell, x) => (
-          <span
-            key={`${x}-${y}`}
-            style={{ width: '20px', display: 'inline-block', textAlign: 'center' }}
-          >
-            {x === player.position.x && y === player.position.y ? PLAYER_CHAR : cell}
-          </span>
-        ))}
-      </div>
-    ));
-  };
-
-  const addTodo = () => {
-    if (newTodo.trim() !== '') {
-      setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-      setNewTodo('');
+  const addTodo = (text: string) => {
+    if (text.trim() !== '') {
+      setTodos([...todos, { id: Date.now(), text, completed: false }]);
     }
   };
 
@@ -204,70 +153,20 @@ export default function Game() {
       <h2>This is the Game Component</h2>
       <h1>Retro Dungeon Crawler</h1>
       <div style={{ display: 'flex', gap: '20px' }}>
+        <Dungeon dungeon={dungeon} player={player} />
         <div>
-          {renderDungeon()}
-        </div>
-        <div>
-          <h2>Player Stats</h2>
-          <p>Strength: {player.strength}</p>
-          <p>Stamina: {player.stamina}</p>
-          <p>Health: {player.health}</p>
-          <p>Luck: {player.luck}</p>
-          <h3>Inventory</h3>
-          {player.inventory.length > 0 ? (
-            player.inventory.map((item, index) => (
-              <div key={index}>
-                <span>{item.name}</span>
-                <button onClick={() => useItem(index)}>Use</button>
-              </div>
-            ))
-          ) : (
-            <p>No items in inventory.</p>
-          )}
+          <PlayerStats player={player} />
+          <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>
-      <div>
-        <button onClick={() => movePlayer(-1, 0)}>←</button>
-        <button onClick={() => movePlayer(0, -1)}>↑</button>
-        <button onClick={() => movePlayer(1, 0)}>→</button>
-        <button onClick={() => movePlayer(0, 1)}>↓</button>
-      </div>
+      <Controls movePlayer={movePlayer} />
       <button onClick={generateDungeon}>New Dungeon</button>
-      <div>
-        <h2>Todo List</h2>
-        <div>
-          <input
-            type="text"
-            value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
-            placeholder="Add a new todo"
-          />
-          <button onClick={addTodo}>Add</button>
-        </div>
-        {todos.length > 0 ? (
-          todos.map((todo) => (
-            <div key={todo.id}>
-              <div>
-                <input
-                  type="checkbox"
-                  id={`todo-${todo.id}`}
-                  checked={todo.completed}
-                  onChange={() => toggleTodo(todo.id)}
-                />
-                <label
-                  htmlFor={`todo-${todo.id}`}
-                  style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-                >
-                  {todo.text}
-                </label>
-              </div>
-              <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-            </div>
-          ))
-        ) : (
-          <p>No todos added.</p>
-        )}
-      </div>
+      <TodoList
+        todos={todos}
+        addTodo={addTodo}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
