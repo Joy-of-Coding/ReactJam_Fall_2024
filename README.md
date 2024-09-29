@@ -63,7 +63,7 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 - atk = attack + weapon + (abs(Base attack * (speed/10)))
 - def = defense + armor + (abs(Base Defense * (speed/10)))
 - speed = base speed, make icons move slightly faster
-- Experience & leveling = Monsters killed + quest completion bonus + dungeon level gain 
+- Experience & leveling = ((monster level value * number per encounter) + (level quest score + mini-quest) + (dungeon level completion gain) * multiplier for dungeon 5th level finished)
 
 ## Level Progression Chart
 -- Example
@@ -84,7 +84,7 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 
 
 ## Future Enhancements (Time Permitting)
-- Jon create story template for group add ons
+
 - Create skins for the dungeon, player, monsters, armor, weapons, etc.
 - Expanded monster variety
 - More diverse weapons and armor
@@ -97,6 +97,7 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 2. Dungeon level Completion
     1. **Level 1**
         - Quest: Weapon quest
+            - description of the quest
         - Level Minimum: 0
         - Monster: Spiders
         - Boss: Giant Arachnid
@@ -104,26 +105,26 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
     2. **Level 2**
         - Quest: Armor quest
         - Level Minimum: 2
-        - Monster: 
-        - Boss: 
+        - Monster: Zombie
+        - Boss: George(Necromancer) -- Turned to evil, villager rival from town
 
     3. **Level 3**
         - Quest: Weapon quest
         - Level Minimum: 5
-        - Monster: 
-        - Boss: 
+        - Monster: Skeleton
+        - Boss: Death Tyrant
 
     4. **Level 4**
         - Quest: Weapon quest
         - Level Minimum: 9
-        - Monster: 
-        - Boss: 
+        - Monster: Ogre
+        - Boss: Ettin
 
     4. **Level 4**
         - Quest: Weapon quest
         - Level Minimum: 14
-        - Monster: 
-        - Boss: 
+        - Monster: Drow, Dark Elves
+        - Boss: Shadow of the Dragon Queen
 
 ## Dungeon Completion
 - Completion of the 5th level of the dungeon triggers:
