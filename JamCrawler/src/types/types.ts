@@ -16,6 +16,15 @@ export type Player = {
   inventory: Item[];
 };
 
+export type Monster = {
+  position: Position;
+  strength: number;
+  stamina: number;
+  health: number;
+  luck: number;
+  inventory: Item[];
+};
+
 export type Todo = {
   id: number;
   text: string;
