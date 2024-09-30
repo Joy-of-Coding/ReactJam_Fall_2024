@@ -150,7 +150,6 @@ export default function Game() {
 
   return (
     <div>
-      <h2>This is the Game Component</h2>
       <h1>Retro Dungeon Crawler</h1>
       <div style={{ display: 'flex', gap: '20px' }}>
         <Dungeon dungeon={dungeon} player={player} />
