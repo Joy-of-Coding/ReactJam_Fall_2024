@@ -167,7 +167,6 @@ export default function Game() {
 
   return (
     <>
-      
         <h1>Retro Dungeon Crawler</h1>
         <div className='game-board'>
         <TodoList
@@ -189,7 +188,7 @@ export default function Game() {
           </div>
         
   
-        <div>
+        <div className="inventory-container">
           <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>

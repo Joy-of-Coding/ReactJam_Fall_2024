@@ -1,6 +1,7 @@
 // src/components/TodoList.tsx
 import React, { useState } from 'react';
 import { Todo } from '../types/types';
+import './TodoList.css'
 
 type TodoListProps = {
   todos: Todo[];
@@ -27,8 +28,9 @@ const TodoList: React.FC<TodoListProps> = ({
   return (
     <div>
       <h2>Todo List</h2>
-      <div>
+      <div className="todoInputContainer">
         <input
+          className="todo-input"
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}

@@ -1,5 +1,6 @@
 .monster-stats {
     display: flex;
+    flex-grow: 1;
     
 }
 
