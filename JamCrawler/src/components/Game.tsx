@@ -1,5 +1,5 @@
 // src/components/Game.tsx
-
+import "./Game.css"
 import React, { useState, useEffect, useCallback } from 'react';
 import Dungeon from './Dungeon';
 import PlayerStats from './PlayerStats';
@@ -167,27 +167,36 @@ export default function Game() {
 
   return (
     <>
-      <div>
         <h1>Retro Dungeon Crawler</h1>
+      
+        <div className='game-board'>
+          <div className="column">
         <TodoList
           todos={todos}
           addTodo={addTodo}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
         />
+        </div>
 
-        <div style={{ display: 'flex-column', gap: '20px' }}>
+        <div className="dungeon-container column-2">
+      
           <Dungeon dungeon={dungeon} player={player} monster={monster} />
           <Controls movePlayer={movePlayer} />
+          <button onClick={generateDungeon}>New Dungeon</button>
+
+          <div className="stats">
+              <PlayerStats player={player} />
+              <MonsterStats monster={monster} />
+          </div>
         </div>
+        
   
-        <div>
-          <PlayerStats player={player} />
+        <div className="inventory-container column">
           <Inventory inventory={player.inventory} useItem={useItem} />
-          <MonsterStats monster={monster} />
         </div>
       </div>
-      <button onClick={generateDungeon}>New Dungeon</button>
+     
     </>
   
   )
