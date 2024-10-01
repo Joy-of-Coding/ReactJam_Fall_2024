@@ -120,7 +120,7 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
         - Monster: Ogre
         - Boss: Ettin
 
-    4. **Level 4**
+    5. **Level 5**
         - Quest: Weapon quest
         - Level Minimum: 14
         - Monster: Drow, Dark Elves
