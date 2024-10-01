@@ -19,6 +19,7 @@ import {
 import { Player, Todo, DungeonGrid, Monster } from '../types/types';
 
 export default function Game() {
+  const [level, setLevel] = useState<number>(1)
   const [dungeon, setDungeon] = useState<DungeonGrid>([]);
   const [player, setPlayer] = useState<Player>({
     position: { x: 1, y: 1 },
@@ -180,10 +181,14 @@ export default function Game() {
         </div>
 
         <div className="dungeon-container column-2">
-      
+          <h2>Level {level}</h2>
           <Dungeon dungeon={dungeon} player={player} monster={monster} />
-          <Controls movePlayer={movePlayer} />
-          <button onClick={generateDungeon}>New Dungeon</button>
+          <Controls movePlayer={movePlayer}
+          level={level}
+          setLevel={setLevel}
+          generateDungeon={generateDungeon}
+           />
+          
 
           <div className="stats">
               <PlayerStats player={player} />
