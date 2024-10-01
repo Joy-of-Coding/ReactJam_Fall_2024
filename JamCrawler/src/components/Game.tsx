@@ -166,18 +166,20 @@ export default function Game() {
   };
 
   return (
-    <div>
-      <h1>Retro Dungeon Crawler</h1>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Dungeon dungeon={dungeon} player={player} monster={monster}/>
+    <>
+      <div>
+        <h1>Retro Dungeon Crawler</h1>
+        <div style={{ display: 'flex-column', gap: '20px' }}>
+          <Dungeon dungeon={dungeon} player={player} monster={monster} />
+          <Controls movePlayer={movePlayer} />
+        </div>
+  
         <div>
           <PlayerStats player={player} />
-
           <Inventory inventory={player.inventory} useItem={useItem} />
           <MonsterStats monster={monster} />
         </div>
       </div>
-      <Controls movePlayer={movePlayer} />
       <button onClick={generateDungeon}>New Dungeon</button>
       <TodoList
         todos={todos}
@@ -185,6 +187,8 @@ export default function Game() {
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
       />
-    </div>
+    </>
   );
+  
+  
 }
