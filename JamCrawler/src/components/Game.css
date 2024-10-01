@@ -5,6 +5,7 @@
     flex-direction: row-reverse ;
    padding:0 40px;
    flex-grow: 2;
+   width: 1040px;
 
 }
 
@@ -31,10 +32,10 @@
 
 .column {
     width: 100px;
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 .column-2 {
-    width: 400px;
+    
     flex-grow: 3;
 }

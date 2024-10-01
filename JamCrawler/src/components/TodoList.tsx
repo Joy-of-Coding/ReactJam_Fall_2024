@@ -26,7 +26,7 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   return (
-    <div>
+    <div className='todoContainer'>
       <h2>Todo List</h2>
       <div className="todoInputContainer">
         <input
