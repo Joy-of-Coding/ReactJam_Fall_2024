@@ -1,0 +1,21 @@
+.game-board {
+    display: flex;
+    border: 1 salmon solid;
+    background-color: #444;
+    flex-direction: row-reverse ;
+
+}
+
+.dungeon-container {
+    display: flex;
+    gap: '40px';
+    padding: 15px;
+    flex-direction: column;
+
+}
+
+
+.stats {
+    display: flex;
+    flex-direction: row;
+}

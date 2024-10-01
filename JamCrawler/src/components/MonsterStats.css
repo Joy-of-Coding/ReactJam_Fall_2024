@@ -1,0 +1,9 @@
+.monster-stats {
+    display: flex;
+    
+}
+
+.vitals {
+    display: flex;
+    flex-direction: column;
+}

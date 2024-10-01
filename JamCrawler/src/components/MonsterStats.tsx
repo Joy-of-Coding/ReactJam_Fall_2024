@@ -7,12 +7,14 @@ type MonsterStatsProps = {
 };
 
 const MonsterStats: React.FC<MonsterStatsProps> = ({ monster }) => (
-  <div>
+  <div className='monster-stats'>
     <h2>Monster Stats</h2>
+    <div className='vitals'>
     <p>💪 Strength: {monster.strength}</p>
     <p>🔋 Stamina: {monster.stamina}</p>
     <p>❤️ Health: {monster.health}</p>
     <p>🍀 Luck: {monster.luck}</p>
+    </div>
   </div>
 );
 
