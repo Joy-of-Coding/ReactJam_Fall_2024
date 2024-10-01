@@ -1,8 +1,9 @@
 // src/components/Game.tsx
-
+import "./Game.css"
 import React, { useState, useEffect, useCallback } from 'react';
 import Dungeon from './Dungeon';
 import PlayerStats from './PlayerStats';
+import MonsterStats from './MonsterStats';
 import Inventory from './Inventory';
 import Controls from './Controls';
 import TodoList from './TodoList';
@@ -15,11 +16,19 @@ import {
   SWORD_CHAR,
   LUCK_CHAR,
 } from '../constants/constants';
-import { Player, Todo, DungeonGrid } from '../types/types';
+import { Player, Todo, DungeonGrid, Monster } from '../types/types';
 
 export default function Game() {
   const [dungeon, setDungeon] = useState<DungeonGrid>([]);
   const [player, setPlayer] = useState<Player>({
+    position: { x: 1, y: 1 },
+    strength: 10,
+    stamina: 100,
+    health: 100,
+    luck: 0,
+    inventory: [],
+  });
+  const [monster, setMonster] = useState<Monster>({
     position: { x: 1, y: 1 },
     strength: 10,
     stamina: 100,
@@ -58,6 +67,14 @@ export default function Game() {
 
     setDungeon(newDungeon);
     setPlayer({
+      position: { x: 1, y: 1 },
+      strength: 10,
+      stamina: 100,
+      health: 100,
+      luck: 0,
+      inventory: [],
+    });
+    setMonster({
       position: { x: 1, y: 1 },
       strength: 10,
       stamina: 100,
@@ -149,23 +166,39 @@ export default function Game() {
   };
 
   return (
-    <div>
-      <h1>Retro Dungeon Crawler</h1>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Dungeon dungeon={dungeon} player={player} />
-        <div>
-          <PlayerStats player={player} />
+    <>
+        <h1>Retro Dungeon Crawler</h1>
+      
+        <div className='game-board'>
+          <div className="column">
+        <TodoList
+          todos={todos}
+          addTodo={addTodo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
+        </div>
+
+        <div className="dungeon-container column-2">
+      
+          <Dungeon dungeon={dungeon} player={player} monster={monster} />
+          <Controls movePlayer={movePlayer} />
+          <button onClick={generateDungeon}>New Dungeon</button>
+
+          <div className="stats">
+              <PlayerStats player={player} />
+              <MonsterStats monster={monster} />
+          </div>
+        </div>
+        
+  
+        <div className="inventory-container column">
           <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>
-      <Controls movePlayer={movePlayer} />
-      <button onClick={generateDungeon}>New Dungeon</button>
-      <TodoList
-        todos={todos}
-        addTodo={addTodo}
-        toggleTodo={toggleTodo}
-        deleteTodo={deleteTodo}
-      />
-    </div>
-  );
+     
+    </>
+  
+  )
+  
 }

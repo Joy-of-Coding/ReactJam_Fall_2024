@@ -1,15 +1,18 @@
 // src/components/Dungeon.tsx
 import React from 'react';
-import { DungeonGrid, Player } from '../types/types';
+import { DungeonGrid, Player, Monster } from '../types/types';
+import "./Dungeon.css"
+
 
 type DungeonProps = {
   dungeon: DungeonGrid;
   player: Player;
+  monster: Monster;
 };
 
-const Dungeon: React.FC<DungeonProps> = ({ dungeon, player }) => {
+const Dungeon: React.FC<DungeonProps> = ({ dungeon, player, monster }) => {
   return (
-    <div>
+    <div className='dungeon'>
       {dungeon.map((row, y) => (
         <div key={y}>
           {row.map((cell, x) => (
