@@ -168,31 +168,35 @@ export default function Game() {
   return (
     <>
         <h1>Retro Dungeon Crawler</h1>
+      
         <div className='game-board'>
+          <div className="column">
         <TodoList
           todos={todos}
           addTodo={addTodo}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
         />
+        </div>
 
-        <div className="dungeon-container">
+        <div className="dungeon-container column-2">
+      
           <Dungeon dungeon={dungeon} player={player} monster={monster} />
           <Controls movePlayer={movePlayer} />
-          
+          <button onClick={generateDungeon}>New Dungeon</button>
 
           <div className="stats">
               <PlayerStats player={player} />
               <MonsterStats monster={monster} />
           </div>
-          </div>
+        </div>
         
   
-        <div className="inventory-container">
+        <div className="inventory-container column">
           <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>
-      <button onClick={generateDungeon}>New Dungeon</button>
+     
     </>
   
   )

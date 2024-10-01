@@ -3,11 +3,8 @@
     border: 1 salmon solid;
     background-color: #444;
     flex-direction: row-reverse ;
-    width: 800px;
    padding:0 40px;
    flex-grow: 2;
-    
-
 
 }
 
@@ -19,7 +16,6 @@
     flex-grow: 1;
 
 }
-
 
 .stats {
     display: flex;
@@ -33,3 +29,12 @@
    
 }
 
+.column {
+    width: 100px;
+    flex-grow: 1;
+}
+
+.column-2 {
+    width: 400px;
+    flex-grow: 3;
+}
