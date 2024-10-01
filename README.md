@@ -63,7 +63,8 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 - atk = attack + weapon + (abs(Base attack * (speed/10)))
 - def = defense + armor + (abs(Base Defense * (speed/10)))
 - speed = base speed, make icons move slightly faster
-- Experience & leveling = ((monster level value * number per encounter) + (level quest score + mini-quest) + (dungeon level completion gain) * multiplier for dungeon 5th level finished)
+- hit points = based on matrix by level
+- experience & leveling = ((monster level value * number per encounter) + (level quest score + mini-quest) + (dungeon level completion gain) * multiplier for dungeon 5th level finished)
 
 ## Level Progression Chart
 -- Example
@@ -97,31 +98,45 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 2. Dungeon level Completion
     1. **Level 1**
         - Quest: Weapon quest
-            - description of the quest
+            - Stumbles across a rusty sword and rusty helm
+        - Weapon: Rusty Sword
+        - Armor: Battered Helm
         - Level Minimum: 0
         - Monster: Spiders
         - Boss: Giant Arachnid
 
     2. **Level 2**
         - Quest: Armor quest
+            - find chest plate and amulet for chest plate to avoid being turned into a zombie
+        - Weapon: Short War Spear
+        - Armor: Chest Plate of Non-turning
         - Level Minimum: 2
         - Monster: Zombie
         - Boss: George(Necromancer) -- Turned to evil, villager rival from town
 
     3. **Level 3**
-        - Quest: Weapon quest
+        - Quest: Add “what took my %$&#@ milk cow” Quest
+            - Some evil is afoot and took my milk cow Bessie. find clues as to what happened to George
+        - Weapon: Crafted Mace
+        - Armor: Emblazoned Shield
         - Level Minimum: 5
         - Monster: Skeleton
         - Boss: Death Tyrant
 
     4. **Level 4**
-        - Quest: Weapon quest
+        - Quest: Add “How do i find my %$&#@ milk cow” Quest
+            - find clues as to where my Bessie is and how to find the alter on the fifth level
+        - Weapon: Two-handed Battle Axe
+        - Armor: Spiked Hand Guards
         - Level Minimum: 9
         - Monster: Ogre
         - Boss: Ettin
 
-    4. **Level 4**
-        - Quest: Weapon quest
+    5. **Level 5**
+        - Quest: Add “how do I defeat the Boss monster and get my %$&#@ milk cow back” Quest
+            - how tough can a shadow be and how do I hit it?
+        - Weapon: Crystal Staff of Light
+        - Armor: Radiant Great Helm
         - Level Minimum: 14
         - Monster: Drow, Dark Elves
         - Boss: Shadow of the Dragon Queen
@@ -131,4 +146,4 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
     - Player defined Extra real-life reward 
 
     - Along with the 2X experience boost for the day to prepare for level 6
-        - Later add: “Farmer decides he has a taste for this and wonders to himself “I wonder what is down these stairs, because at the end of the day, she really wasn't a very good milk cow(dead) anyway!!” 
+        - Later add: “Farmer decides he has a taste for this and wonders to himself “I wonder what is down these stairs, because at the end of the day, she really wasn't a very good milk cow (dead) anyway!!” 
