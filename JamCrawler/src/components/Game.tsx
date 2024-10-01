@@ -169,6 +169,13 @@ export default function Game() {
     <>
       <div>
         <h1>Retro Dungeon Crawler</h1>
+        <TodoList
+          todos={todos}
+          addTodo={addTodo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
+
         <div style={{ display: 'flex-column', gap: '20px' }}>
           <Dungeon dungeon={dungeon} player={player} monster={monster} />
           <Controls movePlayer={movePlayer} />
@@ -181,14 +188,8 @@ export default function Game() {
         </div>
       </div>
       <button onClick={generateDungeon}>New Dungeon</button>
-      <TodoList
-        todos={todos}
-        addTodo={addTodo}
-        toggleTodo={toggleTodo}
-        deleteTodo={deleteTodo}
-      />
     </>
-  );
   
+  )
   
 }
