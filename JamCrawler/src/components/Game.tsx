@@ -1,6 +1,6 @@
 // src/components/Game.tsx
 import "./Game.css";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, KeyboardEvent } from "react";
 import Dungeon from "./Dungeon";
 import PlayerStats from "./PlayerStats";
 import MonsterStats from "./MonsterStats";
@@ -40,7 +40,6 @@ export default function Game() {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     const generateDungeon = useCallback(() => {
-        console.log("generateDungeon() called");
         const newDungeon = Array.from({ length: GRID_SIZE }, () =>
             Array(GRID_SIZE).fill(EMPTY_CHAR)
         );
@@ -86,29 +85,25 @@ export default function Game() {
         });
     }, []);
 
+    const handleKeyPress = (e: KeyboardEvent) => {
+        e.preventDefault();
+        //console.log(e);
+        if (e.key == "ArrowLeft") {
+            movePlayer(-1, 0);
+        }
+        if (e.key == "ArrowRight") {
+            movePlayer(1, 0);
+        }
+        if (e.key == "ArrowDown") {
+            movePlayer(0, 1);
+        }
+        if (e.key == "ArrowUp") {
+            movePlayer(0, -1);
+        }
+    };
+
     useEffect(() => {
-        console.log("useEffect called");
         generateDungeon();
-        const handleKeyPress = (e: KeyboardEvent) => {
-            e.preventDefault();
-            console.log(e);
-            if (e.key == "ArrowLeft") {
-                movePlayer(-1, 0);
-            }
-            if (e.key == "ArrowRight") {
-                movePlayer(1, 0);
-            }
-            if (e.key == "ArrowDown") {
-                movePlayer(0, 1);
-            }
-            if (e.key == "ArrowUp") {
-                movePlayer(0, -1);
-            }
-        };
-        document.addEventListener("keydown", handleKeyPress);
-        return () => {
-            document.removeEventListener("keydown", handleKeyPress);
-        };
     }, [generateDungeon]);
 
     const movePlayer = (dx: number, dy: number) => {
@@ -192,7 +187,7 @@ export default function Game() {
         <>
             <h1>Retro Dungeon Crawler</h1>
 
-            <div className="game-board">
+            <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
                 <div className="column">
                     <TodoList
                         todos={todos}
