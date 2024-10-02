@@ -17,7 +17,7 @@ export default function IntroSplash({ setCurrentAppState }: Props) {
     return (
         <div className="flex flex-col">
             <div className="top-title">Intro Splash</div>
-            <img src={imgSource} />
+            <img src={imgSource} alt="game intro art picture" />
             <div className="advance-button">
                 <button onClick={handleClick}>Continue</button>
             </div>
