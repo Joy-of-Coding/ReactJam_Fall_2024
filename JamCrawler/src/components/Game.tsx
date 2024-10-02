@@ -1,12 +1,12 @@
 // src/components/Game.tsx
-import "./Game.css"
-import React, { useState, useEffect, useCallback } from 'react';
-import Dungeon from './Dungeon';
-import PlayerStats from './PlayerStats';
-import MonsterStats from './MonsterStats';
-import Inventory from './Inventory';
-import Controls from './Controls';
-import TodoList from './TodoList';
+import "./Game.css";
+import React, { useState, useEffect, useCallback } from "react";
+import Dungeon from "./Dungeon";
+import PlayerStats from "./PlayerStats";
+import MonsterStats from "./MonsterStats";
+import Inventory from "./Inventory";
+import Controls from "./Controls";
+import TodoList from "./TodoList";
 import {
   GRID_SIZE,
   ITEMS,
@@ -15,11 +15,11 @@ import {
   POTION_CHAR,
   SWORD_CHAR,
   LUCK_CHAR,
-} from '../constants/constants';
-import { Player, Todo, DungeonGrid, Monster } from '../types/types';
+} from "../constants/constants";
+import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
 export default function Game() {
-  const [level, setLevel] = useState<number>(1)
+  const [level, setLevel] = useState<number>(1);
   const [dungeon, setDungeon] = useState<DungeonGrid>([]);
   const [player, setPlayer] = useState<Player>({
     position: { x: 1, y: 1 },
@@ -76,7 +76,10 @@ export default function Game() {
       inventory: [],
     });
     setMonster({
-      position: { x: 1, y: 1 },
+      position: {
+        x: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
+        y: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
+      },
       strength: 10,
       stamina: 100,
       health: 100,
@@ -148,7 +151,7 @@ export default function Game() {
   };
 
   const addTodo = (text: string) => {
-    if (text.trim() !== '') {
+    if (text.trim() !== "") {
       setTodos([...todos, { id: Date.now(), text, completed: false }]);
     }
   };
@@ -168,42 +171,38 @@ export default function Game() {
 
   return (
     <>
-        <h1>Retro Dungeon Crawler</h1>
-      
-        <div className='game-board'>
-          <div className="column">
-        <TodoList
-          todos={todos}
-          addTodo={addTodo}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-        />
+      <h1>Retro Dungeon Crawler</h1>
+
+      <div className="game-board">
+        <div className="column">
+          <TodoList
+            todos={todos}
+            addTodo={addTodo}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
         </div>
 
         <div className="dungeon-container column-2">
           <h2>Level {level}</h2>
           <Dungeon dungeon={dungeon} player={player} monster={monster} />
-          <Controls movePlayer={movePlayer}
-          level={level}
-          setLevel={setLevel}
-          generateDungeon={generateDungeon}
-           />
-          
+          <Controls
+            movePlayer={movePlayer}
+            level={level}
+            setLevel={setLevel}
+            generateDungeon={generateDungeon}
+          />
 
           <div className="stats">
-              <PlayerStats player={player} />
-              <MonsterStats monster={monster} />
+            <PlayerStats player={player} />
+            <MonsterStats monster={monster} />
           </div>
         </div>
-        
-  
+
         <div className="inventory-container column">
           <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>
-     
     </>
-  
-  )
-  
+  );
 }
