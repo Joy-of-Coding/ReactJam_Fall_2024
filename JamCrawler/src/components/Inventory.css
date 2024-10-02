@@ -1,8 +1,19 @@
-
-
 .inventory-item-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-   
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.grid-container {
+  display: inline-grid;
+  column-gap: 10px;
+  grid-template-columns: 50% 50%;
+  border: 1px solid white;
+}
+
+.inventory-item-name {
+  text-align: left;
+  padding-top: 7px;
+  padding-left: 10px;
 }
