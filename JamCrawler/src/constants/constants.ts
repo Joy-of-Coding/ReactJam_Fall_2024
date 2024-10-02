@@ -1,7 +1,7 @@
 // src/constants/constants.ts
 export const GRID_SIZE = 10;
-export const PLAYER_CHAR = '@';
-export const MONSTER_CHAR = '💀';
+export const PLAYER_CHAR = '🧑‍🌾';
+export const MONSTER_CHAR = '🕷️';
 export const WALL_CHAR = '🪨';
 export const EMPTY_CHAR = ' ';
 export const POTION_CHAR = '🧪';
