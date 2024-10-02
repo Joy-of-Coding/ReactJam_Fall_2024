@@ -1,0 +1,17 @@
+Add one Monster to the Level one
+add one monster to All levels
+Confirm Player icon is on a Monster icon
+Create text box to display "Monster Encountered"
+    A. Monster displayed by level, see Ticket
+Initiate Combat sequence
+start Combat START and give player the choice of running from the monster
+    Combat button and Flight button
+Start Combat
+    display Player Attack, Player HitPoint
+    display Monster Attack, Player HitPoint
+    ** math for basic attack and defense
+    continue until player or monster is displayed
+Run From Monster
+    move player icon 
+
+
