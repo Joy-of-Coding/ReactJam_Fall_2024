@@ -22,14 +22,15 @@
 
 # playerCombatRound = 0
 # monsterCombatRound = 0
+playerBase = [10,5,100,0]
+monsterBase = [10,5,50]
 
-
-def attack (attack, weapon, baseStats, speed):
-    roundNum = attack + weapon + (round(baseStats * (speed/10)))
+def attack (attack, weapon):
+    roundNum = attack + weapon
     return roundNum
 
-def defense( defense, armor, base, speed):
-    roundNum = defense + armor + (round(base * (speed/10)))
+def defense( defense, armor):
+    roundNum = defense + armor
     return roundNum
 
 def hitPointCounter(hitPoint, attack, defense):
@@ -38,22 +39,15 @@ def hitPointCounter(hitPoint, attack, defense):
 
 def combatRound(pLvl, mLvl, mNumber, pWpn, pArm, numberRounds, playerCombatRound, monsterCombatRound):
     winner = ""
-    # if numberRounds == 1:
-    #     playerCombatRound = playerHitPoints[pLvl]
-    #     monsterCombatRound = monsterHitPoints[mLvl]
     print("Round: ", numberRounds)
-    # playerAtk = attack(playerAttack[pLvl-1], pWpn, base[0], spd(pLvl))
-    # playerDef = defense(playerDefense[pLvl-1], pArm, base[1], spd(pLvl))
 
-    # monsterAtk = (attack(monsterAttack[mLvl-1], 0, base[0], 0)) * mNumber
-    # monsterDef = defense(monsterDefense[mLvl-1], 0, base[1], 0)
-    playerAtk = attack(playerAttack[pLvl-1], pWpn, base[0], spd(pLvl))
-    playerDef = defense(playerDefense[pLvl-1], pArm, base[1], spd(pLvl))
+    playerAtk = attack(playerBase[0], pWpn)
+    playerDef = defense(playerBase[1], pArm)
+    monsterAtk = attack(monsterBase[0], 0)    
+    monsterDef = defense(monsterBase[1],0)
 
-    monsterAtk = (attack(monsterAttack[mLvl-1], 0, 0, 0)) * mNumber
-    monsterDef = defense(monsterDefense[mLvl-1], 0, 0, 0)
-
-    print(playerAtk, playerDef, monsterAtk, monsterDef)
+    print("pAtk:", playerAtk,"pDef:",  playerDef)
+    print("pAtk:",  monsterAtk,"pDef:",  monsterDef)
     playerCombat = hitPointCounter(playerCombatRound, monsterAtk, playerDef)
     monsterCombat = hitPointCounter(monsterCombatRound , playerAtk, monsterDef)
     
@@ -89,13 +83,13 @@ def main():
     # num = 1
     pLvl=1
     mLvl=1
-    mNumber=16 # 17 kills the player
+    mNumber=1 # 17 kills the player
     winner = ""
     pWpn=2
     pArm=2
     num = 1
-    playerCombatRound = 100 # playerHitPoints[pLvl-1]
-    monsterCombatRound = 100 # monsterHitPoints[mLvl-1] * mNumber
+    playerCombatRound = playerBase[2] # playerHitPoints[pLvl-1]
+    monsterCombatRound = monsterBase[2] # monsterHitPoints[mLvl-1] * mNumber
     # user input for next combat round
     winner = combatRound(pLvl, mLvl, mNumber, pWpn, pArm, num, playerCombatRound, monsterCombatRound)
     print("the winner is: ", winner)
