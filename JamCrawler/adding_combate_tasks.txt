@@ -1,0 +1,48 @@
+MVP Combat
+1 player   HP 12
+1 monster hp 6
+monsterattack = 6
+playerdefense =4 
+player attack 6
+monsterdefnse =4
+
+
+
+Round 1
+monster attacks: 
+damage = 4-6 = -2 to player
+player HP 12-2 = 0
+
+player attacks: 
+damage = -2 to monster
+6-2 = 4
+
+React Programming tasks
+1- add a monster to dungeon generation
+2- add a check if object is monster
+3- console.log mostner encountered
+3a.5 show text box that says "monster encountered" 
+
+
+3b - show combat results
+     - simulate with 2 random numbers 
+
+3c Advance features 
+    - do you want to initiate combat? 
+        - random direction
+       
+
+
+4- start combat 
+4a - click a button
+4b - run combat auomatically
+4c - strart combate when text box is closed
+4d - start combat after X seconds 
+
+
+5a  - monster attack = show stats
+5b - player attack = show stats 
+
+
+991 How many monsters won't kill a player
+
