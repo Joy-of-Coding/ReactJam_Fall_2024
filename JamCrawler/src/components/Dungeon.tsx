@@ -20,8 +20,8 @@ const Dungeon: React.FC<DungeonProps> = ({ dungeon, player, monster }) => {
           key={`${x}-${y}`}
           style={{ width: '20px', display: 'inline-block', textAlign: 'center' }}
         >
-          {x === player.position.x && y === player.position.y ? '@' : 
-           x === monster.position.x && y === monster.position.y ? 'M' : cell}
+          {x === player.position.x && y === player.position.y ? '🧑‍🌾' : 
+           x === monster.position.x && y === monster.position.y ? '🕷️' : cell}
         </span>
       ))}
     </div>
