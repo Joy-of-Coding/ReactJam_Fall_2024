@@ -32,3 +32,11 @@ export type Todo = {
 };
 
 export type DungeonGrid = string[][];
+
+export interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+  priority: 'red' | 'yellow' | 'green';
+  luckValue: number;
+}
