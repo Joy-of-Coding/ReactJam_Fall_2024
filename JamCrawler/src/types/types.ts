@@ -14,6 +14,7 @@ export type Player = {
     health: number;
     luck: number;
     inventory: Item[];
+    isAlive: boolean;
 };
 
 export type Monster = {
@@ -33,6 +34,18 @@ export type Todo = {
 };
 
 export type DungeonGrid = string[][];
+
+export type PlayerCombatStats = {
+    attack: number;
+    defense: number;
+    exp: number;
+};
+
+export type monsterCombatStats = {
+    attack: number;
+    defense: number;
+    hp: number;
+};
 
 // export interface Todo {
 //   id: number;

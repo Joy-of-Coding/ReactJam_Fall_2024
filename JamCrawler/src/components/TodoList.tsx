@@ -1,29 +1,29 @@
 // src/components/TodoList.tsx
-import React, { useState } from 'react';
-import { Todo } from '../types/types';
-import './TodoList.css'
+import React, { useState } from "react";
+import { Todo } from "../types/types";
+import "./TodoList.css";
 
 type TodoListProps = {
-  todos: Todo[];
-  addTodo: (text: string) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+    todos: Todo[];
+    addTodo: (text: string) => void;
+    toggleTodo: (id: number) => void;
+    deleteTodo: (id: number) => void;
 };
 
-const TodoList: React.FC<TodoListProps> = ({
-  todos,
-  addTodo,
-  toggleTodo,
-  deleteTodo,
-}) => {
-  const [newTodo, setNewTodo] = useState('');
+const TodoList = ({
+    todos,
+    addTodo,
+    toggleTodo,
+    deleteTodo,
+}: TodoListProps) => {
+    const [newTodo, setNewTodo] = useState<string>("");
 
-  const handleAddTodo = () => {
-    if (newTodo.trim() !== '') {
-      addTodo(newTodo);
-      setNewTodo('');
-    }
-  };
+    const handleAddTodo = () => {
+        if (newTodo.trim() !== "") {
+            addTodo(newTodo);
+            setNewTodo("");
+        }
+    };
 
   return (
     <div className='todoContainer'>
@@ -35,9 +35,7 @@ const TodoList: React.FC<TodoListProps> = ({
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a new todo"
-
         />
-      
         <button onClick={handleAddTodo}>Add</button>
       </div>
       {todos.length > 0 ? (
@@ -52,7 +50,7 @@ const TodoList: React.FC<TodoListProps> = ({
               />
               <label
                 htmlFor={`todo-${todo.id}`}
-                //style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+                style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
               >
                 {todo.text}
               </label>
