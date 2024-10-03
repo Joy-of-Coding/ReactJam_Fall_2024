@@ -85,10 +85,21 @@ export default function CombatEncounter({
             ]);
             setPlayer((prev) => ({
                 ...prev,
-                health: prev.health - damageToPlayer,
+                health:
+                    prev.health - damageToPlayer < 0
+                        ? 0
+                        : prev.health - damageToPlayer,
             }));
+            // check if player is dead
+            if (player.health - damageToPlayer <= 0) {
+                setCombatEnded(true);
+                setResultsText((prev) => [
+                    ...prev,
+                    "The monster killed you...",
+                ]);
+                setLargeResults("The monster killed you...");
+            }
         }
-        // check if player is dead
 
         setResultsText((prev) => [...prev, "-------"]);
         // end of round: increase round number
