@@ -135,18 +135,22 @@ export default function Game({
         //e.preventDefault();
         //console.log(e);
         if (e.key == "ArrowLeft") {
+            e.preventDefault();
             movePlayer(-1, 0);
             e.preventDefault();
         }
         if (e.key == "ArrowRight") {
+            e.preventDefault();
             movePlayer(1, 0);
             e.preventDefault();
         }
         if (e.key == "ArrowDown") {
+            e.preventDefault();
             movePlayer(0, 1);
             e.preventDefault();
         }
         if (e.key == "ArrowUp") {
+            e.preventDefault();
             movePlayer(0, -1);
             e.preventDefault();
         }
