@@ -56,6 +56,7 @@ function App() {
                             monster={monster}
                             setPlayer={setPlayer}
                             setMonster={setMonster}
+                            setCurrentAppState={setCurrentAppState}
                         />
                     )}
                 </div>
