@@ -13,22 +13,22 @@ const PlayerStats: React.FC<PlayerStatsProps> = ({ player }) => (
     <h2>Player Stats</h2>
     <div className="container">
       <div className="leftAlign" >
-        <p>💪</p>
-        <p>🔋</p>
-        <p>❤️</p>
-        <p>🍀</p>
+        <p id="leftMargin">💪</p>
+        <p id="leftMargin">🔋</p>
+        <p id="leftMargin">❤️</p>
+        <p id="leftMargin">🍀</p>
       </div>
       <div className="leftAlign" >
         <p> Strength: </p>
-        <p> Stamina: </p>
+        <p> Defense: </p>
         <p> Health: </p>
         <p> Luck: </p>
       </div>  
       <div className="leftAlign" >
         <p>{player.strength}</p>
-        <p>{player.stamina}</p>
+        <p>{player.defense}</p>
         <p>{player.health}</p>
-        <p>{player.luck}</p>
+        <p>{player.experience}</p>
       </div>
     </div> 
 
