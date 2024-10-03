@@ -53,17 +53,19 @@ export default function Game() {
     }
 
     // Add some random walls and items
-    for (let i = 0; i < 15; i++) {
-      const x = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
-      const y = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
-      newDungeon[y][x] =
-        Math.random() < 0.6
-          ? WALL_CHAR
-          : Math.random() < 0.5
-          ? POTION_CHAR
-          : Math.random() < 0.5
-          ? SWORD_CHAR
-          : LUCK_CHAR;
+    if (level > 1) {
+      for (let i = 0; i < 15; i++) {
+        const x = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+        const y = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+        newDungeon[y][x] =
+          Math.random() < 0.6
+            ? WALL_CHAR
+            : Math.random() < 0.5
+            ? POTION_CHAR
+            : Math.random() < 0.5
+            ? SWORD_CHAR
+            : LUCK_CHAR;
+      }
     }
 
     setDungeon(newDungeon);
@@ -107,7 +109,7 @@ export default function Game() {
 
   useEffect(() => {
     generateDungeon();
-  }, [generateDungeon]);
+  }, [generateDungeon, level]);
 
   const movePlayer = (dx: number, dy: number) => {
     setPlayer((prev) => {
@@ -188,7 +190,7 @@ export default function Game() {
 
   return (
     <>
-      <h1>Retro Dungeon Crawler</h1>
+      <h1 className="grit">Retro Dungeon Crawler</h1>
 
       <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
         <div className="column">

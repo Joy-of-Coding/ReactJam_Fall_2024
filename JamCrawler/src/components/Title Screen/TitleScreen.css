@@ -1,0 +1,17 @@
+.main-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.buttons-row {
+    margin-top: 1rem;
+    row-gap: 2rem;
+}
+
+.start-button {
+    margin-right: 2rem;
+}
+
+.credits-button {
+    margin-left: 2rem;
+}
