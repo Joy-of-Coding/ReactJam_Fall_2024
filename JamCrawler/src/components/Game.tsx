@@ -1,11 +1,12 @@
 // src/components/Game.tsx
-
-import React, { useState, useEffect, useCallback } from 'react';
-import Dungeon from './Dungeon';
-import PlayerStats from './PlayerStats';
-import Inventory from './Inventory';
-import Controls from './Controls';
-import TodoList from './TodoList';
+import "./Game.css";
+import React, { useState, useEffect, useCallback, KeyboardEvent } from "react";
+import Dungeon from "./Dungeon";
+import PlayerStats from "./PlayerStats";
+import MonsterStats from "./MonsterStats";
+import Inventory from "./Inventory";
+import Controls from "./Controls";
+import TodoList from "./TodoList";
 import {
   GRID_SIZE,
   ITEMS,
@@ -14,12 +15,21 @@ import {
   POTION_CHAR,
   SWORD_CHAR,
   LUCK_CHAR,
-} from '../constants/constants';
-import { Player, Todo, DungeonGrid } from '../types/types';
+} from "../constants/constants";
+import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
 export default function Game() {
+  const [level, setLevel] = useState<number>(1);
   const [dungeon, setDungeon] = useState<DungeonGrid>([]);
   const [player, setPlayer] = useState<Player>({
+    position: { x: 1, y: 1 },
+    strength: 10,
+    stamina: 100,
+    health: 100,
+    luck: 0,
+    inventory: [],
+  });
+  const [monster, setMonster] = useState<Monster>({
     position: { x: 1, y: 1 },
     strength: 10,
     stamina: 100,
@@ -65,7 +75,35 @@ export default function Game() {
       luck: 0,
       inventory: [],
     });
+    setMonster({
+      position: {
+        x: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
+        y: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
+      },
+      strength: 10,
+      stamina: 100,
+      health: 100,
+      luck: 0,
+      inventory: [],
+    });
   }, []);
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    e.preventDefault();
+    //console.log(e);
+    if (e.key == "ArrowLeft") {
+      movePlayer(-1, 0);
+    }
+    if (e.key == "ArrowRight") {
+      movePlayer(1, 0);
+    }
+    if (e.key == "ArrowDown") {
+      movePlayer(0, 1);
+    }
+    if (e.key == "ArrowUp") {
+      movePlayer(0, -1);
+    }
+  };
 
   useEffect(() => {
     generateDungeon();
@@ -130,7 +168,7 @@ export default function Game() {
   };
 
   const addTodo = (text: string) => {
-    if (text.trim() !== '') {
+    if (text.trim() !== "") {
       setTodos([...todos, { id: Date.now(), text, completed: false }]);
     }
   };
@@ -149,23 +187,39 @@ export default function Game() {
   };
 
   return (
-    <div>
-      <h1>Retro Dungeon Crawler</h1>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Dungeon dungeon={dungeon} player={player} />
-        <div>
-          <PlayerStats player={player} />
+    <>
+      <h1 className="grit">Retro Dungeon Crawler</h1>
+
+      <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
+        <div className="column">
+          <TodoList
+            todos={todos}
+            addTodo={addTodo}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
+        </div>
+
+        <div className="dungeon-container column-2">
+          <h2>Level {level}</h2>
+          <Dungeon dungeon={dungeon} player={player} monster={monster} />
+          <Controls
+            movePlayer={movePlayer}
+            level={level}
+            setLevel={setLevel}
+            generateDungeon={generateDungeon}
+          />
+
+          <div className="stats">
+            <PlayerStats player={player} />
+            <MonsterStats monster={monster} />
+          </div>
+        </div>
+
+        <div className="inventory-container column">
           <Inventory inventory={player.inventory} useItem={useItem} />
         </div>
       </div>
-      <Controls movePlayer={movePlayer} />
-      <button onClick={generateDungeon}>New Dungeon</button>
-      <TodoList
-        todos={todos}
-        addTodo={addTodo}
-        toggleTodo={toggleTodo}
-        deleteTodo={deleteTodo}
-      />
-    </div>
+    </>
   );
 }

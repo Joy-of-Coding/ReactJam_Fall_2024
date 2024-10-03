@@ -1,0 +1,21 @@
+.player-stats {
+    display: flex;
+    flex-grow: 1;
+    
+}
+
+.vitals {
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+
+}
+.leftAlign {
+    flex-direction: column;
+    align-content:start;
+    margin-left:8px ;
+}

@@ -1,13 +1,14 @@
 // src/constants/constants.ts
 export const GRID_SIZE = 10;
-export const PLAYER_CHAR = '@';
-export const WALL_CHAR = '#';
-export const EMPTY_CHAR = '.';
-export const POTION_CHAR = '!';
-export const SWORD_CHAR = '+';
-export const LUCK_CHAR = '*';
+export const PLAYER_CHAR = '🧑‍🌾';
+export const MONSTER_CHAR = '🐍';
+export const WALL_CHAR = '🪨';
+export const EMPTY_CHAR = ' ';
+export const POTION_CHAR = '🧪';
+export const SWORD_CHAR = '🗡️';
+export const LUCK_CHAR = '🍀';
 
-import { Item } from '../types';
+import { Item } from '../types/types';
 
 export const ITEMS: { [key: string]: Item } = {
   healthPotion: {
