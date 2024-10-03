@@ -71,7 +71,7 @@
 }
 .todo-text {
   flex-grow: 1;
-  color: #fff;
+  color: #0c0c0c;
 }
 .completed {
   text-decoration: line-through;
