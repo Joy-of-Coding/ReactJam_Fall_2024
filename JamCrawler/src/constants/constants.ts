@@ -6,7 +6,7 @@ export const WALL_CHAR = '🪨';
 export const EMPTY_CHAR = ' ';
 export const POTION_CHAR = '🧪';
 export const SWORD_CHAR = '🗡️';
-export const LUCK_CHAR = '🍀';
+export const LUCK_CHAR = '🍀'; 
 
 import { Item } from '../types/types';
 
