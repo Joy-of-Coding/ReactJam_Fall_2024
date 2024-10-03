@@ -14,7 +14,9 @@ const Inventory: React.FC<InventoryProps> = ({ inventory, useItem }) => (
     {inventory.length > 0 ? (
       inventory.map((item, index) => (
         <div className="grid-container" key={index}>
-          <div className="grid-item inventory-item-name">{item.name}</div>
+          <div className="grid-item inventory-item-name">
+            {item.name} ==&gt;
+          </div>
           <div className="grid-item">
             <button onClick={() => useItem(index)}>Use</button>
           </div>
