@@ -1,4 +1,6 @@
 // src/constants/constants.ts
+
+// Existing Game Constants
 export const GRID_SIZE = 10;
 export const PLAYER_CHAR = '🧑‍🌾';
 export const MONSTER_CHAR = '🕷️';
@@ -8,22 +10,30 @@ export const POTION_CHAR = '🧪';
 export const SWORD_CHAR = '🗡️';
 export const LUCK_CHAR = '🍀';
 
-import { Item } from '../types/types';
+// Import SVG icons
+import LowPriorityIcon from '../assets/icons/low-priority.svg';
+import MediumPriorityIcon from '../assets/icons/medium-priority.svg';
+import HighPriorityIcon from '../assets/icons/high-priority.svg';
 
-export const ITEMS: { [key: string]: Item } = {
-  healthPotion: {
-    name: 'Health Potion',
-    symbol: POTION_CHAR,
-    effect: (player) => ({ ...player, health: Math.min(player.health + 20, 100) }),
+// To-Do List Priority Constants with SVG Images
+export const PRIORITY_LOW = 'low';
+export const PRIORITY_MEDIUM = 'medium';
+export const PRIORITY_HIGH = 'high';
+
+export const PRIORITIES = [
+  {
+    value: PRIORITY_LOW,
+    label: 'Low Priority',
+    icon: LowPriorityIcon,  // Assign the SVG as an icon
   },
-  sword: {
-    name: 'Sword',
-    symbol: SWORD_CHAR,
-    effect: (player) => ({ ...player, strength: player.strength + 5 }),
+  {
+    value: PRIORITY_MEDIUM,
+    label: 'Medium Priority',
+    icon: MediumPriorityIcon,  // Assign the SVG as an icon
   },
-  luckCharm: {
-    name: 'Luck Charm',
-    symbol: LUCK_CHAR,
-    effect: (player) => ({ ...player, luck: player.luck + 5 }),
+  {
+    value: PRIORITY_HIGH,
+    label: 'High Priority',
+    icon: HighPriorityIcon,  // Assign the SVG as an icon
   },
-};
+];

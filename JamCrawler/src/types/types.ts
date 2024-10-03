@@ -29,6 +29,7 @@ export type Todo = {
   id: number;
   text: string;
   completed: boolean;
+  priority: 'low' | 'medium' | 'high';
 };
 
 export type DungeonGrid = string[][];

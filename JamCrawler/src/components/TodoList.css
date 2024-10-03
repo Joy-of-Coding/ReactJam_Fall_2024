@@ -1,13 +1,127 @@
-.todo-input {
-    padding: 10px 20px;
+/* General Container */
+.todoContainer {
+    background-color: #444;
+    color: white;
+    padding: 20px;
     border-radius: 10px;
-}
-
-.todoInputContainer {
+    width: 400px;
+    margin: 0 auto;
+    font-family: 'Lato', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Heading */
+  .heading {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  /* Input and Dropdown */
+  .todoInputContainer {
     display: flex;
     gap: 10px;
-}
-
-.todoContainer {
+    align-items: center;
+  }
+  
+  .todo-input {
+    flex: 1;
     padding: 10px;
-}
+    font-size: 1rem;
+    border: 2px solid #777;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .priorityDropdown {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #777;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Add Button */
+  button {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+  }
+  
+  /* Task Limit Message */
+  .limitMessage {
+    color: #f7a1a1;
+    text-align: center;
+    margin: 15px 0;
+    font-weight: 600;
+  }
+  
+  /* Todo List Styling */
+  .todoList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #555;
+    font-size: 1rem;
+  }
+  
+  /* Priority Colors */
+  .low {
+    background-color: #3a7d44; /* Green for low priority */
+  }
+  
+  .medium {
+    background-color: #e6ac00; /* Yellow for medium priority */
+  }
+  
+  .high {
+    background-color: #d9534f; /* Red for high priority */
+  }
+  
+  /* Task Label */
+  .todoLabel {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  /* Delete Button */
+  .deleteButton {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c9302c;
+  }
