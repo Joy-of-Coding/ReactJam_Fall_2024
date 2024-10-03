@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Todo } from '../types/types';  // Import the Todo type
 import './TodoList.css';  // Import your CSS file
+import highIcon from './assets/highIcon.png';
+import lowIcon from './assets/lowIcon.png';
+import mediumIcon from './assets/mediumIcon.png';
 
 type TodoListProps = {
   todos: Todo[];
@@ -8,6 +11,8 @@ type TodoListProps = {
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 };
+
+<><img src="/src/assets/highIcon.png" alt="High" /><img src="/src/assets/mediumIcon.png" alt="High" /><img src="/src/assets/lowIcon.png" alt="High" /></> 
 
 const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, toggleTodo, deleteTodo }) => {
   const [newTodo, setNewTodo] = useState('');
