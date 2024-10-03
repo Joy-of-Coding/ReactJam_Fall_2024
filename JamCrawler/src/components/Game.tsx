@@ -15,6 +15,7 @@ import {
   POTION_CHAR,
   SWORD_CHAR,
   LUCK_CHAR,
+  HELMET_CHAR,
 } from "../constants/constants";
 import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
@@ -39,12 +40,15 @@ export default function Game() {
   });
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const generateDungeon = useCallback(() => {
+  const generateDungeon = () => {
+    // RIVER-Trying out adding logs for visibility on function execution
+    console.log("Generating dungeon for first level...");
+
     const newDungeon = Array.from({ length: GRID_SIZE }, () =>
       Array(GRID_SIZE).fill(EMPTY_CHAR)
     );
 
-    // Add walls
+    // RIVER-Specifically adds walls to perimiter defined by grid size
     for (let i = 0; i < GRID_SIZE; i++) {
       newDungeon[0][i] = WALL_CHAR;
       newDungeon[GRID_SIZE - 1][i] = WALL_CHAR;
@@ -52,23 +56,13 @@ export default function Game() {
       newDungeon[i][GRID_SIZE - 1] = WALL_CHAR;
     }
 
-    // Add some random walls and items
-    if (level > 1) {
-      for (let i = 0; i < 15; i++) {
-        const x = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
-        const y = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
-        newDungeon[y][x] =
-          Math.random() < 0.6
-            ? WALL_CHAR
-            : Math.random() < 0.5
-            ? POTION_CHAR
-            : Math.random() < 0.5
-            ? SWORD_CHAR
-            : LUCK_CHAR;
-      }
-    }
-
+    // Set dungeon without items for level 1
+    console.log("Dungeon setup complete for level 1.");
     setDungeon(newDungeon);
+
+    // RIVER-This resets the player's stats and places player on map
+    // Setting player in a fixed starting point for now, but monster
+    // will be random
     setPlayer({
       position: { x: 1, y: 1 },
       strength: 10,
@@ -77,18 +71,52 @@ export default function Game() {
       luck: 0,
       inventory: [],
     });
+
+    // RIVER-This generates monster to map ONCE at random coordinates
+    const monsterX = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+    const monsterY = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+
     setMonster({
-      position: {
-        x: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
-        y: Math.floor(Math.random() * (GRID_SIZE - 2)) + 1,
-      },
+      position: { x: monsterX, y: monsterY },
       strength: 10,
-      stamina: 100,
-      health: 100,
-      luck: 0,
+      stamina: 5,
+      health: 50,
+      luck: 1000,
       inventory: [],
     });
-  }, []);
+    console.log("Monster placed at (${monsterX}, ${monsterY})");
+
+    // RIVER-Adding one sword and two potions to level 1
+
+    // RIVER-This function helps generate random empty coordinate
+    const getRandomEmptyPosition = () => {
+      let x, y;
+      do {
+        x = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+        y = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
+      } while (newDungeon[y][x] !== EMPTY_CHAR || (x === 1 && y === 1));
+      return { x, y };
+    };
+
+    // RIVER-Placing one sword
+    const swordPos = getRandomEmptyPosition();
+    newDungeon[swordPos.y][swordPos.x] = SWORD_CHAR;
+    console.log(`Sword placed at (${swordPos.x}, ${swordPos.y})`);
+
+    // RIVER-Placing one helmet
+    const helmetPos = getRandomEmptyPosition();
+    newDungeon[helmetPos.y][helmetPos.x] = HELMET_CHAR;
+    console.log(`Helmet placed at (${helmetPos.x}, ${helmetPos.y})`);
+
+    // Place two potions
+    for (let i = 0; i < 2; i++) {
+      const potionPos = getRandomEmptyPosition();
+      newDungeon[potionPos.y][potionPos.x] = POTION_CHAR;
+      console.log(`Potion ${i + 1} placed at (${potionPos.x}, ${potionPos.y})`);
+    }
+
+    setDungeon(newDungeon);
+  };
 
   const handleKeyPress = (e: KeyboardEvent) => {
     e.preventDefault();
@@ -109,7 +137,7 @@ export default function Game() {
 
   useEffect(() => {
     generateDungeon();
-  }, [generateDungeon, level]);
+  }, [level]);
 
   const movePlayer = (dx: number, dy: number) => {
     setPlayer((prev) => {
@@ -135,6 +163,7 @@ export default function Game() {
 
       if (
         cellContent === POTION_CHAR ||
+        cellContent === HELMET_CHAR ||
         cellContent === SWORD_CHAR ||
         cellContent === LUCK_CHAR
       ) {
@@ -143,6 +172,8 @@ export default function Game() {
             ? ITEMS.healthPotion
             : cellContent === SWORD_CHAR
             ? ITEMS.sword
+            : cellContent === HELMET_CHAR
+            ? ITEMS.helmet
             : ITEMS.luckCharm;
         newPlayer.inventory = [...newPlayer.inventory, item];
         setDungeon((prevDungeon) => {
