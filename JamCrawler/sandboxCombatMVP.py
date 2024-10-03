@@ -22,8 +22,8 @@
 
 # playerCombatRound = 0
 # monsterCombatRound = 0
-playerBase = [10,5,100,0]
-monsterBase = [10,5,50]
+playerBase = [30, 20, 200, 4001] # atk, def, hp, exp
+monsterBase = [33, 22, 180] # atk, def, hp
 
 def attack (attack, weapon):
     roundNum = attack + weapon
@@ -47,20 +47,23 @@ def combatRound(pLvl, mLvl, mNumber, pWpn, pArm, numberRounds, playerCombatRound
     monsterDef = defense(monsterBase[1],0)
 
     print("pAtk:", playerAtk,"pDef:",  playerDef)
-    print("pAtk:",  monsterAtk,"pDef:",  monsterDef)
+    print("mAtk:",  monsterAtk,"mDef:",  monsterDef)
     playerCombat = hitPointCounter(playerCombatRound, monsterAtk, playerDef)
     monsterCombat = hitPointCounter(monsterCombatRound , playerAtk, monsterDef)
-    
+    print("Player: ", playerCombatRound )
+    print("Monster: ", monsterCombatRound)
     print("Player: ", playerCombat )
     print("Monster: ", monsterCombat)
     if monsterCombat >= 0 and playerCombat >= 0:
         numberRounds += 1
         playerCombatRound = playerCombat
         monsterCombatRound = monsterCombat
-        combatRound(pLvl, mLvl, mNumber, pWpn, pArm, numberRounds, playerCombatRound, monsterCombatRound)
+        return combatRound(pLvl, mLvl, mNumber, pWpn, pArm, numberRounds, playerCombatRound, monsterCombatRound)
+
     elif monsterCombat <= 0:
         winner = "Player"
         print(winner)
+
     else:
         winner = "You are dead, please try again... Sucker!"
     return winner
@@ -81,8 +84,8 @@ def main():
     # pWpn=weapon[0]
     # pArm=armor[0]
     # num = 1
-    pLvl=1
-    mLvl=1
+    pLvl=2
+    mLvl=2
     mNumber=1 # 17 kills the player
     winner = ""
     pWpn=2
