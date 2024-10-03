@@ -3,6 +3,7 @@ import "./App.css";
 import TitleScreen from "./components/Title Screen/TitleScreen.tsx";
 import IntroSplash from "./components/Splash Screens/IntroSplash.tsx";
 import Game from "./components/Game.tsx";
+import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 
 function App() {
     const [currentAppState, setCurrentAppState] =
@@ -19,7 +20,10 @@ function App() {
                     {currentAppState == "introSplash" && (
                         <IntroSplash setCurrentAppState={setCurrentAppState} />
                     )}
-                    {currentAppState == "game" && <Game />}
+                    {currentAppState == "game" && (
+                        <Game setCurrentAppState={setCurrentAppState} />
+                    )}
+                    {currentAppState == "combat" && <CombatEncounter />}
                 </div>
             </div>
         </>
