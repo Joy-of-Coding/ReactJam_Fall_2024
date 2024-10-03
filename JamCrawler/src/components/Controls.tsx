@@ -40,7 +40,6 @@ const Controls: React.FC<ControlsProps> = ({
             className="next-level"
             onClick={() => {
                 setLevel(level + 1);
-                generateDungeon();
             }}
         >
             Enter Next Level
