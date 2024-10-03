@@ -1,92 +1,66 @@
 import React, { useState } from 'react';
-import { Todo } from '../types/types';  // Import the Todo type
-import './TodoList.css';  // Import your CSS file
-import highIcon from './assets/highIcon.png';
-import lowIcon from './assets/lowIcon.png';
-import mediumIcon from './assets/mediumIcon.png';
+import './TodoList.css'; // Import the CSS for styling
 
-type TodoListProps = {
-  todos: Todo[];
-  addTodo: (text: string, priority: 'low' | 'medium' | 'high') => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-};
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
 
-<><img src="/src/assets/highIcon.png" alt="High" /><img src="/src/assets/mediumIcon.png" alt="High" /><img src="/src/assets/lowIcon.png" alt="High" /></> 
-
-const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, toggleTodo, deleteTodo }) => {
+const TodoList: React.FC = () => {
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, text: 'Find the magic sword', completed: false },
+    { id: 2, text: 'Defeat the dungeon boss', completed: false },
+    { id: 3, text: 'Rescue the captured villagers', completed: false }
+  ]);
+  
   const [newTodo, setNewTodo] = useState('');
-  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
 
-  // Handle adding a new todo
-  const handleAddTodo = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent form submission (default behavior)
-    if (newTodo.trim() === '') return; // Prevent adding empty todos
-
-    const activeTodos = todos.filter((todo) => !todo.completed).length;
-    if (activeTodos >= 3) return; // Prevent adding more than 3 uncompleted tasks
-
-    addTodo(newTodo, priority);
+  const addTodo = () => {
+    if (newTodo.trim() !== '') {
+      const newTask = {
+        id: todos.length + 1,
+        text: newTodo,
+        completed: false
+      };
+      setTodos([...todos, newTask]);
     setNewTodo(''); // Clear input after adding
-    setPriority('low'); // Reset priority to default
+    }
+  };
+
+  const toggleComplete = (id: number) => {
+    setTodos(
+      todos.map(todo => 
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const removeTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   return (
-    <div className="todoContainer">
-      <h2 className="heading">To-Do List</h2>
-
-      {/* Form to handle input and submission */}
-      <form onSubmit={handleAddTodo} className="todoInputContainer">
-        <input
-          className="todo-input"
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}  // Update input value in state
-          placeholder="Add a new todo"
-        />
-
-        {/* Priority Dropdown */}
-        <select
-          className="priorityDropdown"
-          value={priority}
-          onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
-        >
-          <option value="low">Low Priority</option>
-          <option value="medium">Medium Priority</option>
-          <option value="high">High Priority</option>
-        </select>
-
-        <button type="submit" disabled={todos.filter((todo) => !todo.completed).length >= 3}>
-          Add
-        </button>
-      </form>
-
-      {/* Show task limit message */}
-      {todos.filter((todo) => !todo.completed).length >= 3 && (
-        <p className="limitMessage">Task limit reached! Complete tasks to add more.</p>
-      )}
-
-      <ul className="todoList">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={`todoItem priority-${todo.priority}`}  // Apply priority class based on the todo's priority
-          >
-            <label className="todoLabel">
-              <input
-                type="checkbox"
-                id={`todo-${todo.id}`}
-                checked={todo.completed}
-                onChange={() => toggleTodo(todo.id)}
-              />
-              <span className={todo.completed ? 'completed' : ''}>{todo.text}</span>
-            </label>
-            <button className="deleteButton" onClick={() => deleteTodo(todo.id)}>
-              Delete
-            </button>
+    <div className="todo-container">
+      <h2 className="todo-header">Quest Log</h2>
+      <ul className="todo-list">
+        {todos.map(todo => (
+          <li key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+            <span onClick={() => toggleComplete(todo.id)}>{todo.text}</span>
+            <button className="delete-btn" onClick={() => removeTodo(todo.id)}>❌</button>
           </li>
         ))}
       </ul>
+      <div className="todo-input-section">
+        <input 
+          type="text"
+          placeholder="Add new quest..."
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          className="todo-input"
+        />
+        <button className="add-btn" onClick={addTodo}>➕ Add Quest</button>
+      </div>
     </div>
   );
 };
