@@ -1,0 +1,48 @@
+.game-board {
+    display: flex;
+    border: 1 salmon solid;
+    background-color: #444;
+    flex-direction: row-reverse ;
+   padding:0 40px;
+   flex-grow: 2;
+   width: 1040px;
+
+}
+
+.dungeon-container {
+    display: flex;
+    gap: '40px';
+    padding: 15px;
+    flex-direction: column;
+    flex-grow: 1;
+border: 2px solid blue;
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+}
+
+.inventory-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  border: 2px solid pink;
+}
+
+.column {
+    width: 100px;
+    flex-grow: 2;
+}
+
+.column-2 {
+    
+    flex-grow: 3;
+}
+
+.grit {
+  -webkit-mask-image: url("../assets/grit.png");
+  mask-image: url("../assets/grit.png");
+  color:slategray;
+  padding-bottom: 10px;
+}

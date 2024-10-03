@@ -1,0 +1,25 @@
+.inventory-item-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.inventory-container h3 {
+  text-decoration-line: underline;
+  text-decoration-style: double;
+}
+
+.grid-container {
+  display: inline-grid;
+  column-gap: 10px;
+  grid-template-columns: 60% 40%;
+  border: 1px solid white;
+}
+
+.inventory-item-name {
+  text-align: left;
+  padding-top: 7px;
+  padding-left: 10px;
+  text-emphasis: bold;
+}
