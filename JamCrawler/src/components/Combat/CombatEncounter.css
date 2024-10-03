@@ -1,0 +1,57 @@
+.combat-board {
+    display: flex;
+    background-color: #444;
+    flex-direction: column;
+    width: 700px;
+    align-items: center;
+    justify-items: center;
+    place-items: center;
+    height: 500px;
+    border-radius: 25px;
+}
+
+.intermediate-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.icons-and-stats {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.icons {
+    font-size: 3rem;
+}
+
+.player-stats {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3rem;
+}
+
+.monster-stats {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}
+
+#farmer-char {
+    margin-right: 100px;
+}
+
+.attack-button {
+    margin-bottom: 1.5rem;
+}
+
+.action-results {
+    height: 200px;
+    width: 600px;
+    background-color: black;
+    border-radius: 25px;
+    border: #242424 solid;
+    border-width: 10px;
+}
