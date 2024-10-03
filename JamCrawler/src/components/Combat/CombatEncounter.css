@@ -6,7 +6,7 @@
     align-items: center;
     justify-items: center;
     place-items: center;
-    height: 500px;
+    height: 600px;
     border-radius: 25px;
 }
 
@@ -47,6 +47,11 @@
     margin-bottom: 1.5rem;
 }
 
+.result-popup {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
 .action-results {
     height: 200px;
     width: 600px;
@@ -54,4 +59,11 @@
     border-radius: 25px;
     border: #242424 solid;
     border-width: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.return-button {
+    margin-top: 1.5rem;
 }

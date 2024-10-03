@@ -9,6 +9,9 @@ interface CombatProps {
     monster: Monster;
     setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
     setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
+    setCurrentAppState: (
+        value: string | ((prevValue: string) => string)
+    ) => void;
 }
 
 export default function CombatEncounter({
@@ -16,7 +19,10 @@ export default function CombatEncounter({
     monster,
     setPlayer,
     setMonster,
+    setCurrentAppState,
 }: CombatProps) {
+    const [largeResults, setLargeResults] = useState<string | null>(null);
+    const [playerCanReturn, setPlayerCanReturn] = useState<boolean>(false);
     const [combatEnded, setCombatEnded] = useState<boolean>(false);
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
@@ -38,6 +44,11 @@ export default function CombatEncounter({
             defense: 10,
             hp: 100,
         });
+
+    const handleClick = () => {
+        combatFunction();
+    };
+
     const combatFunction = () => {
         setResultsText((prev) => [...prev, `Round ${combatRound}:`]);
         let damageToMonster =
@@ -50,12 +61,44 @@ export default function CombatEncounter({
             ...prev,
             hp: prev.hp - damageToMonster < 0 ? 0 : prev.hp - damageToMonster,
         }));
+        // TODO: update monster global health??
         // check if monster is dead
-        if (monsterCombatStats.hp <= 0) {
+        let monsterDead = false;
+        if (monsterCombatStats.hp - damageToMonster <= 0) {
             // end combat (remove attack button)
             setCombatEnded(true);
+            setResultsText((prev) => [...prev, "You killed the monster!"]);
+            // TODO: give player experience
+            // set larger popup text to display that monster was killed
+            setLargeResults("You killed the monster!");
+            // unlock button to return to dungeon
+            setPlayerCanReturn(true);
+            monsterDead = true;
         }
+        // calc damage to player
+        if (!monsterDead) {
+            let damageToPlayer =
+                monsterCombatStats.attack - playerCombatStats.defense;
+            setResultsText((prev) => [
+                ...prev,
+                `Monster did ${damageToPlayer} damage to you!`,
+            ]);
+            setPlayer((prev) => ({
+                ...prev,
+                health: prev.health - damageToPlayer,
+            }));
+        }
+        // check if player is dead
+
+        setResultsText((prev) => [...prev, "-------"]);
+        // end of round: increase round number
+        setCombatRound((prev) => prev + 1);
     };
+
+    const handleReturn = () => {
+        setCurrentAppState("game");
+    };
+
     return (
         <div>
             <h2>Combat!</h2>
@@ -79,9 +122,23 @@ export default function CombatEncounter({
                     </span>
                 </div>
                 <div className="attack-button">
-                    {!combatEnded && <button>Attack!</button>}
+                    {!combatEnded && (
+                        <button onClick={handleClick}>Attack!</button>
+                    )}
                 </div>
-                <div className="action-results">hello</div>
+                <div className="result-popup">{largeResults}</div>
+                <div className="action-results">
+                    {resultsText.map((item: string, index: number) => (
+                        <div key={index}>{item}</div>
+                    ))}
+                </div>
+                {playerCanReturn && (
+                    <div className="return-button">
+                        <button onClick={handleReturn}>
+                            Return to dungeon
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
