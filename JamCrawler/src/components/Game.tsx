@@ -132,7 +132,7 @@ export default function Game({
     };
 
     const handleKeyPress = (e: KeyboardEvent) => {
-        e.preventDefault();
+        //e.preventDefault();
         //console.log(e);
         if (e.key == "ArrowLeft") {
             movePlayer(-1, 0);
@@ -229,7 +229,10 @@ export default function Game({
 
     const addTodo = (text: string) => {
         if (text.trim() !== "") {
-            setTodos([...todos, { id: Date.now(), text, completed: false }]);
+            setTodos((prev) => [
+                ...prev,
+                { id: Date.now(), text, completed: false },
+            ]);
         }
     };
 
@@ -243,7 +246,7 @@ export default function Game({
     };
 
     const deleteTodo = (id: number) => {
-        setTodos((todos) => todos.filter((todo) => todo.id !== id));
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
     };
 
     return (
