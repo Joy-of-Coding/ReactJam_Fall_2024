@@ -9,6 +9,7 @@ export const SWORD_CHAR = '🗡️';
 export const LUCK_CHAR = '🍀';
 export const HELMET_CHAR = '🪖'
 
+
 import { Item } from '../types/types';
 
 export const ITEMS: { [key: string]: Item } = {
