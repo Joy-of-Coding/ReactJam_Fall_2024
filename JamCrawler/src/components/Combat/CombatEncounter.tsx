@@ -21,10 +21,13 @@ export default function CombatEncounter({
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
     let hasWeapon: boolean = false;
-    let arbitrary = player.inventory.reduce((accum, currVal) => {
-        hasWeapon = hasWeapon || currVal.name == "Sword";
-        return accum || currVal;
-    });
+    let arbitrary =
+        player.inventory.length > 0
+            ? player.inventory.reduce((accum, currVal) => {
+                  hasWeapon = hasWeapon || currVal.name == "Sword";
+                  return accum || currVal;
+              })
+            : 0;
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
