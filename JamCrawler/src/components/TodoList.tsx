@@ -24,7 +24,7 @@ const TodoList: React.FC = () => {
         completed: false
       };
       setTodos([...todos, newTask]);
-    setNewTodo(''); // Clear input after adding
+      setNewTodo(''); // Clear input after adding
     }
   };
 
