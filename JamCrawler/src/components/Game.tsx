@@ -23,30 +23,30 @@ interface GameProps {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    player: Player;
+    monster: Monster;
+    setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
+    setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
+    dungeon: DungeonGrid;
+    setDungeon: (
+        value: DungeonGrid | ((prevValue: DungeonGrid) => DungeonGrid)
+    ) => void;
 }
 
-export default function Game({ setCurrentAppState }: GameProps) {
+export default function Game({
+    setCurrentAppState,
+    player,
+    monster,
+    setPlayer,
+    setMonster,
+    dungeon,
+    setDungeon,
+}: GameProps) {
     const [level, setLevel] = useState<number>(1);
-    const [dungeon, setDungeon] = useState<DungeonGrid>([]);
+
     // put this up one level?
     const [combatResult, setCombatResult] = useState<string | null>(null);
-    const [player, setPlayer] = useState<Player>({
-        position: { x: 1, y: 1 },
-        strength: 10,
-        stamina: 100,
-        health: 100,
-        luck: 0,
-        inventory: [],
-    });
-    const [monster, setMonster] = useState<Monster>({
-        position: { x: 1, y: 1 },
-        strength: 10,
-        stamina: 100,
-        health: 100,
-        luck: 0,
-        inventory: [],
-        isAlive: true,
-    });
+
     const [todos, setTodos] = useState<Todo[]>([]);
 
     const generateDungeon = () => {
@@ -79,6 +79,7 @@ export default function Game({ setCurrentAppState }: GameProps) {
             health: 100,
             luck: 0,
             inventory: [],
+            isAlive: true,
         });
 
         // RIVER-This generates monster to map ONCE at random coordinates
