@@ -1,4 +1,5 @@
 // src/types/types.ts
+
 export type Position = { x: number; y: number };
 
 export type Item = {
@@ -15,6 +16,7 @@ export type Player = {
     experience: number;
     inventory: Item[];
     isAlive: boolean;
+    // luck: number; // Commented out, as it's not being used in the Player schema
 };
 
 export type Monster = {
@@ -35,23 +37,3 @@ export type Todo = {
 };
 
 export type DungeonGrid = string[][];
-
-export type PlayerCombatStats = {
-    attack: number;
-    defense: number;
-    exp: number;
-};
-
-export type monsterCombatStats = {
-    attack: number;
-    defense: number;
-    hp: number;
-};
-
-// export interface Todo {
-//   id: number;
-//   text: string;
-//   completed: boolean;
-//   priority: 'red' | 'yellow' | 'green';
-//   luckValue: number;
-// }
