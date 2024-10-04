@@ -21,7 +21,7 @@ export const ITEMS: { [key: string]: Item } = {
   helmet: {
     name: 'Helmet',
     symbol: HELMET_CHAR,
-    effect: (player) => ({ ...player, stamin: Math.min(player.stamina + 2) }),
+    effect: (player) => ({ ...player, stamin: Math.min(player.defense + 2) }),
   },
   sword: {
     name: 'Sword',
@@ -31,6 +31,6 @@ export const ITEMS: { [key: string]: Item } = {
   luckCharm: {
     name: 'Luck Charm',
     symbol: LUCK_CHAR,
-    effect: (player) => ({ ...player, luck: player.luck + 5 }),
+    effect: (player) => ({ ...player, luck: player.experience + 0 }),
   },
 };
