@@ -22,7 +22,7 @@ const PlayerStats: React.FC<PlayerStatsProps> = ({ player }) => (
         <p> Strength: </p>
         <p> Defense: </p>
         <p> Health: </p>
-        <p> Luck: </p>
+        <p> Experience: </p>
       </div>  
       <div className="leftAlign" >
         <p>{player.strength}</p>
