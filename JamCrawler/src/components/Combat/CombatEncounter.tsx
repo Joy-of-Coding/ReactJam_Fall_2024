@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
-import { Monster, Player } from "../../types/types";
+import { Monster, Player, Item } from "../../types/types";
 import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 
@@ -26,21 +26,27 @@ export default function CombatEncounter({
     const [combatEnded, setCombatEnded] = useState<boolean>(false);
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
-    let hasWeapon: boolean = false;
-    let hasHelmut: boolean = false;
-    let arbitrary =
+
+    let hasWeapon: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
-                  hasWeapon = hasWeapon || currVal.name == "Sword";
-                  hasHelmut = hasHelmut || currVal.name == "Helmet";
-                  return accum || currVal;
-              })
-            : 0;
+                return currVal.name == "Sword" || accum;
+            }, false)
+        : false;
+
+    let hasHelmet: boolean =
+        player.inventory.length > 0
+            ? player.inventory.reduce((accum, currVal) => {
+                  return currVal.name == "Helmet" || accum;
+            }, false)
+        : false;   
+        /* */ 
+
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
             attack: hasWeapon ? 12 : 10, 
-            defense: hasHelmut ? 7 : 5, 
+            defense: hasHelmet ? 7 : 5, 
             exp: 0, /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */
         });
     const [monsterCombatStats, setMonsterCombatStats] =
