@@ -36,8 +36,10 @@ const TodoList: React.FC<TodoListProps> = ({
           onChange={(e) => setNewTodo(e.target.value)}
           placeholder="Add a new todo"
         />
-        <button onClick={handleAddTodo}>Add</button>
-      </div>
+        <div style={{ marginLeft: '-12px' }}>
+          {<button onClick={handleAddTodo}>Add</button>} 
+        </div>
+        </div>
       {todos.length > 0 ? (
         todos.map((todo) => (
           <div key={todo.id}>
