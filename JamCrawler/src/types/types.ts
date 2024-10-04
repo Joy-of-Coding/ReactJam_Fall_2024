@@ -10,16 +10,17 @@ export type Item = {
 export type Player = {
     position: Position;
     strength: number;
-    stamina: number;
+    defense: number;
     health: number;
-    luck: number;
+    experience: number;
     inventory: Item[];
+    isAlive: boolean;
 };
 
 export type Monster = {
     position: Position;
     strength: number;
-    stamina: number;
+    defense: number;
     health: number;
     luck: number;
     inventory: Item[];
@@ -33,3 +34,15 @@ export type Todo = {
 };
 
 export type DungeonGrid = string[][];
+
+export type PlayerCombatStats = {
+    attack: number;
+    defense: number;
+    exp: number;
+};
+
+export type monsterCombatStats = {
+    attack: number;
+    defense: number;
+    hp: number;
+};

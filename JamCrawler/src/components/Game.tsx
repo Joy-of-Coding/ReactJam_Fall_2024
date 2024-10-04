@@ -23,30 +23,30 @@ interface GameProps {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    player: Player;
+    monster: Monster;
+    setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
+    setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
+    dungeon: DungeonGrid;
+    setDungeon: (
+        value: DungeonGrid | ((prevValue: DungeonGrid) => DungeonGrid)
+    ) => void;
 }
 
-export default function Game({ setCurrentAppState }: GameProps) {
+export default function Game({
+    setCurrentAppState,
+    player,
+    monster,
+    setPlayer,
+    setMonster,
+    dungeon,
+    setDungeon,
+}: GameProps) {
     const [level, setLevel] = useState<number>(1);
-    const [dungeon, setDungeon] = useState<DungeonGrid>([]);
+
     // put this up one level?
     const [combatResult, setCombatResult] = useState<string | null>(null);
-    const [player, setPlayer] = useState<Player>({
-        position: { x: 1, y: 1 },
-        strength: 10,
-        stamina: 100,
-        health: 100,
-        luck: 0,
-        inventory: [],
-    });
-    const [monster, setMonster] = useState<Monster>({
-        position: { x: 1, y: 1 },
-        strength: 10,
-        stamina: 100,
-        health: 100,
-        luck: 0,
-        inventory: [],
-        isAlive: true,
-    });
+
     const [todos, setTodos] = useState<Todo[]>([]);
 
     const generateDungeon = () => {
@@ -75,10 +75,11 @@ export default function Game({ setCurrentAppState }: GameProps) {
         setPlayer({
             position: { x: 1, y: 1 },
             strength: 10,
-            stamina: 100,
+            defense: 100,
             health: 100,
-            luck: 0,
+            experience: 0,
             inventory: [],
+            isAlive: true,
         });
 
         // RIVER-This generates monster to map ONCE at random coordinates
@@ -88,7 +89,7 @@ export default function Game({ setCurrentAppState }: GameProps) {
         setMonster({
             position: { x: monsterX, y: monsterY },
             strength: 10,
-            stamina: 5,
+            defense: 5,
             health: 50,
             luck: 1000,
             inventory: [],
@@ -131,19 +132,27 @@ export default function Game({ setCurrentAppState }: GameProps) {
     };
 
     const handleKeyPress = (e: KeyboardEvent) => {
-        e.preventDefault();
+        //e.preventDefault();
         //console.log(e);
         if (e.key == "ArrowLeft") {
+            e.preventDefault();
             movePlayer(-1, 0);
+            e.preventDefault();
         }
         if (e.key == "ArrowRight") {
+            e.preventDefault();
             movePlayer(1, 0);
+            e.preventDefault();
         }
         if (e.key == "ArrowDown") {
+            e.preventDefault();
             movePlayer(0, 1);
+            e.preventDefault();
         }
         if (e.key == "ArrowUp") {
+            e.preventDefault();
             movePlayer(0, -1);
+            e.preventDefault();
         }
     };
 
@@ -174,7 +183,7 @@ export default function Game({ setCurrentAppState }: GameProps) {
             let newPlayer = {
                 ...prev,
                 position: newPos,
-                stamina: Math.max(prev.stamina - 1, 0),
+                defense: Math.max(prev.defense - 1, 0),
             };
 
             if (
@@ -228,7 +237,10 @@ export default function Game({ setCurrentAppState }: GameProps) {
 
     const addTodo = (text: string) => {
         if (text.trim() !== "") {
-            setTodos([...todos, { id: Date.now(), text, completed: false }]);
+            setTodos((prev) => [
+                ...prev,
+                { id: Date.now(), text, completed: false },
+            ]);
         }
     };
 
@@ -238,11 +250,11 @@ export default function Game({ setCurrentAppState }: GameProps) {
                 todo.id === id ? { ...todo, completed: !todo.completed } : todo
             )
         );
-        setPlayer((prev) => ({ ...prev, luck: prev.luck + 1 }));
+        setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
     };
 
     const deleteTodo = (id: number) => {
-        setTodos((todos) => todos.filter((todo) => todo.id !== id));
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
     };
 
     return (
