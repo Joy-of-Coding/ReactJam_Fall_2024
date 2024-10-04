@@ -224,7 +224,12 @@ export default function Game({
         if (text.trim() !== "") {
             setTodos((prev) => [
                 ...prev,
-                { id: Date.now(), text, completed: false },
+                {
+                    id: Date.now(),
+                    text,
+                    completed: false,
+                    priority: 'low'// Adjust the priority as needed or allow user input here
+                },
             ]);
         }
     };
