@@ -31,6 +31,9 @@ interface GameProps {
     setDungeon: (
         value: DungeonGrid | ((prevValue: DungeonGrid) => DungeonGrid)
     ) => void;
+    currDungeonNum: number;
+    level: number;
+    setLevel: (value: number | ((prevValue: number) => number)) => void;
 }
 
 export default function Game({
@@ -41,18 +44,12 @@ export default function Game({
     setMonster,
     dungeon,
     setDungeon,
+    currDungeonNum,
+    level,
+    setLevel,
 }: GameProps) {
-    const [level, setLevel] = useState<number>(1);
-
-    // put this up one level?
-    const [combatResult, setCombatResult] = useState<string | null>(null);
-
     const [todos, setTodos] = useState<Todo[]>([]);
-
     const generateDungeon = () => {
-        // RIVER-Trying out adding logs for visibility on function execution
-        console.log("Generating dungeon for first level...");
-
         const newDungeon = Array.from({ length: GRID_SIZE }, () =>
             Array(GRID_SIZE).fill(EMPTY_CHAR)
         );
@@ -66,35 +63,19 @@ export default function Game({
         }
 
         // Set dungeon without items for level 1
+        /*
         console.log("Dungeon setup complete for level 1.");
         setDungeon(newDungeon);
-
-        // RIVER-This resets the player's stats and places player on map
-        // Setting player in a fixed starting point for now, but monster
-        // will be random
-        setPlayer({
-            position: { x: 1, y: 1 },
-            strength: 10,
-            defense: 100,
-            health: 100,
-            experience: 0,
-            inventory: [],
-            isAlive: true,
-        });
+        */
 
         // RIVER-This generates monster to map ONCE at random coordinates
         const monsterX = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
         const monsterY = Math.floor(Math.random() * (GRID_SIZE - 2)) + 1;
 
-        setMonster({
+        setMonster((prev) => ({
+            ...prev,
             position: { x: monsterX, y: monsterY },
-            strength: 10,
-            defense: 5,
-            health: 50,
-            luck: 1000,
-            inventory: [],
-            isAlive: true,
-        });
+        }));
         console.log("Monster placed at (${monsterX}, ${monsterY})");
 
         // RIVER-Adding one sword and two potions to level 1
@@ -157,8 +138,12 @@ export default function Game({
     };
 
     useEffect(() => {
-        generateDungeon();
-    }, [level]);
+        if (currDungeonNum == level) {
+            console.log("generating new dungeon");
+            generateDungeon();
+            setLevel((prev) => prev + 1);
+        }
+    }, []);
 
     const movePlayer = (dx: number, dy: number) => {
         let combatNewPos = {
@@ -272,7 +257,7 @@ export default function Game({
                 </div>
 
                 <div className="dungeon-container column-2">
-                    <h2>Level {level}</h2>
+                    <h2>Level {currDungeonNum}</h2>
                     <Dungeon
                         dungeon={dungeon}
                         player={player}
