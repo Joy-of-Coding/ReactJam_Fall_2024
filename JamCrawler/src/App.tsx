@@ -12,22 +12,24 @@ function App() {
     const [player, setPlayer] = useState<Player>({
         position: { x: 1, y: 1 },
         strength: 10,
-        stamina: 100,
+        defense: 2,
         health: 100,
-        luck: 0,
         inventory: [],
         isAlive: true,
+        experience: 0,
     });
     const [monster, setMonster] = useState<Monster>({
         position: { x: 1, y: 1 },
         strength: 10,
-        stamina: 100,
+        defense: 5,
         health: 100,
         luck: 0,
         inventory: [],
         isAlive: true,
     });
     const [dungeon, setDungeon] = useState<DungeonGrid>([]);
+    const [currDungeonNum, setCurrDungeonNum] = useState<number>(1);
+    const [level, setLevel] = useState<number>(1);
     return (
         <>
             <div>
@@ -48,6 +50,9 @@ function App() {
                             setMonster={setMonster}
                             dungeon={dungeon}
                             setDungeon={setDungeon}
+                            currDungeonNum={currDungeonNum}
+                            level={level}
+                            setLevel={setLevel}
                         />
                     )}
                     {currentAppState == "combat" && (
