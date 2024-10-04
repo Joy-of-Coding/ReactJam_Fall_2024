@@ -1,7 +1,7 @@
 1. Start Point 
 >a. Example - for the Splash Screen: 
 >b. Player Base: [10, 5, 100, 1] # [Strength, Defense, Hit points, Experience]
->c. Monster Base: [10,5,50] # [Strength, Defense, Hit points]
+>c. Monster Base: [10,5,60] # [Strength, Defense, Hit points]
 >>i. Farmer enters the dungeon with Rake and clothes to get back favorite milk cow(Boring) 
 2. Dungeon level Completion
     1. **Level 1**
@@ -16,7 +16,7 @@
             - stats:
                 - Strength = 10
                 - Defense = 5
-                - HP = 50
+                - HP = 60
                 - Expereince gain for the Player: 1000 points
         Level 1 Completion:
             - Player stats bonus:
@@ -51,8 +51,8 @@
         - LATER: Boss: George(Necromancer) -- Turned to evil, villager rival from town
 
     3. **Level 3**
-        - PLayer stats entering: [22, 14, 160, 3001] # [Strength, Defense, Hit points, Experience]
-        - Monster stats: [22,14,120] # [Strength, Defense, Hit points]
+        - PLayer stats entering: [18, 11, 140, 3001] # [Strength, Defense, Hit points, Experience]
+        - Monster stats: [18,11,100] # [Strength, Defense, Hit points]
         - Quest: Add “what took my %$&#@ milk cow” Quest
             - Some evil is afoot and took my milk cow Bessie. find clues as to what happened to George
         - Weapon: Crafted Mace
@@ -62,9 +62,9 @@
         - Level Minimum: 3
         - Monster: Skeleton
                 - stats:
-                    - Strength = 22
-                    - Defense = 14
-                    - HP = 120
+                    - Strength = 18
+                    - Defense = 11
+                    - HP = 100
                     - Expereince gain for the Player: 1000 points
         Level 2 Completion:
             - Player stats bonus:
@@ -75,8 +75,8 @@
         - LATER: Boss: Death Tyrant
 
     4. **Level 4**
-        - PLayer stats entering: [26, 17, 180, 4001] # [Strength, Defense, Hit points, Experience]
-        - Monster stats: [26,17,150] # [Strength, Defense, Hit points]
+        - PLayer stats entering: [22, 14, 160, 4001] # [Strength, Defense, Hit points, Experience]
+        - Monster stats: [22,14,120] # [Strength, Defense, Hit points]
         - Quest: Add “How do i find my %$&#@ milk cow” Quest
             - find clues as to where my Bessie is and how to find the alter on the fifth level
         - Weapon: Two-handed Battle Axe
@@ -86,9 +86,9 @@
         - Level Minimum: 4
         - Monster: Ogre
                 - stats:
-                    - Strength = 26
-                    - Defense = 17
-                    - HP = 150
+                    - Strength = 22
+                    - Defense = 14
+                    - HP = 120
                     - Expereince gain for the Player: 1000 points
         Level 2 Completion:
             - Player stats bonus:
@@ -99,8 +99,8 @@
         - LATER: Boss: Ettin
 
     5. **Level 5**
-        - PLayer stats entering: [30, 20, 200, 5001] # [Strength, Defense, Hit points, Experience]
-        - Monster stats: [33,22,180] # [Strength, Defense, Hit points]
+        - PLayer stats entering: [26, 17, 180, 5001] # [Strength, Defense, Hit points, Experience]
+        - Monster stats: [26,17,140] # [Strength, Defense, Hit points]
         - Quest: Add “how do I defeat the Boss monster and get my %$&#@ milk cow back” Quest
             - how tough can a shadow be and how do I hit it?
         - Weapon: Crystal Staff of Light
@@ -110,9 +110,9 @@
         - Level Minimum: 5
         - Monster: Drow, Dark Elves
                 - stats:
-                    - Strength = 30
-                    - Defense = 20
-                    - HP = 180
+                    - Strength = 26
+                    - Defense = 17
+                    - HP = 140
                     - Expereince gain for the Player: 1000 points
         Level 2 Completion:
             - Player stats bonus:
