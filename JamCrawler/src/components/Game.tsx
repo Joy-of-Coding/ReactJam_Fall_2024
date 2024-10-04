@@ -249,7 +249,7 @@ export default function Game({
 
     return (
         <>
-            <h1 className="grit">Retro Dungeon Crawler</h1>
+            <h1 className="grit">Get'er Done-geon Crawler</h1>
 
             <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
                 <div className="column">
