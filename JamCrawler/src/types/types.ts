@@ -31,6 +31,7 @@ export type Todo = {
     id: number;
     text: string;
     completed: boolean;
+    priority: 'red' | 'yellow' | 'green';
 };
 
 export type DungeonGrid = string[][];
@@ -46,3 +47,11 @@ export type monsterCombatStats = {
     defense: number;
     hp: number;
 };
+
+// export interface Todo {
+//   id: number;
+//   text: string;
+//   completed: boolean;
+//   priority: 'red' | 'yellow' | 'green';
+//   luckValue: number;
+// }
