@@ -26,14 +26,18 @@ export default function CombatEncounter({
     const [combatEnded, setCombatEnded] = useState<boolean>(false);
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
-    let hasWeapon: boolean = false;
-    let arbitrary =
+    let hasWeapon: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
-                  hasWeapon = hasWeapon || currVal.name == "Sword";
-                  return accum || currVal;
-              })
-            : 0;
+                  return currVal.name == "Sword" || accum;
+              }, false)
+            : false;
+    let hasHelmet: boolean =
+        player.inventory.length > 0
+            ? player.inventory.reduce((accum, currVal) => {
+                  return currVal.name == "Helmet" || accum;
+              }, false)
+            : false;
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({

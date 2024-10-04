@@ -192,7 +192,7 @@ export default function Game({
                     return newDungeon;
                 });
             }
-
+            console.log(newPlayer.inventory);
             return newPlayer;
         });
         if (
