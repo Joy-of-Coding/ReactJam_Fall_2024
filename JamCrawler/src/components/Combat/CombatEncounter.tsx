@@ -32,22 +32,22 @@ export default function CombatEncounter({
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
                   hasWeapon = hasWeapon || currVal.name == "Sword";
-                  hasHelmut = hasHelmut || currVal.name == "Helmut";
+                  hasHelmut = hasHelmut || currVal.name == "Helmet";
                   return accum || currVal;
               })
             : 0;
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
-            attack: hasWeapon ? 10 : 12, 
-            defense: hasHelmut ? 5 : 7, 
+            attack: hasWeapon ? 12 : 10, 
+            defense: hasHelmut ? 7 : 5, 
             exp: 0, /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */
         });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
             attack: 10, /* */
             defense: 5,
-            hp: 50,
+            hp: 60,
         });
 
     const handleClick = () => {
