@@ -214,6 +214,7 @@ export default function Game({
             // add stats to player, reset player position
             setPlayer((prev) => ({
                 ...prev,
+                maxHealth: prev.maxHealth + 20,
                 health: prev.health + 20,
                 position: { x: 1, y: 1 },
             }));
