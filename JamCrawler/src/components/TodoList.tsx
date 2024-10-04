@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './TodoList.css'; // Import the separate CSS file
+import './TodoList.css';
 
 interface Todo {
   text: string;
   priority: 'high' | 'medium' | 'low';
+  complete: boolean;
 }
 
 const TodoList: React.FC = () => {
@@ -13,9 +14,9 @@ const TodoList: React.FC = () => {
 
   const addTodo = () => {
     if (newTodo && todos.length < 3) {
-      const newTask: Todo = { text: newTodo, priority };
+      const newTask: Todo = { text: newTodo, priority, complete: false };
       setTodos([...todos, newTask]);
-      setNewTodo(''); // Clear input after adding
+      setNewTodo('');
     }
   };
 
@@ -24,6 +25,24 @@ const TodoList: React.FC = () => {
     setTodos(updatedTodos);
   };
 
+  const toggleComplete = (index: number) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].complete = !updatedTodos[index].complete;
+    setTodos(updatedTodos);
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return '#ff6666'; // Red
+      case 'medium':
+        return '#ffb066'; // Yellow
+      case 'low':
+        return '#114d3b'; // Green
+      default:
+        return '#ffffff'; // Default white
+    }
+  };
 
   return (
     <div>
@@ -44,15 +63,36 @@ const TodoList: React.FC = () => {
         <option className="mYellow" value="medium">M</option>
         <option className="LGreen" value="low">L</option>
       </select>
-      <button id ="add-button" onClick={addTodo}>Add</button>
-      <ul>
+      <button id="add-button" onClick={addTodo}>Add</button>
+
+      <ul className="todo-list">
         {todos.map((todo, index) => (
-          <li key={index} className={`priority-${todo.priority}`}>
+          <li
+            key={index}
+            className={`priority-${todo.priority}`}
+            style={{
+              backgroundColor: getPriorityColor(todo.priority),
+              textDecoration: todo.complete ? 'line-through' : 'none',
+              borderBottom: todo.complete ? '2px solid black' : 'none',
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={todo.complete}
+              onChange={() => toggleComplete(index)}
+              className="todo-checkbox"
+            />
             {todo.text}
-            <button id = "Del" onClick={() => removeTodo(index)}>X</button>
+            <button id="Del" onClick={() => removeTodo(index)}>X</button>
           </li>
         ))}
       </ul>
+
+      {todos.every(todo => todo.complete) && (
+        <div className="congrats-message">
+          <h2>Congratulations! Dungeon Time!</h2>
+        </div>
+      )}
     </div>
   );
 };
