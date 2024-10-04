@@ -75,9 +75,9 @@ export default function Game({
         setPlayer({
             position: { x: 1, y: 1 },
             strength: 10,
-            stamina: 100,
+            defense: 100,
             health: 100,
-            luck: 0,
+            experience: 0,
             inventory: [],
             isAlive: true,
         });
@@ -89,7 +89,7 @@ export default function Game({
         setMonster({
             position: { x: monsterX, y: monsterY },
             strength: 10,
-            stamina: 5,
+            defense: 5,
             health: 50,
             luck: 1000,
             inventory: [],
@@ -183,7 +183,7 @@ export default function Game({
             let newPlayer = {
                 ...prev,
                 position: newPos,
-                stamina: Math.max(prev.stamina - 1, 0),
+                defense: Math.max(prev.defense - 1, 0),
             };
 
             if (
@@ -250,7 +250,7 @@ export default function Game({
                 todo.id === id ? { ...todo, completed: !todo.completed } : todo
             )
         );
-        setPlayer((prev) => ({ ...prev, luck: prev.luck + 1 }));
+        setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
     };
 
     const deleteTodo = (id: number) => {

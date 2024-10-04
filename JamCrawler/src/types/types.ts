@@ -10,9 +10,9 @@ export type Item = {
 export type Player = {
     position: Position;
     strength: number;
-    stamina: number;
+    defense: number;
     health: number;
-    luck: number;
+    experience: number;
     inventory: Item[];
     isAlive: boolean;
 };
@@ -20,7 +20,7 @@ export type Player = {
 export type Monster = {
     position: Position;
     strength: number;
-    stamina: number;
+    defense: number;
     health: number;
     luck: number;
     inventory: Item[];
