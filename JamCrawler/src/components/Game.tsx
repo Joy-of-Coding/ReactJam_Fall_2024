@@ -1,6 +1,6 @@
 // src/components/Game.tsx
 import "./Game.css";
-import React, { useState, useEffect, useCallback, KeyboardEvent } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
 import Dungeon from "./Dungeon";
 import PlayerStats from "./PlayerStats";
 import MonsterStats from "./MonsterStats";
@@ -14,8 +14,8 @@ import {
     WALL_CHAR,
     POTION_CHAR,
     SWORD_CHAR,
-    LUCK_CHAR,
     HELMET_CHAR,
+    DOOR_CHAR,
 } from "../constants/constants";
 import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
@@ -61,6 +61,13 @@ export default function Game({
             newDungeon[i][0] = WALL_CHAR;
             newDungeon[i][GRID_SIZE - 1] = WALL_CHAR;
         }
+
+        // set location of door in dungeon
+        const doorLocation = {
+            x: GRID_SIZE,
+            y: Math.floor(GRID_SIZE / 2),
+        };
+        newDungeon[doorLocation.y][doorLocation.x - 1] = DOOR_CHAR;
 
         // Set dungeon without items for level 1
         /*
@@ -174,8 +181,7 @@ export default function Game({
             if (
                 cellContent === POTION_CHAR ||
                 cellContent === HELMET_CHAR ||
-                cellContent === SWORD_CHAR ||
-                cellContent === LUCK_CHAR
+                cellContent === SWORD_CHAR
             ) {
                 const item =
                     cellContent === POTION_CHAR
@@ -228,7 +234,7 @@ export default function Game({
                     id: Date.now(),
                     text,
                     completed: false,
-                    priority: 'low'// Adjust the priority as needed or allow user input here
+                    priority: "low", // Adjust the priority as needed or allow user input here
                 },
             ]);
         }
