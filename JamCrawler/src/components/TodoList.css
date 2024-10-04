@@ -1,4 +1,4 @@
-.todo-container {
+.todo-container { 
   background-color: #aaa5a5;
   color: #221d1d;
   padding: 20px;
@@ -17,9 +17,8 @@
 }
 
 .todo-list {
-  list-style-type: none;
-  padding: 2.5px;
-  background-color: aqua!important;
+  list-style-type: none; /* Remove bullets */
+  padding: 0;
 }
 
 .todo-item {
@@ -32,76 +31,40 @@
   font-family: 'Courier', monospace;
 }
 
-#Del   {
+#Del {
   background-color: #1a1010;
   color: #fff;
   border: none;
   padding: 6px;
   border-radius: 3px;
   cursor: pointer;
-  font-size:10px;
+  font-size: 10px;
 }
 
-.input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.todo-checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  accent-color: green; /* Green checkmark */
+}
+
+.priority-high {
+  background-color: #ff6666; /* Red for high */
+}
+
+.priority-medium {
+  background-color: #ffb066; /* Yellow for medium */
+}
+
+.priority-low {
+  background-color: #114d3b; /* Green for low */
+}
+
+.congrats-message {
+  background-color: #114d3b;
+  color: white;
+  padding: 10px;
+  text-align: center;
   margin-top: 20px;
-}
-
-.todo-input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 65%;
-  margin-right: 5px;
-}
-
-.priority-select {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 30%;
   font-weight: bold;
-  text-align: center;
-  cursor: pointer;
 }
-
-#add-button {
-  padding: 3px 5px;
-  background-color: #700505;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 5px;
-  width: 50px;
-}
-
-.limit-text {
-  color: #ff6666;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.hRed{
-  background-color:#ff6666
-}
-.mYellow{
-  background-color:#ffb066
-}
-.LGreen{
-  background-color:#114d3b
-}
- 
