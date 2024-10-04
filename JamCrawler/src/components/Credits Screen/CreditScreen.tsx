@@ -1,5 +1,5 @@
 import React from "react";
-import "./TitleScreen.css";
+import "./CreditScreen.css";
 
 interface Props {
     setCurrentAppState: (
@@ -29,13 +29,7 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
                 >
                     Start Game
                 </button>
-                <button 
-                    className="credits-button"
-                    onClick={handleClick}
-                    id="Credits"
-                >
-                    Credits
-                </button>
+                <button className="credits-button">Credits</button>
             </div>
         </div>
     );
