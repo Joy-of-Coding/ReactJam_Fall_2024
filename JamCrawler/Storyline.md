@@ -55,7 +55,7 @@
         - PLayer stats entering: [18, 11, 140, 3001] # [Strength, Defense, Hit points, Experience]
         - Monster stats: [18,11,100] # [Strength, Defense, Hit points]
         - Quest: Add “what took my %$&#@ milk cow” Quest
-            - Some evil is afoot and took my milk cow Bessie. find clues as to what happened to George
+            - Some evil is afoot and took my milk cow Bessie. find clues as to what happened to Kassie, the village hag
         - Weapon: Crafted Mace
             - +2 to attack
         - Armor: Emblazoned Shield
