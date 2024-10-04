@@ -10,7 +10,7 @@ type PlayerStatsProps = {
 const PlayerStats: React.FC<PlayerStatsProps> = ({ player }) => (
   <div className="player-stats">
     <div className="vitals">
-    <h2>Player Stats</h2>
+    <h2 id="h2Stat">Player Stats</h2>
     <div className="container">
       <div className="leftAlign" >
         <p id="leftMargin">💪</p>
