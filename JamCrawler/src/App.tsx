@@ -12,17 +12,17 @@ function App() {
     const [player, setPlayer] = useState<Player>({
         position: { x: 1, y: 1 },
         strength: 10,
-        stamina: 100,
+        defense: 5,
         health: 100,
-        luck: 0,
+        experience: 0,
         inventory: [],
         isAlive: true,
     });
     const [monster, setMonster] = useState<Monster>({
         position: { x: 1, y: 1 },
         strength: 10,
-        stamina: 100,
-        health: 100,
+        defense: 5,
+        health: 60,
         luck: 0,
         inventory: [],
         isAlive: true,
