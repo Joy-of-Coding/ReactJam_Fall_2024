@@ -1,6 +1,6 @@
 .todo-container {
-  background-color: #666;
-  color: #fff;
+  background-color: #aaa5a5;
+  color: #221d1d;
   padding: 20px;
   border-radius: 10px;
   max-width: 400px;
@@ -11,14 +11,15 @@
 .todo-heading {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 1.5em;
+  font-size: 1.0em;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .todo-list {
   list-style-type: none;
-  padding: 0;
+  padding: 2.5px;
+  background-color: aqua!important;
 }
 
 .todo-item {
@@ -31,13 +32,14 @@
   font-family: 'Courier', monospace;
 }
 
-.remove-button {
-  background-color: #ff6666;
+#Del   {
+  background-color: #1a1010;
   color: #fff;
   border: none;
-  padding: 5px;
+  padding: 6px;
   border-radius: 3px;
   cursor: pointer;
+  font-size:10px;
 }
 
 .input-container {
@@ -65,15 +67,15 @@
   cursor: pointer;
 }
 
-.add-button {
+#add-button {
   padding: 3px 5px;
-  background-color: #333;
+  background-color: #700505;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
+  margin-top: 5px;
+  width: 50px;
 }
 
 .limit-text {
