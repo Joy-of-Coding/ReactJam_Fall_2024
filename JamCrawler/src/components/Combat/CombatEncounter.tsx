@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
-import { Monster, Player } from "../../types/types";
+import { Monster, Player, Item } from "../../types/types";
 import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 
