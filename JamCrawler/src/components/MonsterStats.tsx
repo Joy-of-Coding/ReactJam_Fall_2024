@@ -9,7 +9,7 @@ type MonsterStatsProps = {
 const MonsterStats: React.FC<MonsterStatsProps> = ({ monster }) => (
   <div className='monster-stats'>
     <div className='vitals'>
-      <h2>Monster Stats</h2>
+      <h2 id="h2Stat">Monster Stats</h2>
       <div className="container">
         <div className="leftAlign" >
           <p id="leftMargin">💪</p>

@@ -76,6 +76,10 @@ export default function CombatEncounter({
             // TODO: give player experience
             // set larger popup text to display that monster was killed
             setLargeResults("You killed the monster!");
+            setMonster((prev) => ({
+                ...prev,
+                isAlive: false,
+            }));
             // unlock button to return to dungeon
             setPlayerCanReturn(true);
             monsterDead = true;

@@ -11,7 +11,7 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
     const titleScreenSource = "./Bessie.webp";
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         const currTarget = e.target as HTMLButtonElement;
-        console.log(e);
+        //console.log(e);
         if (currTarget.id == "start") {
             setCurrentAppState("introSplash");
         }
@@ -22,8 +22,8 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
             <div className="main-title">Get it Done-geon</div>
             <img alt="picture of game title screen" src={titleScreenSource} />
             <p className="text-xl mb-4 text-center max-w-md font-Helvetica Neue">
-            ARE YOU READY FOR THE ADVENTURE TO BEGIN?
-            </p>            
+                ARE YOU READY FOR THE ADVENTURE TO BEGIN?
+            </p>
             <div className="flex flex-row buttons-row">
                 <button
                     className="start-button"
