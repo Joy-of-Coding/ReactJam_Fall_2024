@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
-import { Monster, Player  } from "../../types/types";
+import { Monster, Player } from "../../types/types";
 import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
+import { playerLevels, monsterLevels } from "./player_monster_level_constants";
 
 interface CombatProps {
     player: Player;
@@ -12,6 +13,7 @@ interface CombatProps {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    currDungeonNum: number;
 }
 
 export default function CombatEncounter({
@@ -20,6 +22,7 @@ export default function CombatEncounter({
     setPlayer,
     setMonster,
     setCurrentAppState,
+    currDungeonNum,
 }: CombatProps) {
     const [largeResults, setLargeResults] = useState<string | null>(null);
     const [playerCanReturn, setPlayerCanReturn] = useState<boolean>(false);
@@ -30,30 +33,36 @@ export default function CombatEncounter({
     let hasWeapon: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
-                return currVal.name == "Sword" || accum;
-            }, false)
-        : false;
+                  return currVal.name == "Sword" || accum;
+              }, false)
+            : false;
 
     let hasHelmet: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
                   return currVal.name == "Helmet" || accum;
-            }, false)
-        : false;   
-        /* */ 
+              }, false)
+            : false;
+    /* */
 
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
-            attack: hasWeapon ? 12 : 10, /* different stat for levels */
-            defense: hasHelmet ? 7 : 5, 
-            exp: 0, /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */
+            attack: hasWeapon
+                ? playerLevels[currDungeonNum - 1].strength + 2
+                : playerLevels[currDungeonNum - 1]
+                      .strength /* different stat for levels */,
+            defense: hasHelmet
+                ? playerLevels[currDungeonNum - 1].defense + 2
+                : playerLevels[currDungeonNum - 1].defense,
+            exp: 0 /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */,
         });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
-            attack: 10, /* different stat for levels */
-            defense: 5,
-            hp: 60,
+            attack: monsterLevels[currDungeonNum - 1]
+                .strength /* different stat for levels */,
+            defense: monsterLevels[currDungeonNum - 1].defense,
+            hp: monsterLevels[currDungeonNum - 1].hp,
         });
 
     const handleClick = () => {
