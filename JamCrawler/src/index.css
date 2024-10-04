@@ -56,16 +56,18 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Please don't touch this, we aren't supporting light mode */
+/* Please do not change the   @media    without approval from the Project Manager. Thanks */
 @media (prefers-color-scheme: light) {
-    :root {
-        color: rgba(255, 255, 255, 0.87);
-        background-color: #242424;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #1a1a1a;
-    }
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #1a1a1a;
+  }
+
+
 }
