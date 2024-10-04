@@ -53,6 +53,7 @@ function App() {
                             currDungeonNum={currDungeonNum}
                             level={level}
                             setLevel={setLevel}
+                            setCurrDungeonNum={setCurrDungeonNum}
                         />
                     )}
                     {currentAppState == "combat" && (
@@ -62,6 +63,7 @@ function App() {
                             setPlayer={setPlayer}
                             setMonster={setMonster}
                             setCurrentAppState={setCurrentAppState}
+                            currDungeonNum={currDungeonNum}
                         />
                     )}
                 </div>

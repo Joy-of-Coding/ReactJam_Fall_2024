@@ -1,6 +1,6 @@
 // src/components/Game.tsx
 import "./Game.css";
-import React, { useState, useEffect, useCallback, KeyboardEvent } from "react";
+import React, { useState, useEffect, KeyboardEvent } from "react";
 import Dungeon from "./Dungeon";
 import PlayerStats from "./PlayerStats";
 import MonsterStats from "./MonsterStats";
@@ -14,8 +14,8 @@ import {
     WALL_CHAR,
     POTION_CHAR,
     SWORD_CHAR,
-    LUCK_CHAR,
     HELMET_CHAR,
+    DOOR_CHAR,
 } from "../constants/constants";
 import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
@@ -34,6 +34,9 @@ interface GameProps {
     currDungeonNum: number;
     level: number;
     setLevel: (value: number | ((prevValue: number) => number)) => void;
+    setCurrDungeonNum: (
+        value: number | ((prevValue: number) => number)
+    ) => void;
 }
 
 export default function Game({
@@ -47,8 +50,13 @@ export default function Game({
     currDungeonNum,
     level,
     setLevel,
+    setCurrDungeonNum,
 }: GameProps) {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const doorLocation = {
+        x: GRID_SIZE - 1,
+        y: Math.floor(GRID_SIZE / 2),
+    };
     const generateDungeon = () => {
         const newDungeon = Array.from({ length: GRID_SIZE }, () =>
             Array(GRID_SIZE).fill(EMPTY_CHAR)
@@ -61,6 +69,9 @@ export default function Game({
             newDungeon[i][0] = WALL_CHAR;
             newDungeon[i][GRID_SIZE - 1] = WALL_CHAR;
         }
+
+        // set location of door in dungeon
+        newDungeon[doorLocation.y][doorLocation.x] = DOOR_CHAR;
 
         // Set dungeon without items for level 1
         /*
@@ -138,12 +149,13 @@ export default function Game({
     };
 
     useEffect(() => {
-        if (currDungeonNum == level) {
+        // TODO! WARNING! Artifact of React Strict Mode. Math.ceil needs to be removed before deployment
+        if (currDungeonNum == Math.ceil(level / 2)) {
             console.log("generating new dungeon");
             generateDungeon();
             setLevel((prev) => prev + 1);
         }
-    }, []);
+    }, [currDungeonNum]);
 
     const movePlayer = (dx: number, dy: number) => {
         let combatNewPos = {
@@ -170,12 +182,10 @@ export default function Game({
                 position: newPos,
                 defense: Math.max(prev.defense - 1, 0),
             };
-
             if (
                 cellContent === POTION_CHAR ||
                 cellContent === HELMET_CHAR ||
-                cellContent === SWORD_CHAR ||
-                cellContent === LUCK_CHAR
+                cellContent === SWORD_CHAR
             ) {
                 const item =
                     cellContent === POTION_CHAR
@@ -195,6 +205,27 @@ export default function Game({
 
             return newPlayer;
         });
+        // check for moving to next level of dungeon (uses same combat position)
+        if (
+            combatNewPos.x == doorLocation.x &&
+            combatNewPos.y == doorLocation.y
+        ) {
+            console.log("level: ", level);
+            // add stats to player, reset player position
+            setPlayer((prev) => ({
+                ...prev,
+                health: prev.health + 20,
+                position: { x: 1, y: 1 },
+            }));
+            // set monster state to alive
+            setMonster((prev) => ({
+                ...prev,
+                isAlive: true,
+            }));
+            // increase dungeon number + 1 (should re-render dungeon as level 2)
+            setCurrDungeonNum((prev) => prev + 1);
+        }
+        // check for combat
         if (
             combatNewPos.x == monster.position.x &&
             combatNewPos.y == monster.position.y &&
@@ -228,7 +259,7 @@ export default function Game({
                     id: Date.now(),
                     text,
                     completed: false,
-                    priority: 'low'// Adjust the priority as needed or allow user input here
+                    priority: "low", // Adjust the priority as needed or allow user input here
                 },
             ]);
         }
