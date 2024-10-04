@@ -39,7 +39,8 @@ export default function CombatEncounter({
             ? player.inventory.reduce((accum, currVal) => {
                   return currVal.name == "Helmet" || accum;
             }, false)
-        : false;    
+        : false;   
+        /* */ 
 
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
