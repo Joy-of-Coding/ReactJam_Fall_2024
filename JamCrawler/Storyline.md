@@ -5,6 +5,7 @@
 >>i. Farmer enters the dungeon with Rake and clothes to get back favorite milk cow(Boring) 
 2. Dungeon level Completion
     1. **Level 1**
+    add to push to main
         - Quest: Farmer can see the hoof prints leading down into the depths of the dungeon
         - Weapon: Rusty Sword
             - +2 to strength
