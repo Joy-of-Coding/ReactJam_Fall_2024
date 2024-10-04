@@ -46,7 +46,7 @@ const TodoList: React.FC = () => {
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <h1>To-do List</h1>
       <label>Enter 3 Tasks</label>
       <input
         type="text"

@@ -42,7 +42,7 @@ const Controls: React.FC<ControlsProps> = ({
                 setLevel(level + 1);
             }}
         >
-            Enter Next Level
+            Reset Game
         </button>
     </div>
 );

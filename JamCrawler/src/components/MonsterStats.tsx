@@ -15,19 +15,19 @@ const MonsterStats: React.FC<MonsterStatsProps> = ({ monster }) => (
           <p id="leftMargin">💪</p>
           <p id="leftMargin">🔋</p>
           <p id="leftMargin">❤️</p>
-          <p id="leftMargin">🍀</p>
+        
         </div>
         <div className="leftAlign" >
           <p>Strength:</p>
           <p>Defense:</p>
           <p>Health:</p>
-          <p>Luck:</p>
+          
         </div>  
         <div className="leftAlign" >
           <p>{monster.strength}</p>
           <p>{monster.defense}</p>
           <p>{monster.health}</p>
-          <p>{monster.luck}</p>
+          
         </div>
       </div> 
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
-import { Monster, Player, Item } from "../../types/types";
+import { Monster, Player  } from "../../types/types";
 import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 
@@ -45,13 +45,13 @@ export default function CombatEncounter({
     console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
-            attack: hasWeapon ? 12 : 10, 
+            attack: hasWeapon ? 12 : 10, /* different stat for levels */
             defense: hasHelmet ? 7 : 5, 
             exp: 0, /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */
         });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
-            attack: 10, /* */
+            attack: 10, /* different stat for levels */
             defense: 5,
             hp: 60,
         });
@@ -66,7 +66,7 @@ export default function CombatEncounter({
             playerCombatStats.attack - monsterCombatStats.defense;
         setResultsText((prev) => [
             ...prev,
-            `Did ${damageToMonster} damage to monster!`,
+            `Player did ${damageToMonster} damage to monster!`,
         ]);
         setMonsterCombatStats((prev) => ({
             ...prev,
