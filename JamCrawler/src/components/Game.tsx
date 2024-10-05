@@ -152,6 +152,8 @@ export default function Game({
         // TODO! WARNING! Artifact of React Strict Mode. Math.ceil needs to be removed before deployment
         if (currDungeonNum == Math.ceil(level / 2)) {
             console.log("generating new dungeon");
+            console.log("currDungeonNum:", currDungeonNum);
+            console.log("level:", level);
             generateDungeon();
             setLevel((prev) => prev + 1);
         }
