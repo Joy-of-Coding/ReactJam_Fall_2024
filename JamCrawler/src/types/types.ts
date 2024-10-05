@@ -15,6 +15,7 @@ export type Player = {
     experience: number;
     inventory: Item[];
     isAlive: boolean;
+    maxHealth: number;
 };
 
 export type Monster = {
@@ -31,7 +32,7 @@ export type Todo = {
     id: number;
     text: string;
     completed: boolean;
-    priority: 'high' | 'medium' | 'low';
+    priority: "high" | "medium" | "low";
 };
 
 export type DungeonGrid = string[][];
@@ -46,6 +47,15 @@ export type monsterCombatStats = {
     attack: number;
     defense: number;
     hp: number;
+};
+
+export type GenericSplashProps = {
+    level: number;
+    weapon: string;
+    armor: string;
+    title: string;
+    image: string;
+    text: string;
 };
 
 // export interface Todo {
