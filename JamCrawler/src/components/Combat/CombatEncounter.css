@@ -67,3 +67,13 @@
 .return-button {
     margin-top: 1.5rem;
 }
+
+.try-again-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#tryAgain {
+    margin-right: 4rem;
+}

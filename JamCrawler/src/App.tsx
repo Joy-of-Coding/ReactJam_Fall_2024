@@ -72,6 +72,8 @@ function App() {
                             setMonster={setMonster}
                             setCurrentAppState={setCurrentAppState}
                             currDungeonNum={currDungeonNum}
+                            setCurrDungeonNum={setCurrDungeonNum}
+                            setLevel={setLevel}
                         />
                     )}
                 </div>

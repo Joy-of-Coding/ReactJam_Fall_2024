@@ -13,7 +13,11 @@ interface CombatProps {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    setCurrDungeonNum: (
+        value: number | ((prevValue: number) => number)
+    ) => void;
     currDungeonNum: number;
+    setLevel: (value: number | ((prevValue: number) => number)) => void;
 }
 
 export default function CombatEncounter({
@@ -23,12 +27,15 @@ export default function CombatEncounter({
     setMonster,
     setCurrentAppState,
     currDungeonNum,
+    setCurrDungeonNum,
+    setLevel,
 }: CombatProps) {
     const [largeResults, setLargeResults] = useState<string | null>(null);
     const [playerCanReturn, setPlayerCanReturn] = useState<boolean>(false);
     const [combatEnded, setCombatEnded] = useState<boolean>(false);
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
+    const [playerDied, setPlayerDied] = useState<boolean>(false);
 
     let hasWeapon: boolean =
         player.inventory.length > 0
@@ -122,9 +129,10 @@ export default function CombatEncounter({
                     "The monster killed you...",
                 ]);
                 setLargeResults("The monster killed you...");
+                // unlock buttons to try again or return to menu
+                setPlayerDied(true);
             }
         }
-
         setResultsText((prev) => [...prev, "-------"]);
         // end of round: increase round number
         setCombatRound((prev) => prev + 1);
@@ -132,6 +140,39 @@ export default function CombatEncounter({
 
     const handleReturn = () => {
         setCurrentAppState("game");
+    };
+
+    const handleTryAgain = (eve: React.MouseEvent<HTMLButtonElement>) => {
+        let eventTarget = eve.target as HTMLButtonElement;
+        // reset state for all relevant components:
+        // player, monster, currDungeonNum, level
+        setPlayer({
+            position: { x: 1, y: 1 },
+            strength: 10,
+            defense: 2,
+            health: 100,
+            inventory: [],
+            isAlive: true,
+            experience: 0,
+            maxHealth: 100,
+        });
+        setMonster({
+            position: { x: 1, y: 1 },
+            strength: 10,
+            defense: 5,
+            health: 100,
+            luck: 0,
+            inventory: [],
+            isAlive: true,
+        });
+        setCurrDungeonNum(1);
+        setLevel(1);
+        if (eventTarget.id == "tryAgain") {
+            setCurrentAppState("genericSplash");
+        }
+        if (eventTarget.id == "mainMenu") {
+            setCurrentAppState("titleScreen");
+        }
     };
 
     return (
@@ -171,6 +212,16 @@ export default function CombatEncounter({
                     <div className="return-button">
                         <button onClick={handleReturn}>
                             Return to dungeon
+                        </button>
+                    </div>
+                )}
+                {playerDied && (
+                    <div className="try-again-buttons">
+                        <button id="tryAgain" onClick={handleTryAgain}>
+                            Try Again
+                        </button>
+                        <button id="mainMenu" onClick={handleTryAgain}>
+                            Main Menu
                         </button>
                     </div>
                 )}
