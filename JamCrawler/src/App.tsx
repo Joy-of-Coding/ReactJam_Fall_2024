@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import TitleScreen from "./components/Title Screen/TitleScreen.tsx";
 import IntroSplash from "./components/Splash Screens/IntroSplash.tsx";
+import GenericSplash from "./components/Splash Screens/GenericSplash.tsx";
 import Game from "./components/Game.tsx";
 import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 import { Player, Monster, DungeonGrid } from "./types/types.ts";
@@ -41,6 +42,12 @@ function App() {
                     )}
                     {currentAppState == "introSplash" && (
                         <IntroSplash setCurrentAppState={setCurrentAppState} />
+                    )}
+                    {currentAppState == "genericSplash" && (
+                        <GenericSplash
+                            setCurrentAppState={setCurrentAppState}
+                            currDungeonNum={currDungeonNum}
+                        />
                     )}
                     {currentAppState == "game" && (
                         <Game

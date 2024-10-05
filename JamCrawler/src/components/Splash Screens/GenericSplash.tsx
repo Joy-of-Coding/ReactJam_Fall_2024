@@ -1,29 +1,36 @@
 import React from "react";
+import { storyLine } from "./SplashScreenProps";
 
+// TODO: all info contained in the storyLine array.
+// pass state var to here containing number of dungeon player was on
 interface Props {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
-    splashTitle: string;
-    imgSource: string;
-    nextState: string;
+    currDungeonNum: number;
 }
 
 export default function GenericSplash(props: Props) {
     const handleClick = () => {
-        props.setCurrentAppState(props.nextState);
+        props.setCurrentAppState("game");
     };
 
     return (
         <div className="flex flex-col">
-            <div className="top-title">{props.splashTitle}</div>
-            <img alt="image with game story" src={props.imgSource} />
+            <div className="top-title">
+                {storyLine[props.currDungeonNum - 1].title}
+            </div>
+            <img
+                alt="image with game story"
+                src={storyLine[props.currDungeonNum - 1].image}
+                height={400}
+            />
             <p className="text-xl mb-4 text-center max-w-md font-Helvetica Neue">
-                     tEXT UNDER THE SPLASH SCREEN GOES HERE
+                {storyLine[props.currDungeonNum - 1].text}
             </p>
-            
+
             <div>
-                <button>Continue</button>
+                <button onClick={handleClick}>Continue</button>
             </div>
         </div>
     );

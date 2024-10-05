@@ -225,6 +225,8 @@ export default function Game({
             }));
             // increase dungeon number + 1 (should re-render dungeon as level 2)
             setCurrDungeonNum((prev) => prev + 1);
+            // set current app state to generic splash screen
+            setCurrentAppState("genericSplash");
         }
         // check for combat
         if (

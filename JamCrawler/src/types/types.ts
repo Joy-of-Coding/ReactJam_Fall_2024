@@ -49,6 +49,15 @@ export type monsterCombatStats = {
     hp: number;
 };
 
+export type GenericSplashProps = {
+    level: number;
+    weapon: string;
+    armor: string;
+    title: string;
+    image: string;
+    text: string;
+};
+
 // export interface Todo {
 //   id: number;
 //   text: string;
