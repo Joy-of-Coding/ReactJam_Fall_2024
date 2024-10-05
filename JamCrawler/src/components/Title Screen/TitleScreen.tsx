@@ -15,6 +15,9 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
         if (currTarget.id == "start") {
             setCurrentAppState("introSplash");
         }
+        if (currTarget.id == "credits") {
+            setCurrentAppState("genericSplash");
+        }
     };
 
     return (
@@ -32,7 +35,11 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
                 >
                     Start Game
                 </button>
-                <button className="credits-button">Credits</button>
+                <button className="credits-button"
+                onClick={handleClick}
+                id="credits"
+                >
+                    Credits</button>
             </div>
         </div>
     );

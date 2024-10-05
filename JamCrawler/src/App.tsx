@@ -6,6 +6,7 @@ import GenericSplash from "./components/Splash Screens/GenericSplash.tsx";
 import Game from "./components/Game.tsx";
 import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 import { Player, Monster, DungeonGrid } from "./types/types.ts";
+import CreditsScreen from "./components/CreditScreen/CreditsScreen";
 
 function App() {
     const [currentAppState, setCurrentAppState] =
