@@ -1,0 +1,79 @@
+.combat-board {
+    display: flex;
+    background-color: #444;
+    flex-direction: column;
+    width: 700px;
+    align-items: center;
+    justify-items: center;
+    place-items: center;
+    height: 600px;
+    border-radius: 25px;
+}
+
+.intermediate-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.icons-and-stats {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.icons {
+    font-size: 3rem;
+}
+
+.player-stats {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3rem;
+}
+
+.monster-stats {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+}
+
+#farmer-char {
+    margin-right: 100px;
+}
+
+.attack-button {
+    margin-bottom: 1.5rem;
+}
+
+.result-popup {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.action-results {
+    height: 200px;
+    width: 600px;
+    background-color: black;
+    border-radius: 25px;
+    border: #242424 solid;
+    border-width: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.return-button {
+    margin-top: 1.5rem;
+}
+
+.try-again-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#tryAgain {
+    margin-right: 4rem;
+}

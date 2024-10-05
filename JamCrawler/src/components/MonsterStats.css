@@ -1,27 +1,29 @@
 .monster-stats {
     display: flex;
-    flex-grow: 1;
-    
+    float: left;
+
 }
 
 .vitals {
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
-
+    text-align: left;
 }
 
 .leftAlign {
-    display: flex;
-    align-content: start;
-
-    
+    flex-direction: column;
+    margin-left: 8px;
 }
-.statText {
-    margin-left: 2px;
-    color: rgb(241, 236, 106);
+
+#leftMargin {
+    margin-left: 5px;
+}
+
+#h2Stat {
+    margin-left: 120px;
 }

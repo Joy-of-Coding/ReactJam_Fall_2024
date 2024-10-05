@@ -9,25 +9,25 @@ type MonsterStatsProps = {
 const MonsterStats: React.FC<MonsterStatsProps> = ({ monster }) => (
   <div className='monster-stats'>
     <div className='vitals'>
-      <h2>Monster Stats</h2>
+      <h2 id="h2Stat">Monster Stats</h2>
       <div className="container">
         <div className="leftAlign" >
-          <p>💪</p>
-          <p>🔋</p>
-          <p>❤️</p>
-          <p>🍀</p>
+          <p id="leftMargin">💪</p>
+          <p id="leftMargin">🔋</p>
+          <p id="leftMargin">❤️</p>
+        
         </div>
         <div className="leftAlign" >
           <p>Strength:</p>
-          <p>Stamina:</p>
+          <p>Defense:</p>
           <p>Health:</p>
-          <p>Luck:</p>
+          
         </div>  
         <div className="leftAlign" >
           <p>{monster.strength}</p>
-          <p>{monster.stamina}</p>
+          <p>{monster.defense}</p>
           <p>{monster.health}</p>
-          <p>{monster.luck}</p>
+          
         </div>
       </div> 
 

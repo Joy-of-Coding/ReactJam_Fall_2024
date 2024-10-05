@@ -1,12 +1,12 @@
 .game-board {
     display: flex;
-    border: 1 salmon solid;
+    /* border: 1 salmon solid; */
     background-color: #444;
     flex-direction: row-reverse ;
    padding:0 40px;
    flex-grow: 2;
    width: 1040px;
-
+/* border: 2px solid blue; */
 }
 
 .dungeon-container {
@@ -15,7 +15,7 @@
     padding: 15px;
     flex-direction: column;
     flex-grow: 1;
-border: 2px solid blue;
+/* border: 2px solid blue; */
 }
 
 .stats {
@@ -27,7 +27,7 @@ border: 2px solid blue;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-  border: 2px solid pink;
+  /* border: 2px solid pink; */
 }
 
 .column {
