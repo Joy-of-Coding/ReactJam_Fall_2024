@@ -12,7 +12,12 @@ interface Props {
 
 export default function GenericSplash(props: Props) {
     const handleClick = () => {
-        props.setCurrentAppState("game");
+        if (props.currDungeonNum >= 6) {
+            // TODO: reset state for all relevant components
+            props.setCurrentAppState("titleScreen");
+        } else {
+            props.setCurrentAppState("game");
+        }
     };
 
     return (
@@ -30,7 +35,9 @@ export default function GenericSplash(props: Props) {
             </p>
 
             <div>
-                <button onClick={handleClick}>Continue</button>
+                <button onClick={handleClick}>
+                    {props.currDungeonNum >= 6 ? "Title Screen" : "Continue"}
+                </button>
             </div>
         </div>
     );
