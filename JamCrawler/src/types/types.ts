@@ -13,6 +13,7 @@ export type Player = {
     strength: number;
     defense: number;
     health: number;
+    // maxHealth: number; In Game.tsx line 217 of Game.tsx it is causing an error
     experience: number;
     inventory: Item[];
     isAlive: boolean;

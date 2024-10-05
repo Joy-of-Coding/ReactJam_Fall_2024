@@ -1,54 +1,48 @@
-/* src/components/Game.css */
-
 .game-board {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Distribute space evenly between the three columns */
+    /* border: 1 salmon solid; */
     background-color: #444;
-    width: 100%;
-    padding: 0 20px;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.inventory-column {
-    flex-grow: 1;
-    width: 200px; /* Width for the inventory column */
-    background-color: #2f2f2f;
-    padding: 15px;
-    border-right: 1px solid #555;
+    flex-direction: row-reverse ;
+   padding:0 40px;
+   flex-grow: 2;
+   width: 1040px;
+/* border: 2px solid blue; */
 }
 
 .dungeon-container {
-    flex-grow: 2;
     display: flex;
-    flex-direction: column;
+    gap: '40px';
     padding: 15px;
-    background-color: #333;
-    margin: 0 20px;
-    width: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+/* border: 2px solid blue; */
 }
 
 .stats {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
 }
 
-.todo-column {
+.inventory-container {
+    display: flex;
     flex-grow: 1;
-    width: 300px; /* Width for the TodoList */
-    background-color: #3a3a3a;
-    padding: 15px;
-    border-left: 1px solid #555;
+    flex-direction: column;
+  /* border: 2px solid pink; */
+}
+
+.column {
+    width: 100px;
+    flex-grow: 2;
+}
+
+.column-2 {
+    
+    flex-grow: 3;
 }
 
 .grit {
-    -webkit-mask-image: url("../assets/grit.png");
-    mask-image: url("../assets/grit.png");
-    color: slategray;
-    padding-bottom: 10px;
+  -webkit-mask-image: url("../assets/grit.png");
+  mask-image: url("../assets/grit.png");
+  color:slategray;
+  padding-bottom: 10px;
 }
