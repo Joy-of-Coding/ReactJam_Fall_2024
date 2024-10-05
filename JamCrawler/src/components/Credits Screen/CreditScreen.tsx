@@ -29,7 +29,10 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
                 >
                     Start Game
                 </button>
-                <button className="credits-button">Credits</button>
+                <button className="credits-button"
+                onClick={handleClick}
+                id="credit"
+            >>Credits</button>
             </div>
         </div>
     );
