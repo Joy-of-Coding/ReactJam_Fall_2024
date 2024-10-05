@@ -48,5 +48,6 @@ StoryLine = [
     "Image":"./George.webp",
     "Text":"#*# END OF STORY #*# - Farmer - 'Well, Devil be damned! Bessie is dead, goll darn it hell and back, but she never was a very good milk cow anyway. But, I have defeated the scourge of Evil that invaded my little neck of the woods. And, you know what, I have enjoyed myself more than I have in Years! By Gosh, I a gonna keep doing this here Adventuren stuff some more. Now, I wonder just what might be a hidin down those stairs over there....' - 'Dear Adventurer, Please join us as we bring you more epic Chronicles as we descend into the depth of yonder stairs and see what lays around the next dark corner! Until then, Happy Adventuring!'"
     }
+
     
 ]
