@@ -20,7 +20,7 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
     return (
         <div className="flex flex-col">
             <div className="main-title">Get'er Done-geon</div>
-            <img alt="picture of game title screen" src={titleScreenSource} />
+            <img className="picture"  alt="picture of game title screen" src={titleScreenSource} />
             <p className="text-xl mb-4 text-center max-w-md font-Helvetica Neue">
                 ARE YOU READY FOR THE ADVENTURE TO BEGIN?
             </p>

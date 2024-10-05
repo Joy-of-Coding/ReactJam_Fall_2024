@@ -26,7 +26,7 @@ export default function IntroSplash({ setCurrentAppState }: Props) {
 <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
             <h1 className="text-4xl font-bold mb-4">Beware Our Game</h1>
             
-            <img src={imgSource} alt="game intro art picture" className="w-64 h-64 object-cover mb-6" />
+            <img src={imgSource} alt="game intro art picture" className="picture" />
             
             <p className="text-xl mb-4 text-center max-w-md font-Helvetica Neue">
             Quest: Our Farmer, George /* Allow Player Name here */, can see the hoof prints leading down into
