@@ -149,7 +149,7 @@ export default function CombatEncounter({
         setPlayer({
             position: { x: 1, y: 1 },
             strength: 10,
-            defense: 2,
+            defense: 5,
             health: 100,
             inventory: [],
             isAlive: true,
