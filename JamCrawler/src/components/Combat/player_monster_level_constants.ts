@@ -5,6 +5,7 @@ export const playerLevels = [
         /* Base level to start - level 1 */
         strength: 10,
         defense: 5,
+        hpMax: 100,
         exp: 1,
     },
     {
