@@ -204,7 +204,8 @@ export default function CombatEncounter({
                 </div>
                 <div className="result-popup">{largeResults}</div>
                 <div className="action-results">
-                    {resultsText.map((item: string, index: number) => (
+                    {/* {resultsText.map((item: string, index: number) => ( */}
+                    {resultsText.slice().reverse().map((item: string, index: number) => (
                         <div key={index}>{item}</div>
                     ))}
                 </div>
