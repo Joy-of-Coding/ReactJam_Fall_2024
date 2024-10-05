@@ -17,6 +17,7 @@ function App() {
         inventory: [],
         isAlive: true,
         experience: 0,
+        maxHealth: 100,
     });
     const [monster, setMonster] = useState<Monster>({
         position: { x: 1, y: 1 },

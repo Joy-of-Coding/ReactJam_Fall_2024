@@ -15,6 +15,7 @@ export type Player = {
     experience: number;
     inventory: Item[];
     isAlive: boolean;
+    maxHealth: number;
 };
 
 export type Monster = {
@@ -31,7 +32,7 @@ export type Todo = {
     id: number;
     text: string;
     completed: boolean;
-    priority: 'high' | 'medium' | 'low';
+    priority: "high" | "medium" | "low";
 };
 
 export type DungeonGrid = string[][];
