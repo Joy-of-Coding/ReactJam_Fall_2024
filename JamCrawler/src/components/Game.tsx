@@ -220,7 +220,7 @@ export default function Game({
             console.log("level: ", level);
             // add stats to player, reset player position
             setPlayer((prev) => {
-                // remove swords and helemts from player inventory
+                // remove swords and helmets from player inventory
                 let newItems = prev.inventory.filter(
                     (item) => item.name != "Sword" && item.name != "Helmet"
                 );
@@ -230,9 +230,9 @@ export default function Game({
                     health: prev.health + 20,
                     position: { x: 1, y: 1 },
                     inventory: newItems,
+                    experience: prev.experience + 1000,
                 };
             });
-            // TODO: remove swords and helmets from player inventory
             // set monster state to alive
             setMonster((prev) => ({
                 ...prev,
