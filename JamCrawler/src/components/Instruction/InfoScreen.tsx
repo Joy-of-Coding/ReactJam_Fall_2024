@@ -51,7 +51,7 @@ export default function InfoScreen({ setCurrentAppState }: Props) {
 
 <ol>
     <li><strong>Introduction Screen</strong>
-        <ol type="b">
+        <ol type="a">
             <li>Please let us know if you liked our game when you finish by selecting the credits, viewing our happy team who wrote this little adventure, and leaving us a rating. Thanks for your feedback; it keeps our team happy and productive!</li>
         </ol>
     </li>
