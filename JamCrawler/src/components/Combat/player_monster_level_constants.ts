@@ -8,6 +8,7 @@ export const playerLevels = [
         health: 100,
         exp: 1,
     },
+    
     {
         /* Base level to start - level 2 - +2 weapon, +1 armor, +20 health*/
         strength: 12,
