@@ -42,6 +42,12 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
                     id="credits"
                 >
                     Credits</button>
+                <button
+                    className="info-button"
+                    onClick={handleClick}
+                    id="Info"
+                >
+                    How-to</button>
             </div>
         </div>
     );
