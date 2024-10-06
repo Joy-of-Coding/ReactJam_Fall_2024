@@ -56,6 +56,7 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                         <br /> Steven Daniel
                         <br /> Suzanne Atkinson
                         <br /> TurtleWolf
+                        <br /> Lisa Dean
                     </li>
                     <li>Graphics: Steven Daniel</li>
                     <li>Special Thanks: Katrina Wright, Suzanne Atkinson</li>
