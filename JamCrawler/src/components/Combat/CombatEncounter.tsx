@@ -52,7 +52,7 @@ export default function CombatEncounter({
             : false;
     /* */
 
-    console.log("has weapon:", hasWeapon);
+    //console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
             attack: hasWeapon

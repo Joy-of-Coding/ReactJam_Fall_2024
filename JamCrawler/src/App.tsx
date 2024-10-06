@@ -47,6 +47,10 @@ function App() {
                         <GenericSplash
                             setCurrentAppState={setCurrentAppState}
                             currDungeonNum={currDungeonNum}
+                            setPlayer={setPlayer}
+                            setMonster={setMonster}
+                            setCurrDungeonNum={setCurrDungeonNum}
+                            setLevel={setLevel}
                         />
                     )}
                     {currentAppState == "game" && (
