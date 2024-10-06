@@ -1,24 +1,29 @@
 # ReactJam Dungeon Crawler
 
-A minimalist dungeon crawler game developed for ReactJam (9/27/24 - 10/06/24).
+A minimalist retro dungeon crawler game developed for ReactJam using React + TypeScript + Vite.
 
 ## Development Schedule
 
 - Start: 9/27/24
 - End: 10/06/24
 
-## Theme: Less is More, Minimalism
+## Theme: Less is More, Minimalism Retro
 
 Combine your Life Task with the fun of dungeon crawling to accomplish more in Life! The game centers around a TO-DO List input by the player, combining real-life task completion with dungeon exploration.
-- 3 daily tasks, set by the Player, open access to the Dungeon for that day.
-- Completion of 15 tasks within the Week triggers a Player defined reward and 2X Experience reward in Dungeon play.
+- 3 daily tasks, set by the Player, open access to the Dungeon.
+- 5 levels of edge-of-your-seat non-stop action to break away from the mundane day to day life!
+- A riveting story as we follow the adventurers of our intrepid champion, George, 
+    - Watch as he battles the forces of Ultimate Evil to save his friend, Bessie
+    - Help to George to battle and overcome great Odds to complete his Life Quest
+    - Get life stuff done and help save the world, that's a darn combination!
+
 - Happy Life and Happy Crawling!
 
 ## Core Mechanics
 
 # TO-DO List
 - Player inputs 3 daily real-life tasks
-- Player inputs reward for completion of 15+ real-life tasks
+- Complete tasks and check them off of the list
 - Completing real-life tasks unlocks Daily dungeon access
 
 ### Dungeon Structure
@@ -26,62 +31,60 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
 - Dungeon completion requires clearing all of current level
 - Door to next level opens upon quest completion
 
-### Luck System
-- Completion of 3 Real-Life Tasks opens access to the dungeon for the Day
-       ---(Need to define length of open time)
-- Base 10% luck to the Open Process to complete dungeon
-- Luck increases: 40%, 30%, 20% (High, Medium, Low)
-
-
 ### Character Progression
 - Basic attributes increase as player levels up
-- Level cap: 10
-- Attributes: Attack, Defense, Movement Speed, Health
+- Level cap: 5
+- Attributes: Attack, Defense, Health, Experience
 
 ### Combat
 - Player has the advantage and always goes first
 - Turn-based encounters
-- Dice roll system for attacks and defense
+- Equipment system for attacks and defense: +2
+- Health Potions consumed before intiate combat
 
 ### Rewards
 - Player sets tasks per day to Open the dungeon
-- Player sets desired reward for completing 15 tasks over 3 days
+- Player gets the reward of Dungeon Play and completion of a Dungeon Crawl
 
 ## Game Elements
 
 ### Items
-- Weapons and armor (minimalist, whole pieces)
-- Health potions
-- Poisons
+- Weapons (minimalist, whole pieces)
+- Armor (minimalist, whole pieces)
+- Health potions X 2
 
 ### Monsters
 - Attributes scale with dungeon levels
 - Boss monster on each level
-- Types: Spiders, Skeletons, Zombies, Ogres, Dark Elves
+- Types: 
+    - Snake
+    - Zombie Necromancer - Kassie
+    - Skeleton Giant
+    - Ettin (two-headed giant)
+    - Drow - Queen of Shadows 
 
 ## Formulas
-- atk = attack + weapon + (abs(Base attack * (speed/10)))
-- def = defense + armor + (abs(Base Defense * (speed/10)))
-- speed = base speed, make icons move slightly faster
+- atk = attack(lvl) + weapon
+- def = defense(lvl) + armor
 - hit points = based on matrix by level
-- experience & leveling = ((monster level value * number per encounter) + (level quest score + mini-quest) + (dungeon level completion gain) * multiplier for dungeon 5th level finished)
+- experience & leveling = based on the level completed within the Dungeon
 
 ## Level Progression Chart
--- Example
+-- Example - 
 
-| Level | Experience | Attack | Defense | Speed | Hit Points |
+| Level | Experience | Attack | Defense |       | Hit Points |
 |-------|------------|--------|---------|-------|------------|
-| Base  | 0          | 10     | 10      | 5     | 100        |
-| 1     | 1000       | 10     | 10      | 5     | 100        |
-| 2     | 2000       | 12     | 12      | 6     | 125        |
-| 3     | 4000       | 14     | 14      | 7     | 150        |
-| 4     | 8000       | 16     | 16      | 8     | 175        |
-| 5     | 12000      | 18     | 18      | 9     | 200        |
-| 6     | 16000      | 20     | 20      | 10    | 250        |
-| 7     | 20000      | 22     | 22      | 11    | 300        |
-| 8     | 25000      | 24     | 24      | 12    | 350        |
-| 9     | 30000      | 26     | 26      | 13    | 400        |
-| 10    | 40000      | 28     | 28      | 14    | 500        |
+| Base  | 1          | 10     | 10      |       | 100        |
+| 1     | 1001       | 10     | 10      |       | 100        |
+| 2     | 2001       | 12     | 12      |       | 120        |
+| 3     | 3001       | 14     | 14      |       | 140        |
+| 4     | 4001       | 16     | 16      |       | 160        |
+| 5     | 5001       | 18     | 18      |       | 180        |
+| 6     | 16001      | 20     | 20      |       | 250        |
+| 7     | 20001      | 22     | 22      |       | 300        |
+| 8     | 25001      | 24     | 24      |       | 350        |
+| 9     | 30001      | 26     | 26      |       | 400        |
+| 10    | 40001      | 28     | 28      |       | 500        |
 
 
 ## Future Enhancements (Time Permitting)
@@ -102,7 +105,7 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
         - Weapon: Rusty Sword
         - Armor: Battered Helm
         - Level Minimum: 0
-        - Monster: Spiders
+        - Monster: Snake
         - Boss: Giant Arachnid
 
     2. **Level 2**
@@ -110,9 +113,9 @@ Combine your Life Task with the fun of dungeon crawling to accomplish more in Li
             - find chest plate and amulet for chest plate to avoid being turned into a zombie
         - Weapon: Short War Spear
         - Armor: Chest Plate of Non-turning
-        - Level Minimum: 2
+        - Level Minimum: 1
         - Monster: Zombie
-        - Boss: George(Necromancer) -- Turned to evil, villager rival from town
+        - Boss: Kassie(Necromancer) -- Turned to evil, villager Hag from town
 
     3. **Level 3**
         - Quest: Add “what took my %$&#@ milk cow” Quest
