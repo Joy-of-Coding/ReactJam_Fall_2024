@@ -7,6 +7,7 @@ import MonsterStats from "./MonsterStats";
 import Inventory from "./Inventory";
 import Controls from "./Controls";
 import TodoList from "./TodoList";
+import { monsterLevels } from "./Combat/player_monster_level_constants";
 import {
     GRID_SIZE,
     ITEMS,
@@ -180,7 +181,6 @@ export default function Game({
             let newPlayer = {
                 ...prev,
                 position: newPos,
-                defense: Math.max(prev.defense - 1, 0),
             };
             if (
                 cellContent === POTION_CHAR ||
@@ -195,6 +195,13 @@ export default function Game({
                         : cellContent === HELMET_CHAR
                         ? ITEMS.helmet
                         : ITEMS.luckCharm;
+                // handle global stat increases
+                if (item == ITEMS.sword) {
+                    newPlayer.strength = prev.strength + 2;
+                }
+                if (item == ITEMS.helmet) {
+                    newPlayer.defense = prev.defense + 2;
+                }
                 newPlayer.inventory = [...newPlayer.inventory, item];
                 setDungeon((prevDungeon) => {
                     const newDungeon = prevDungeon.map((row) => [...row]);
@@ -212,16 +219,27 @@ export default function Game({
         ) {
             console.log("level: ", level);
             // add stats to player, reset player position
-            setPlayer((prev) => ({
-                ...prev,
-                maxHealth: prev.maxHealth + 20,
-                health: prev.health + 20,
-                position: { x: 1, y: 1 },
-            }));
+            setPlayer((prev) => {
+                // remove swords and helemts from player inventory
+                let newItems = prev.inventory.filter(
+                    (item) => item.name != "Sword" && item.name != "Helmet"
+                );
+                return {
+                    ...prev,
+                    maxHealth: prev.maxHealth + 20,
+                    health: prev.health + 20,
+                    position: { x: 1, y: 1 },
+                    inventory: newItems,
+                };
+            });
+            // TODO: remove swords and helmets from player inventory
             // set monster state to alive
             setMonster((prev) => ({
                 ...prev,
                 isAlive: true,
+                strength: monsterLevels[currDungeonNum].strength,
+                defense: monsterLevels[currDungeonNum].defense,
+                health: monsterLevels[currDungeonNum].hp,
             }));
             // increase dungeon number + 1 (should re-render dungeon as level 2)
             setCurrDungeonNum((prev) => prev + 1);
