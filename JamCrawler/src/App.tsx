@@ -7,7 +7,7 @@ import Game from "./components/Game.tsx";
 import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 import { Player, Monster, DungeonGrid } from "./types/types.ts";
 import CreditScreen from "./components/Credit screen/CreditScreen.tsx";
-
+import InfoScreen from "./components/Credit screen/InfoScreen.tsx";
 function App() {
     const [currentAppState, setCurrentAppState] =
         useState<string>("titleScreen");
@@ -43,6 +43,9 @@ function App() {
                         <TitleScreen setCurrentAppState={setCurrentAppState} />
                     )}
                     {currentAppState == "CreditScreen" && (
+                        <CreditScreen setCurrentAppState={setCurrentAppState} />
+                    )}
+                    {currentAppState == "InfoScreen" && (
                         <CreditScreen setCurrentAppState={setCurrentAppState} />
                     )}
 

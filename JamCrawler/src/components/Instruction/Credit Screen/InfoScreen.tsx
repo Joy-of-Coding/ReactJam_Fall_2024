@@ -7,7 +7,7 @@ interface Props {
     ) => void;
 }
 
-export default function CreditsScreen({ setCurrentAppState }: Props) {
+export default function InfoScreen({ setCurrentAppState }: Props) {
     const CreditScreenSource = "./skeleton.webp"; // Corrected file extension
 
     const handleClick = () => {
@@ -39,7 +39,7 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                 />
 
                 {/* Credit Titles */}
-                <h1 className="text-3xl mb-4">Get'er Done Credits</h1>
+                <h1 className="text-3xl mb-4">Get'er Instructions</h1>
 
                 {/* Developer & Credits List */}
                 <motion.ul className="text-lg mb-4">
