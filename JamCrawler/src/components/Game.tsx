@@ -16,7 +16,6 @@ import {
     SWORD_CHAR,
     HELMET_CHAR,
     DOOR_CHAR,
-    MONSTER_TYPES,
 } from "../constants/constants";
 import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 

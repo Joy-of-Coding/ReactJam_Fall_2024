@@ -7,13 +7,19 @@ export const POTION_CHAR = "🧪";
 export const SWORD_CHAR = "🗡️";
 export const DOOR_CHAR = "🚪";
 export const HELMET_CHAR = "🪖";
-export const MONSTER_TYPES = [
-    { level: 1, name: "Snake", symbol: "🐍" },
-    { level: 2, name: "Zombie", symbol: "🧟‍♂️" },
-    { level: 3, name: "Skeleton", symbol: "💀" },
-    { level: 4, name: "Ogre", symbol: "👹" },
-    { level: 5, name: "Drow", symbol: "🧌" },
-];
+// Hard coding each monster type
+export const MONSTER1_CHAR =  "🐍";
+export const MONSTER2_CHAR =  "🧟‍♂️";
+export const MONSTER3_CHAR =  "💀";
+export const MONSTER4_CHAR =  "👹🐍";
+export const MONSTER5_CHAR =  "🧌";
+// export const MONSTER_TYPES = [
+//     { level: 1, name: "Snake", symbol: "🐍" },
+//     { level: 2, name: "Zombie", symbol: "🧟‍♂️" },
+//     { level: 3, name: "Skeleton", symbol: "💀" },
+//     { level: 4, name: "Ogre", symbol: "👹" },
+//     { level: 5, name: "Drow", symbol: "🧌" },
+// ];
 
 import { Item } from "../types/types";
 
