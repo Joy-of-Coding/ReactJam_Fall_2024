@@ -1,100 +1,55 @@
-import React, { useState } from 'react';
-import './TodoList.css';
+import React, { useState } from "react";
+import "./TodoList.css"; // Add appropriate styles here.
 
-interface Todo {
-  text: string;
-  priority: 'high' | 'medium' | 'low';
-  complete: boolean;
+interface TodoListProps {
+    todos: Todo[];
+    setTodos: (todos: Todo[]) => void;
+    addTodo: (text: string, priority: "low" | "medium" | "high") => void;
+    toggleTodo: (id: number) => void;
 }
 
-const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState<string>('');
-  const [priority, setPriority] = useState<'high' | 'medium' | 'low'>('low');
+const TodoList: React.FC<TodoListProps> = ({
+    todos,
+    addTodo,
+    toggleTodo,
+}) => {
+    const [newTask, setNewTask] = useState("");
 
-  const addTodo = () => {
-    if (newTodo && todos.length < 3) {
-      const newTask: Todo = { text: newTodo, priority, complete: false };
-      setTodos([...todos, newTask]);
-      setNewTodo('');
-    }
-  };
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        addTodo(newTask, "low");
+        setNewTask("");
+    };
 
-  const removeTodo = (index: number) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
-  };
-
-  const toggleComplete = (index: number) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].complete = !updatedTodos[index].complete;
-    setTodos(updatedTodos);
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return '#ff6666'; // Red
-      case 'medium':
-        return '#ffb066'; // Yellow
-      case 'low':
-        return '#114d3b'; // Green
-      default:
-        return '#ffffff'; // Default white
-    }
-  };
-
-  return (
-    <div>
-      <h1>To-do List</h1>
-      <label>Enter 3 Tasks</label>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Enter your task"
-      />
-      <label htmlFor="priority" className="visually-hidden">Priority</label>
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as 'high' | 'medium' | 'low')}
-      >
-        <option className="hRed" value="high">H</option>
-        <option className="mYellow" value="medium">M</option>
-        <option className="LGreen" value="low">L</option>
-      </select>
-      <button id="add-button" onClick={addTodo}>Add</button>
-
-      <ul className="todo-list">
-        {todos.map((todo, index) => (
-          <li
-            key={index}
-            className={`priority-${todo.priority}`}
-            style={{
-              backgroundColor: getPriorityColor(todo.priority),
-              textDecoration: todo.complete ? 'line-through' : 'none',
-              borderBottom: todo.complete ? '2px solid black' : 'none',
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={todo.complete}
-              onChange={() => toggleComplete(index)}
-              className="todo-checkbox"
-            />
-            {todo.text}
-            <button id="Del" onClick={() => removeTodo(index)}>X</button>
-          </li>
-        ))}
-      </ul>
-
-      {todos.every(todo => todo.complete) && (
-        <div className="congrats-message">
-          <h2>Congratulations! Dungeon Time!</h2>
+    return (
+        <div className="todo-overlay">
+            <h2>Prove Yourself: Task Slayer</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={newTask}
+                    onChange={(e) => setNewTask(e.target.value)}
+                    placeholder="Add your task"
+                    required
+                />
+                <button type="submit">Add Task</button>
+            </form>
+            <ul>
+                {todos.map((todo) => (
+                    <li key={todo.id}>
+                        <span
+                            onClick={() => toggleTodo(todo.id)}
+                            style={{
+                                textDecoration: todo.completed ? "line-through" : "none",
+                            }}
+                        >
+                            {todo.text}
+                        </span>
+                    </li>
+                ))}
+            </ul>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default TodoList;

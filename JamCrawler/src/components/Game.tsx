@@ -1,12 +1,11 @@
 // src/components/Game.tsx
 import "./Game.css";
-import React, { useState, useEffect, KeyboardEvent } from "react";
+import  { useEffect, KeyboardEvent } from "react";
 import Dungeon from "./Dungeon";
 import PlayerStats from "./PlayerStats";
 import MonsterStats from "./MonsterStats";
 import Inventory from "./Inventory";
 import Controls from "./Controls";
-import TodoList from "./TodoList";
 import { monsterLevels } from "./Combat/player_monster_level_constants";
 import {
     GRID_SIZE,
@@ -18,7 +17,7 @@ import {
     HELMET_CHAR,
     DOOR_CHAR,
 } from "../constants/constants";
-import { Player, Todo, DungeonGrid, Monster } from "../types/types";
+import { Player,  DungeonGrid, Monster } from "../types/types";
 
 interface GameProps {
     setCurrentAppState: (
@@ -38,6 +37,7 @@ interface GameProps {
     setCurrDungeonNum: (
         value: number | ((prevValue: number) => number)
     ) => void;
+    isGameUnlocked: boolean; // SAM - Controls whether the game is unlocked after tasks are complete
 }
 
 export default function Game({
@@ -53,7 +53,6 @@ export default function Game({
     setLevel,
     setCurrDungeonNum,
 }: GameProps) {
-    const [todos, setTodos] = useState<Todo[]>([]);
     const doorLocation = {
         x: GRID_SIZE - 1,
         y: Math.floor(GRID_SIZE / 2),
@@ -150,8 +149,7 @@ export default function Game({
     };
 
     useEffect(() => {
-        // TODO! WARNING! Artifact of React Strict Mode. Math.ceil needs to be removed before deployment
-        if (currDungeonNum == Math.ceil(level / 2)) {
+            if (currDungeonNum == Math.ceil(level / 2)) {
             console.log("generating new dungeon");
             generateDungeon();
             setLevel((prev) => prev + 1);
@@ -178,7 +176,7 @@ export default function Game({
                 return prev;
             }
 
-            let newPlayer = {
+            const newPlayer = {
                 ...prev,
                 position: newPos,
             };
@@ -272,32 +270,32 @@ export default function Game({
         });
     };
 
-    const addTodo = (text: string) => {
-        if (text.trim() !== "") {
-            setTodos((prev) => [
-                ...prev,
-                {
-                    id: Date.now(),
-                    text,
-                    completed: false,
-                    priority: "low", // Adjust the priority as needed or allow user input here
-                },
-            ]);
-        }
-    };
+    // const addTodo = (text: string) => {
+    //     if (text.trim() !== "") {
+    //         setTodos((prev) => [
+    //             ...prev,
+    //             {
+    //                 id: Date.now(),
+    //                 text,
+    //                 completed: false,
+    //                 priority: "low", // Adjust the priority as needed or allow user input here
+    //             },
+    //         ]);
+    //     }
+    // };
 
-    const toggleTodo = (id: number) => {
-        setTodos((todos) =>
-            todos.map((todo) =>
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
-            )
-        );
-        setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
-    };
+    // const toggleTodo = (id: number) => {
+    //     setTodos((todos) =>
+    //         todos.map((todo) =>
+    //             todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    //         )
+    //     );
+    //     setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
+    // };
 
-    const deleteTodo = (id: number) => {
-        setTodos((prev) => prev.filter((todo) => todo.id !== id));
-    };
+    // const deleteTodo = (id: number) => {
+    //     setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    // };
 
     return (
         <>
@@ -305,12 +303,13 @@ export default function Game({
 
             <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
                 <div className="column">
-                    <TodoList
+                    {/* <TodoList
                         todos={todos}
                         addTodo={addTodo}
                         toggleTodo={toggleTodo}
                         deleteTodo={deleteTodo}
-                    />
+                    /> */}
+                    {/* //SAM Commented out to update TodoList compnent */}
                 </div>
 
                 <div className="dungeon-container column-2">

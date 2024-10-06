@@ -10,7 +10,7 @@
         - make pretty
 4. Dungeon - Level 1
     - Display
-        - 
+        -
     - Combat
         - 
 5. Dungeon - Level 2
