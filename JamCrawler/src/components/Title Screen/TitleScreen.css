@@ -13,5 +13,14 @@
 }
 
 .credits-button {
+    margin-center: 2rem;
+}
+
+.info-button {
     margin-left: 2rem;
+}
+
+.picture {
+    height: 400px;
+    width: 400px;
 }

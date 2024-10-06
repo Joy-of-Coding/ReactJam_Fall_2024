@@ -1,12 +1,18 @@
-/* Full-screen lock */
+/* Full-screen lock
 .app-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}*/
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
 }
-
 /* Style for modal */
 .modal-overlay {
   position: fixed;
@@ -30,10 +36,20 @@
 
 /* Style for the to-do list container */
 .todo-container {
-  background-color: white;
+  display:flex-coloumn;
+  justify-content:center;
+  background-color: rgb(243, 186, 106);
   padding: 20px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
   text-align: center;
+}  
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
 }

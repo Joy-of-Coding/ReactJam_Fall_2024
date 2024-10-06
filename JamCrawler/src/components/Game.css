@@ -2,20 +2,20 @@
     display: flex;
     /* border: 1 salmon solid; */
     background-color: #444;
-    flex-direction: row-reverse ;
-   padding:0 40px;
-   flex-grow: 2;
-   width: 1040px;
-/* border: 2px solid blue; */
+    flex-direction: row-reverse;
+    padding: 0 40px;
+    flex-grow: 2;
+    width: 1040px;
+    /* border: 2px solid blue; */
 }
 
 .dungeon-container {
     display: flex;
-    gap: '40px';
+    gap: "40px";
     padding: 15px;
     flex-direction: column;
     flex-grow: 1;
-/* border: 2px solid blue; */
+    /* border: 2px solid blue; */
 }
 
 .stats {
@@ -27,7 +27,8 @@
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-  /* border: 2px solid pink; */
+    z-index: 999;
+    /* border: 2px solid pink; */
 }
 
 .column {
@@ -36,13 +37,12 @@
 }
 
 .column-2 {
-    
     flex-grow: 3;
 }
 
 .grit {
-  -webkit-mask-image: url("../assets/grit.png");
-  mask-image: url("../assets/grit.png");
-  color:slategray;
-  padding-bottom: 10px;
+    -webkit-mask-image: url("../assets/grit.png");
+    mask-image: url("../assets/grit.png");
+    color: slategray;
+    padding-bottom: 10px;
 }

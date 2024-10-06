@@ -4,7 +4,6 @@ import "./TodoList.css";
 
 interface TodoListProps {
     todos: Todo[];
-    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
     addTodo: (text: string, priority: "low" | "medium" | "high") => void;
     toggleTodo: (id: number) => void;
 }

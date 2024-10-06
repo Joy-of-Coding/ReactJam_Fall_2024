@@ -7,7 +7,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ showModal, setShowModal }) => {
-    if (!showModal) return null; // Only show the modal if showModal is not null
+    if (!showModal) return null; //SAM Only show the modal if showModal is not null
 
     return (
         <div className="modal-overlay">

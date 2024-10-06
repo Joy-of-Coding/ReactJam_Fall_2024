@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   gap: 20px;
-
 }
 
 .inventory-container h3 {
@@ -15,6 +14,7 @@
   column-gap: 10px;
   grid-template-columns: 60% 40%;
   border: 1px solid white;
+  width: 250px;
 }
 
 .inventory-item-name {
@@ -22,4 +22,10 @@
   padding-top: 7px;
   padding-left: 10px;
   text-emphasis: bold;
+}
+
+.grid-item {
+  display: flex;
+  place-items: center;
+  margin-right: 0.5rem;
 }

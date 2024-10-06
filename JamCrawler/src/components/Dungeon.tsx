@@ -29,6 +29,8 @@ const Dungeon: React.FC<DungeonProps> = ({ dungeon, player, monster }) => {
                                   y === monster.position.y &&
                                   monster.isAlive
                                 ? "🐍"
+                                : monster.isAlive && cell == "🚪"
+                                ? "🪨"
                                 : cell}
                         </span>
                     ))}

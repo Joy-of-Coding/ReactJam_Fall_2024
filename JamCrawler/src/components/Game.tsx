@@ -6,7 +6,8 @@ import PlayerStats from "./PlayerStats";
 import MonsterStats from "./MonsterStats";
 import Inventory from "./Inventory";
 import Controls from "./Controls";
-// import TodoList from "./TodoList";
+// import TodoList from "./TodoList";//Sam todo list separated for better  state flow from the App.tsx 
+import { monsterLevels } from "./Combat/player_monster_level_constants.ts";
 import {
     GRID_SIZE,
     ITEMS,
@@ -17,7 +18,7 @@ import {
     HELMET_CHAR,
     DOOR_CHAR,
 } from "../constants/constants";
-import { Player, DungeonGrid, Monster } from "../types/types";
+import { Player, Todo, DungeonGrid, Monster } from "../types/types";
 
 interface GameProps {
     setCurrentAppState: (
@@ -52,7 +53,7 @@ export default function Game({
     setLevel,
     setCurrDungeonNum,
 }: GameProps) {
-    // const [todos, setTodos] = useState<Todo[]>([]);
+    const [todos, setTodos] = useState<Todo[]>([]);
     const doorLocation = {
         x: GRID_SIZE - 1,
         y: Math.floor(GRID_SIZE / 2),
@@ -158,7 +159,7 @@ export default function Game({
     }, [currDungeonNum]);
 
     const movePlayer = (dx: number, dy: number) => {
-        const combatNewPos = {
+        let combatNewPos = {
             x: player.position.x + dx,
             y: player.position.y + dy,
         };
@@ -177,10 +178,9 @@ export default function Game({
                 return prev;
             }
 
-            const newPlayer = {
+            let newPlayer = {
                 ...prev,
                 position: newPos,
-                defense: Math.max(prev.defense - 1, 0),
             };
             if (
                 cellContent === POTION_CHAR ||
@@ -195,6 +195,13 @@ export default function Game({
                         : cellContent === HELMET_CHAR
                         ? ITEMS.helmet
                         : ITEMS.luckCharm;
+                // handle global stat increases
+                if (item == ITEMS.sword) {
+                    newPlayer.strength = prev.strength + 2;
+                }
+                if (item == ITEMS.helmet) {
+                    newPlayer.defense = prev.defense + 2;
+                }
                 newPlayer.inventory = [...newPlayer.inventory, item];
                 setDungeon((prevDungeon) => {
                     const newDungeon = prevDungeon.map((row) => [...row]);
@@ -212,19 +219,32 @@ export default function Game({
         ) {
             console.log("level: ", level);
             // add stats to player, reset player position
-            setPlayer((prev) => ({
-                ...prev,
-                maxHealth: prev.maxHealth + 20,//SAM -line 16 of types.tsx is where to fix this
-                health: prev.health + 20,
-                position: { x: 1, y: 1 },
-            }));
+            setPlayer((prev) => {
+                // remove swords and helmets from player inventory
+                let newItems = prev.inventory.filter(
+                    (item) => item.name != "Sword" && item.name != "Helmet"
+                );
+                return {
+                    ...prev,
+                    maxHealth: prev.maxHealth + 20,
+                    health: prev.health + 20,
+                    position: { x: 1, y: 1 },
+                    inventory: newItems,
+                    experience: prev.experience + 1000,
+                };
+            });
             // set monster state to alive
             setMonster((prev) => ({
                 ...prev,
                 isAlive: true,
+                strength: monsterLevels[currDungeonNum].strength,
+                defense: monsterLevels[currDungeonNum].defense,
+                health: monsterLevels[currDungeonNum].hp,
             }));
             // increase dungeon number + 1 (should re-render dungeon as level 2)
             setCurrDungeonNum((prev) => prev + 1);
+            // set current app state to generic splash screen
+            setCurrentAppState("genericSplash");
         }
         // check for combat
         if (
@@ -262,37 +282,36 @@ export default function Game({
     //                 completed: false,
     //                 priority: "low", // Adjust the priority as needed or allow user input here
     //             },
-        //     ]);
-        // }
+    //         ]);
+    //     }
     // };
 
-    // const toggleTodo = (id: number) => {
-    //     setTodos((todos) =>
-    //         todos.map((todo) =>
-    //             todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    //         )
-    //     );
-        // setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
-    // };
+    const toggleTodo = (id: number) => {
+        setTodos((todos) =>
+            todos.map((todo) =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            )
+        );
+        setPlayer((prev) => ({ ...prev, experience: prev.experience + 1 }));
+    };
 
-    // const deleteTodo = (id: number) => {
-    //     setTodos((prev) => prev.filter((todo) => todo.id !== id));
-    // };
+    const deleteTodo = (id: number) => {
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    };
 
     return (
         <>
             <h1 className="grit">Get'er Done-geon Crawler</h1>
 
             <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
-                {/* <div className="column">
+                <div className="column">
                     <TodoList
                         todos={todos}
                         addTodo={addTodo}
                         toggleTodo={toggleTodo}
                         deleteTodo={deleteTodo}
                     />
-                </div> */}
-                {/* //SAM - I commented out the above code to remove the todo list from Game.tsx */}
+                </div>
 
                 <div className="dungeon-container column-2">
                     <h2>Level {currDungeonNum}</h2>
@@ -320,5 +339,4 @@ export default function Game({
             </div>
         </>
     );
-};
-
+}
