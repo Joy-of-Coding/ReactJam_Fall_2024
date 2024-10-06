@@ -20,7 +20,7 @@ export default function TitleScreen({ setCurrentAppState }: Props) {
             setCurrentAppState("CreditScreen");
         }
         if (currTarget.id == "Info") {
-            setCurrentAppState("CreditScreen");
+            setCurrentAppState("InfoScreen");
         }
 
     };
