@@ -59,12 +59,6 @@ function App() {
                             setLevel={setLevel}
                         />
                     )}
-                    {currentAppState == "genericSplash" && (
-                        <GenericSplash
-                            setCurrentAppState={setCurrentAppState}
-                            currDungeonNum={currDungeonNum}
-                        />
-                    )}
                     {currentAppState == "game" && (
                         <Game
                             setCurrentAppState={setCurrentAppState}
