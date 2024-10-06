@@ -3,6 +3,7 @@
     margin-bottom: 1rem;
 }
 
+<<<<<<< HEAD
 .credits-background {
     background-image: url('./skeleton.webp');
     background-size: cover;
@@ -14,6 +15,8 @@
     align-items: center;
 }
 
+=======
+>>>>>>> 00aec7dc520bd31cc6d3e5068df306dae2910317
 .buttons-row {
     margin-top: 1rem;
     row-gap: 2rem;
@@ -27,7 +30,11 @@
     margin-left: 2rem;
 }
 
+<<<<<<< HEAD
 .picture {
+=======
+.picture{
+>>>>>>> 00aec7dc520bd31cc6d3e5068df306dae2910317
     height: 400px;
     width: 400px;
 }
