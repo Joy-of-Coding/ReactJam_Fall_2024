@@ -6,7 +6,7 @@
 # Weapon
 # Armor 
 
-
+# Base stats in an array to simulate combat without progressions
 playerBase = [30, 20, 200, 4001] # atk, def, hp, exp
 monsterBase = [33, 22, 180] # atk, def, hp
 
