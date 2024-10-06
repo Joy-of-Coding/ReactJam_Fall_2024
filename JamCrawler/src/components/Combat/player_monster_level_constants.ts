@@ -8,7 +8,7 @@ export const playerLevels = [
         health: 100,
         exp: 1,
     },
-    
+
     {
         /* Base level to start - level 2 - +2 weapon, +1 armor, +20 health*/
         strength: 12,
@@ -69,5 +69,11 @@ export const monsterLevels = [
         strength: 18,
         defense: 9,
         hp: 140,
+    },
+    /* Monster dummy level for a quick bug hotfix, please do not touch this */
+    {
+        strength: 0,
+        defense: 0,
+        hp: 0,
     },
 ];
