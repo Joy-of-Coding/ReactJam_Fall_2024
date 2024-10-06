@@ -44,21 +44,22 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                 {/* Developer & Credits List */}
                 <motion.ul className="text-lg mb-4">
                     <li>
-                        Developers:
-                        <br /> CROWE Sam
+                    <div>
+    <strong>Developers:</strong>
+</div>
+                        
+                        <br /> Sam Crowe
                         <br /> Braden Kartchner
-                        <br /> Katrina Wright
                         <br /> Anna Rankin
-                        <br /> Caitlin Moffitt
                         <br /> John Schlautman
                         <br /> Jon Adams
                         <br /> River Barton
                         <br /> Steven Daniel
-                        <br /> Suzanne Atkinson
-                        <br /> TurtleWolf
+                        <br /> Jonathan Pohlner
                         <br /> Lisa Dean
+                        <br /> Timothy Batchelder
+                        <br />    <p></p>
                     </li>
-                    <li>Graphics: Steven Daniel</li>
                     <li>Special Thanks: Katrina Wright, Suzanne Atkinson</li>
                 </motion.ul>
 
