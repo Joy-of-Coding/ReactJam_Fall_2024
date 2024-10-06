@@ -1,25 +1,31 @@
 .inventory-item-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .inventory-container h3 {
-  text-decoration-line: underline;
-  text-decoration-style: double;
+    text-decoration-line: underline;
+    text-decoration-style: double;
 }
 
 .grid-container {
-  display: inline-grid;
-  column-gap: 10px;
-  grid-template-columns: 60% 40%;
-  border: 1px solid white;
+    display: inline-grid;
+    column-gap: 10px;
+    grid-template-columns: 60% 40%;
+    border: 1px solid white;
+    width: 250px;
 }
 
 .inventory-item-name {
-  text-align: left;
-  padding-top: 7px;
-  padding-left: 10px;
-  text-emphasis: bold;
+    text-align: left;
+    padding-top: 7px;
+    padding-left: 10px;
+    text-emphasis: bold;
+}
+
+.grid-item {
+    display: flex;
+    place-items: center;
+    margin-right: 0.5rem;
 }
