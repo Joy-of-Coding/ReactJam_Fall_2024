@@ -4,6 +4,7 @@ import { Monster, Player } from "../../types/types";
 import { PLAYER_CHAR, MONSTER_TYPES } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 import { playerLevels, monsterLevels } from "./player_monster_level_constants";
+import { MONSTER_ICONS } from "../../Monsters/monsters";
 
 interface CombatProps {
     player: Player;
@@ -191,7 +192,7 @@ export default function CombatEncounter({
                     <span className="icons" id="farmer-char">
                         {PLAYER_CHAR}
                     </span>
-                    <span className="icons">{monster.symbol}</span>
+                    <span className="icons">{MONSTER_ICONS}</span>
                     <span className="monster-stats">
                         <span>Attack: {monsterCombatStats.attack}</span>
                         <span>Defense: {monsterCombatStats.defense}</span>
