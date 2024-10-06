@@ -1,5 +1,6 @@
 import React from "react";
 import { storyLine } from "./SplashScreenProps";
+import { Monster, Player } from "../../types/types";
 
 // TODO: all info contained in the storyLine array.
 // pass state var to here containing number of dungeon player was on
@@ -7,13 +8,40 @@ interface Props {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    setCurrDungeonNum: (
+        value: number | ((prevValue: number) => number)
+    ) => void;
     currDungeonNum: number;
+    setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
+    setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
+    setLevel: (value: number | ((prevValue: number) => number)) => void;
 }
 
 export default function GenericSplash(props: Props) {
     const handleClick = () => {
         if (props.currDungeonNum >= 6) {
-            // TODO: reset state for all relevant components
+            // reset state for all relevant components
+            props.setPlayer({
+                position: { x: 1, y: 1 },
+                strength: 10,
+                defense: 5,
+                health: 100,
+                inventory: [],
+                isAlive: true,
+                experience: 0,
+                maxHealth: 100,
+            });
+            props.setMonster({
+                position: { x: 1, y: 1 },
+                strength: 10,
+                defense: 5,
+                health: 100,
+                luck: 0,
+                inventory: [],
+                isAlive: true,
+            });
+            props.setCurrDungeonNum(1);
+            props.setLevel(1);
             props.setCurrentAppState("titleScreen");
         } else {
             props.setCurrentAppState("game");
