@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
 import { Monster, Player } from "../../types/types";
-import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
+import { PLAYER_CHAR, MONSTER_TYPES } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 import { playerLevels, monsterLevels } from "./player_monster_level_constants";
 
@@ -191,7 +191,7 @@ export default function CombatEncounter({
                     <span className="icons" id="farmer-char">
                         {PLAYER_CHAR}
                     </span>
-                    <span className="icons">{MONSTER_CHAR}</span>
+                    <span className="icons">{monster.symbol}</span>
                     <span className="monster-stats">
                         <span>Attack: {monsterCombatStats.attack}</span>
                         <span>Defense: {monsterCombatStats.defense}</span>
