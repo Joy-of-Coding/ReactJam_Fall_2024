@@ -15,7 +15,7 @@ function App() {
     const [player, setPlayer] = useState<Player>({
         position: { x: 1, y: 1 },
         strength: 10,
-        defense: 2,
+        defense: 5,
         health: 100,
         inventory: [],
         isAlive: true,
@@ -26,7 +26,7 @@ function App() {
         position: { x: 1, y: 1 },
         strength: 10,
         defense: 5,
-        health: 100,
+        health: 60,
         luck: 0,
         inventory: [],
         isAlive: true,
@@ -53,12 +53,10 @@ function App() {
                         <GenericSplash
                             setCurrentAppState={setCurrentAppState}
                             currDungeonNum={currDungeonNum}
-                        />
-                    )}
-                    {currentAppState == "genericSplash" && (
-                        <GenericSplash
-                            setCurrentAppState={setCurrentAppState}
-                            currDungeonNum={currDungeonNum}
+                            setPlayer={setPlayer}
+                            setMonster={setMonster}
+                            setCurrDungeonNum={setCurrDungeonNum}
+                            setLevel={setLevel}
                         />
                     )}
                     {currentAppState == "game" && (

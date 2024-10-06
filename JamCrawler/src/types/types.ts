@@ -40,6 +40,7 @@ export type DungeonGrid = string[][];
 export type PlayerCombatStats = {
     attack: number;
     defense: number;
+    health: number;
     exp: number;
 };
 

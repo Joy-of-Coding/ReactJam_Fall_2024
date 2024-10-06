@@ -52,7 +52,7 @@ export default function CombatEncounter({
             : false;
     /* */
 
-    console.log("has weapon:", hasWeapon);
+    //console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
             attack: hasWeapon
@@ -63,6 +63,7 @@ export default function CombatEncounter({
                 ? playerLevels[currDungeonNum - 1].defense + 2
                 : playerLevels[currDungeonNum - 1].defense,
             exp: 0 /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */,
+            health: 0 /* Using global health, this stat doesn't matter */,
         });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
@@ -149,7 +150,7 @@ export default function CombatEncounter({
         setPlayer({
             position: { x: 1, y: 1 },
             strength: 10,
-            defense: 2,
+            defense: 5,
             health: 100,
             inventory: [],
             isAlive: true,
@@ -205,9 +206,12 @@ export default function CombatEncounter({
                 <div className="result-popup">{largeResults}</div>
                 <div className="action-results">
                     {/* {resultsText.map((item: string, index: number) => ( */}
-                    {resultsText.slice().reverse().map((item: string, index: number) => (
-                        <div key={index}>{item}</div>
-                    ))}
+                    {resultsText
+                        .slice()
+                        .reverse()
+                        .map((item: string, index: number) => (
+                            <div key={index}>{item}</div>
+                        ))}
                 </div>
                 {playerCanReturn && (
                     <div className="return-button">
