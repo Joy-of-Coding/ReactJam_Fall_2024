@@ -6,11 +6,12 @@ import GenericSplash from "./components/Splash Screens/GenericSplash.tsx";
 import Game from "./components/Game.tsx";
 import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 import { Player, Monster, DungeonGrid } from "./types/types.ts";
-import CreditsScreen from "./components/CreditScreen/CreditsScreen";
+import CreditScreen from "./components/Credit screen/CreditScreen.tsx";
 
 function App() {
     const [currentAppState, setCurrentAppState] =
         useState<string>("titleScreen");
+
     const [player, setPlayer] = useState<Player>({
         position: { x: 1, y: 1 },
         strength: 10,
@@ -41,8 +42,18 @@ function App() {
                     {currentAppState == "titleScreen" && (
                         <TitleScreen setCurrentAppState={setCurrentAppState} />
                     )}
+                    {currentAppState == "CreditScreen" && (
+                        <CreditScreen setCurrentAppState={setCurrentAppState} />
+                    )}
+
                     {currentAppState == "introSplash" && (
                         <IntroSplash setCurrentAppState={setCurrentAppState} />
+                    )}
+                    {currentAppState == "genericSplash" && (
+                        <GenericSplash
+                            setCurrentAppState={setCurrentAppState}
+                            currDungeonNum={currDungeonNum}
+                        />
                     )}
                     {currentAppState == "genericSplash" && (
                         <GenericSplash
