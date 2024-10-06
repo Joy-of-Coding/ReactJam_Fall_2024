@@ -15,7 +15,7 @@ export const storyLine: Array<GenericSplashProps> = [
         armor: "Chest Plate of Non-turning",
         title: "Dungeon Crawl 2",
         image: "./zombie-necromancer.webp",
-        text: "Farmer find and battles zombies following the hoof prints - find short spear and the chest plate to avoid being turned into a zombie",
+        text: "Exciting, Dear Adventurer! George has survived his very First battle! Now, back to our epic, little adventure....    George discards the rusty sword for an Obsidian Short War Spear nearly buried in the accumulated filth of past ages. He plods slowly on following the clearly etched prints left by the missing Bessie. He notices yet another vague shape in the undisturbed dust and as he brushes the thin layer of dirt away, a dull shine comes into the chest plate. He fastens it on around his pudgy middle and quickly raises his head as he hears somewhat familiar voice cackle, 'Well, George, you should have stayed Home!' The village hag, Kassie, now turned to the dark arts of necromancy, draws in a ragged, wet breath and smiles sinisterly, 'Now you shall have to join that wretched beast you were searching for!' Evil, menacing laughter assaults George's floppy ears as he raises the War Spear shakily for battle.... ",
     },
     {
         level: 3,
@@ -23,7 +23,7 @@ export const storyLine: Array<GenericSplashProps> = [
         armor: "Emblazoned Shield",
         title: "Dungeon Crawl 3",
         image: "./skeleton.webp",
-        text: "Add “what took my %$&#@ milk cow” Quest - Some evil is afoot and took my milk cow Bessie. find clues as to what happened to Kassie, village Hag",
+        text: "The village hag, Kassie, bursts into bright blue iridescent flames which quickly consumed Kassie’s desiccated form and as the flames began to die down, a disembodied cackle rose from the flickering flames and whispered, “ Lucky blow, idoit! But, I shall have my revenge – even now, my pet rushes forth to bring your ultimate demise!’ The laughter slowly died into low moaning sob and finally, died into a loud quiet that descended onto George with a heavy silence. He slowly looked around and shivered with the wet perspiration of fear drying slowly on his brow. He quickly scooped up the Heavy Spiked Mace and Emblazoned Shield discarded by the decrepit doorway. ‘Gods, what next? I hope Bessie is alright. What the heck took her down here anyway?’ George muttered softly under his breath and slowly raised his to behold Kassie’s Pet, a moldering 8 foot tall Giant Skeleton menacingly swinging a colossal battle-hammer with a giant’s thigh bone for a handle.... ",
     },
     {
         level: 4,

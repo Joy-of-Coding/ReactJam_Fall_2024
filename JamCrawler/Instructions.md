@@ -18,9 +18,9 @@ Happy Adventuring, and let's get to it!
 
     c. Life stuff completed and off to the Dungeon. 
 
-4. Movement: Arrow keys - keyboard or mouse
+4. Movement: Arrow keys - keyboard or mouse, Please remember to click on your player after combat - he likes a pat on the back.
 
-5. Weapons and Armor are in Inventory 
+5. Weapons and Armor are in Automatic 
 
 6. Health Potions add +25 to life and can only be used when you are damaged before battle. Please, Adventurer, get strong before you tackle our nasty little surprises. 
 
