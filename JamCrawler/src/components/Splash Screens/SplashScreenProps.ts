@@ -16,6 +16,7 @@ export const storyLine: Array<GenericSplashProps> = [
         title: "Dungeon Crawl 2",
         image: "./zombie-necromancer.webp",
         text: "Exciting, Dear Adventurer! George has survived his very First battle! Now, back to our epic, little adventure....    George discards the rusty sword for an Obsidian Short War Spear nearly buried in the accumulated filth of past ages. He plods slowly on following the clearly etched prints left by the missing Bessie. He notices yet another vague shape in the undisturbed dust and as he brushes the thin layer of dirt away, a dull shine comes into the chest plate. He fastens it on around his pudgy middle and quickly raises his head as he hears somewhat familiar voice cackle, 'Well, George, you should have stayed Home!' The village hag, Kassie, now turned to the dark arts of necromancy, draws in a ragged, wet breath and smiles sinisterly, 'Now you shall have to join that wretched beast you were searching for!' Evil, menacing laughter assaults George's floppy ears as he raises the War Spear shakily for battle.... ",
+    },
     {
         level: 3,
         weapon: "Heavy Spiked Mace",
