@@ -47,16 +47,16 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                     <div>
     <strong>Developers:</strong>
 </div>
-                        
+                    
                         <br /> Sam Crowe
                         <br /> Braden Kartchner
-                        <br /> Anna Rankin
-                        <br /> John Schlautman
                         <br /> Jon Adams
                         <br /> River Barton
-                        <br /> Steven Daniel
+                        <br /> Anna Rankin
                         <br /> Jonathan Pohlner
+                        <br /> John Schlautman
                         <br /> Lisa Dean
+                        <br /> Steven Daniel
                         <br /> Timothy Batchelder
                         <br />    <p></p>
                     </li>

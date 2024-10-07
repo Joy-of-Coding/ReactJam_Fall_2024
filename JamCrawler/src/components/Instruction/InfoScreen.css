@@ -3,14 +3,15 @@
     margin-bottom: 1rem;
 }
 
-.credits-background {
-    background-image: url("./skeleton.webp");
+.info-background {
+    background-image: url('./GeorgeFarm.webp');
+
     background-size: cover;
     background-position: center;
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
 }
 
@@ -27,7 +28,8 @@
     margin-left: 2rem;
 }
 
-.picture {
+
+.picture{
     height: 400px;
     width: 400px;
 }
