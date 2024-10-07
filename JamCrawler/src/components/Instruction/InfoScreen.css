@@ -5,6 +5,7 @@
 
 .info-background {
     background-image: url('./GeorgeFarm.webp');
+
     background-size: cover;
     background-position: center;
     width: 100vw;
