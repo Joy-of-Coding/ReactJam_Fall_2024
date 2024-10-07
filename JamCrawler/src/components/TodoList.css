@@ -1,70 +1,146 @@
-.todo-container { 
-  background-color: #aaa5a5;
-  color: #221d1d;
+todo.css
+
+/* Center the todo-container on the screen */
+.todo-container {
+  background: linear-gradient(45deg, rgb(61, 61, 61), #e6b982, #726346); /* Parchment-like background */
+  height: auto; /* Adjust to content */
   padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 20px auto;
-  font-family: 'Courier', monospace;
+  border-radius: 8px;
+  max-width: 320px;
+  margin: 20vh auto; /* Vertically and horizontally center */
+  box-shadow: inset 0 0 100px 50px #222; /* Soft inner glow */
 }
 
-.todo-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.0em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
+/* List styles */
 .todo-list {
   list-style-type: none; /* Remove bullets */
   padding: 0;
+  margin: 0;
 }
 
-.todo-item {
+.todo-list li {
   padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
+  margin-bottom: 8px;
+  border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Courier', monospace;
 }
 
-#Del {
-  background-color: #1a1010;
-  color: #fff;
+/* Input field */
+input[type="text"] {
+  width: 100%;
+  font-size: 12px; /* Set font size */
+  padding: 6px 12px; /* Increase padding for top and bottom by 6px */
+  margin-bottom: 12px; /* Adjust margin to create space between input and button */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  transform: scale(2); /* Double the size of the checkboxes */
+  margin-right: 10px;
+}
+
+/* Priority dropdown styling */
+select {
+  font-size: 12px;
+  padding: 6px 8px; /* Set padding to adjust for top and bottom */
+  margin-right: 2px; /* Reduce empty space after medium selection */
+  width: 100%; /* Ensure it spans full width */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* High, medium, and low priority background colors */
+select option[value="high"] {
+  background-color: red; /* High priority = red background */
+  color: white;
+}
+
+select option[value="medium"] {
+  background-color: yellow; /* Medium priority = yellow background */
+  color: black;
+}
+
+select option[value="low"] {
+  background-color: green; /* Low priority = green background */
+  color: white;
+}
+
+/* Hover effect for dropdown options */
+select option:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+/* Task limit button styling */
+button {
+  background-color: black;
+  color: white;
   border: none;
-  padding: 6px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+}
+
+button[disabled] {
+  background-color: green; /* Task limit reached button color */
+}
+
+/* Delete button */
+.delete-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 10px;
-}
-
-.todo-checkbox {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  accent-color: green; /* Green checkmark */
-}
-
-.priority-high {
-  background-color: #ff6666; /* Red for high */
-}
-
-.priority-medium {
-  background-color: #ffb066; /* Yellow for medium */
-}
-
-.priority-low {
-  background-color: #114d3b; /* Green for low */
-}
-
-.congrats-message {
-  background-color: #114d3b;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  margin-top: 20px;
   font-weight: bold;
+}
+
+.delete-button:hover {
+  background-color: darkgray;
+}
+
+/* Background for todos based on priority */
+.todo-list li.priority-high {
+  background-color: red;
+  color: white;
+}
+
+.todo-list li.priority-medium {
+  background-color: yellow;
+  color: black;
+}
+
+.todo-list li.priority-low {
+  background-color: green;
+  color: white;
+}
+
+/* Completed checkbox styling */
+.completed-checkbox {
+  font-weight: bold;
+  color: green;
+}
+
+/* Completed text styling */
+.completed-text {
+  font-weight: bold;
+  color: green;
+}
+
+/* Muted styles when the dungeon is unlocked */
+.todo-list.muted li {
+  background-color: #ccc;
+  color: #333;
 }
