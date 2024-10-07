@@ -1,7 +1,7 @@
 // src/components/Dungeon.tsx
 import React from "react";
 import { DungeonGrid, Player, Monster } from "../types/types";
-import { DOOR_CHAR, WALL_CHAR } from "../constants/constants";
+import { WALL_CHAR } from "../constants/constants";
 import "./Dungeon.css";
 const SNAKE_ICON = "🐍";
 const ZOMBIE_ICON = "🧟‍♂️";

@@ -1,4 +1,3 @@
-import React from "react";
 import { storyLine } from "./SplashScreenProps";
 import { Monster, Player } from "../../types/types";
 
