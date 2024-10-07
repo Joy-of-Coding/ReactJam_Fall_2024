@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function InfoScreen({ setCurrentAppState }: Props) {
-    const InfoScreenSource = "./george.webp"; // Corrected file extension
+    const InfoScreenSource = "./GeorgeFarm.webp"; // Corrected file extension
 
     const handleClick = () => {
         setCurrentAppState("titleScreen");
@@ -61,7 +61,7 @@ export default function InfoScreen({ setCurrentAppState }: Props) {
     <li><strong>Main Premise</strong>: The main premise of the game (besides the Kill-or-be-Killed fun) is getting those annoying everyday Task List(s) out of the way so that you can enjoy a few hours of pleasant Dungeon Crawling at your leisure.
         <ol type="a">
             <li>Before you can start the Adventure of a lifetime, you must complete 3 Real-Life tasks (we wouldn't want you to get yelled at or quit your Dungeon Crawl);</li>
-            <li>Enter the 3 Tasks, complete all 3, and mark them off the list provided for you—easy peasy!</li>
+            <li>Enter your 3 Tasks, complete all 3 Tasks, and check them off the list provided for you—easy peasy!</li>
             <li>Life stuff completed, and off to the Dungeon.</li>
         </ol>
     </li>
@@ -70,14 +70,14 @@ export default function InfoScreen({ setCurrentAppState }: Props) {
 
     <li><strong>Weapons and Armor</strong>: These are automatic.</li>
 
-    <li><strong>Health Potions</strong>: Add +25 to life and can only be used when you are damaged before battle. Please, Adventurer, get strong before you tackle our nasty little surprises.</li>
+    <li><strong>Health Potions</strong>: Add +25 to life and can only be used when you are damaged before battle. Please, Adventurer, get strong before you tackle any more of our nasty little surprises.</li>
 
     <li><strong>Experience and Leveling</strong>: This is automatic when you pass through the doorway to the next level.</li>
 
-    <li><strong>Last, but Certainly Not Least</strong>: ENJOY! Let the stress of a hard day of life slip away and bash our little monsters to your heart's content! Bye-bye for now!</li>
+    <li><strong>Last, but Certainly Not Least</strong>: <h3><i><u>ENJOY!</u></i></h3> Let the stress of a hard day of life slip away and bash our little monsters to your heart's content! Bye-bye for now!</li>
 </ol>
 
-<p><strong>Happy Adventuring, and let's get to it!</strong></p>
+<h4><strong>Happy Adventuring, and let's get to it!</strong></h4>
                 </motion.ul>
 
                 {/* Back Button */}
