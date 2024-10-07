@@ -1,0 +1,35 @@
+.main-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.info-background {
+    background-image: url('./GeorgeFarm.webp');
+
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.buttons-row {
+    margin-top: 1rem;
+    row-gap: 2rem;
+}
+
+.start-button {
+    margin-right: 2rem;
+}
+
+.credits-button {
+    margin-left: 2rem;
+}
+
+
+.picture{
+    height: 400px;
+    width: 400px;
+}

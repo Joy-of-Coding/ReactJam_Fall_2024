@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
-import { Monster, Player  } from "../../types/types";
-import { PLAYER_CHAR, MONSTER_CHAR } from "../../constants/constants";
+import { Monster, Player } from "../../types/types";
+import { PLAYER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
+import { playerLevels, monsterLevels } from "./player_monster_level_constants";
+const SNAKE_ICON = "🐍";
+const ZOMBIE_ICON = "🧟‍♂️";
+const SKELETON_ICON = "💀";
+const OGRE_ICON = "👹";
+const DROW_ICON = "🧌";
+const MONSTER_ARRAY = [
+  SNAKE_ICON,
+  ZOMBIE_ICON,
+  SKELETON_ICON,
+  OGRE_ICON,
+  DROW_ICON,
+];
 
 interface CombatProps {
     player: Player;
@@ -12,6 +25,11 @@ interface CombatProps {
     setCurrentAppState: (
         value: string | ((prevValue: string) => string)
     ) => void;
+    setCurrDungeonNum: (
+        value: number | ((prevValue: number) => number)
+    ) => void;
+    currDungeonNum: number;
+    setLevel: (value: number | ((prevValue: number) => number)) => void;
 }
 
 export default function CombatEncounter({
@@ -20,40 +38,51 @@ export default function CombatEncounter({
     setPlayer,
     setMonster,
     setCurrentAppState,
+    currDungeonNum,
+    setCurrDungeonNum,
+    setLevel,
 }: CombatProps) {
     const [largeResults, setLargeResults] = useState<string | null>(null);
     const [playerCanReturn, setPlayerCanReturn] = useState<boolean>(false);
     const [combatEnded, setCombatEnded] = useState<boolean>(false);
     const [combatRound, setCombatRound] = useState<number>(1);
     const [resultsText, setResultsText] = useState<Array<string>>([]);
+    const [playerDied, setPlayerDied] = useState<boolean>(false);
 
     let hasWeapon: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
-                return currVal.name == "Sword" || accum;
-            }, false)
-        : false;
+                  return currVal.name == "Sword" || accum;
+              }, false)
+            : false;
 
     let hasHelmet: boolean =
         player.inventory.length > 0
             ? player.inventory.reduce((accum, currVal) => {
                   return currVal.name == "Helmet" || accum;
-            }, false)
-        : false;   
-        /* */ 
+              }, false)
+            : false;
+    /* */
 
-    console.log("has weapon:", hasWeapon);
+    //console.log("has weapon:", hasWeapon);
     const [playerCombatStats, setPlayerCombatStats] =
         useState<PlayerCombatStats>({
-            attack: hasWeapon ? 12 : 10, /* different stat for levels */
-            defense: hasHelmet ? 7 : 5, 
-            exp: 0, /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */
+            attack: hasWeapon
+                ? playerLevels[currDungeonNum - 1].strength + 2
+                : playerLevels[currDungeonNum - 1]
+                      .strength /* different stat for levels */,
+            defense: hasHelmet
+                ? playerLevels[currDungeonNum - 1].defense + 2
+                : playerLevels[currDungeonNum - 1].defense,
+            exp: 0 /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */,
+            health: 0 /* Using global health, this stat doesn't matter */,
         });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
-            attack: 10, /* different stat for levels */
-            defense: 5,
-            hp: 60,
+            attack: monsterLevels[currDungeonNum - 1]
+                .strength /* different stat for levels */,
+            defense: monsterLevels[currDungeonNum - 1].defense,
+            hp: monsterLevels[currDungeonNum - 1].hp,
         });
 
     const handleClick = () => {
@@ -113,9 +142,10 @@ export default function CombatEncounter({
                     "The monster killed you...",
                 ]);
                 setLargeResults("The monster killed you...");
+                // unlock buttons to try again or return to menu
+                setPlayerDied(true);
             }
         }
-
         setResultsText((prev) => [...prev, "-------"]);
         // end of round: increase round number
         setCombatRound((prev) => prev + 1);
@@ -123,6 +153,39 @@ export default function CombatEncounter({
 
     const handleReturn = () => {
         setCurrentAppState("game");
+    };
+
+    const handleTryAgain = (eve: React.MouseEvent<HTMLButtonElement>) => {
+        let eventTarget = eve.target as HTMLButtonElement;
+        // reset state for all relevant components:
+        // player, monster, currDungeonNum, level
+        setPlayer({
+            position: { x: 1, y: 1 },
+            strength: 10,
+            defense: 5,
+            health: 100,
+            inventory: [],
+            isAlive: true,
+            experience: 0,
+            maxHealth: 100,
+        });
+        setMonster({
+            position: { x: 1, y: 1 },
+            strength: 10,
+            defense: 5,
+            health: 100,
+            luck: 0,
+            inventory: [],
+            isAlive: true,
+        });
+        setCurrDungeonNum(1);
+        setLevel(1);
+        if (eventTarget.id == "tryAgain") {
+            setCurrentAppState("genericSplash");
+        }
+        if (eventTarget.id == "mainMenu") {
+            setCurrentAppState("titleScreen");
+        }
     };
 
     return (
@@ -140,7 +203,7 @@ export default function CombatEncounter({
                     <span className="icons" id="farmer-char">
                         {PLAYER_CHAR}
                     </span>
-                    <span className="icons">{MONSTER_CHAR}</span>
+                    <span className="icons">{MONSTER_ARRAY[currDungeonNum -1]}</span>
                     <span className="monster-stats">
                         <span>Attack: {monsterCombatStats.attack}</span>
                         <span>Defense: {monsterCombatStats.defense}</span>
@@ -154,14 +217,28 @@ export default function CombatEncounter({
                 </div>
                 <div className="result-popup">{largeResults}</div>
                 <div className="action-results">
-                    {resultsText.map((item: string, index: number) => (
-                        <div key={index}>{item}</div>
-                    ))}
+                    {/* {resultsText.map((item: string, index: number) => ( */}
+                    {resultsText
+                        .slice()
+                        .reverse()
+                        .map((item: string, index: number) => (
+                            <div key={index}>{item}</div>
+                        ))}
                 </div>
                 {playerCanReturn && (
                     <div className="return-button">
                         <button onClick={handleReturn}>
                             Return to dungeon
+                        </button>
+                    </div>
+                )}
+                {playerDied && (
+                    <div className="try-again-buttons">
+                        <button id="tryAgain" onClick={handleTryAgain}>
+                            Try Again
+                        </button>
+                        <button id="mainMenu" onClick={handleTryAgain}>
+                            Main Menu
                         </button>
                     </div>
                 )}

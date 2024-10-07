@@ -13,6 +13,7 @@
   text-align: center;
   overflow: hidden;
 }
+
 /* Style for modal */
 .modal-overlay {
   position: fixed;

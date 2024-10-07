@@ -6,6 +6,7 @@ import GenericSplash from "./components/Splash Screens/GenericSplash.tsx";
 import Game from "./components/Game.tsx";
 import CombatEncounter from "./components/Combat/CombatEncounter.tsx";
 import { Player, Monster, DungeonGrid } from "./types/types.ts";
+
 // import CreditScreen from "./components/Credit screen/CreditScreen.tsx";
 // import InfoScreen from "./components/Credit screen/InfoScreen.tsx";
 import TodoList from "./components/TodoList.tsx"; // SAM - Import TodoList
@@ -19,10 +20,11 @@ function App() {
         useState<string>("titleScreen");
     
     // SAM - Manage player and game states
+
     const [player, setPlayer] = useState<Player>({
         position: { x: 1, y: 1 },
         strength: 10,
-        defense: 2,
+        defense: 5,
         health: 100,
         inventory: [],
         isAlive: true,
@@ -34,7 +36,7 @@ function App() {
         position: { x: 1, y: 1 },
         strength: 10,
         defense: 5,
-        health: 100,
+        health: 60,
         luck: 0,
         inventory: [],
         isAlive: true,
@@ -85,6 +87,7 @@ function App() {
                     {currentAppState === "titleScreen" && (
                         <TitleScreen setCurrentAppState={setCurrentAppState} />
                     )}
+
                     {currentAppState === "introSplash" && (
                         <IntroSplash setCurrentAppState={setCurrentAppState} />
                     )}
@@ -107,6 +110,7 @@ function App() {
 
                     {/* SAM - Only render Game if game is unlocked */}
                     {isGameUnlocked && currentAppState === "game" && (
+
                         <Game
                             setCurrentAppState={setCurrentAppState}
                             player={player}

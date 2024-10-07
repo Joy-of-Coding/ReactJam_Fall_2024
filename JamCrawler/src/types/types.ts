@@ -17,7 +17,7 @@ export type Player = {
     experience: number;
     inventory: Item[];
     isAlive: boolean;
-    // luck: number; // Commented out, as it's not being used in the Player schema
+    maxHealth: number;
 };
 
 export type Monster = {
@@ -29,12 +29,37 @@ export type Monster = {
     inventory: Item[];
     isAlive: boolean;
 };
-
+  
 export type Todo = {
     id: number;
     text: string;
     completed: boolean;
-    priority: 'high' | 'medium' | 'low';
+    priority: "high" | "medium" | "low";
 };
 
 export type DungeonGrid = string[][];
+
+
+export type PlayerCombatStats = {
+    attack: number;
+    defense: number;
+    health: number;
+    exp: number;
+};
+
+export type monsterCombatStats = {
+    attack: number;
+    defense: number;
+    hp: number;
+};
+
+export type GenericSplashProps = {
+    level: number;
+    weapon: string;
+    armor: string;
+    title: string;
+    image: string;
+    text: string;
+};
+
+
