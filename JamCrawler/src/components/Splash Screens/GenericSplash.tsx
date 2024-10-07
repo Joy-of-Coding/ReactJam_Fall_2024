@@ -15,6 +15,10 @@ interface Props {
     setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
     setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
     setLevel: (value: number | ((prevValue: number) => number)) => void;
+    isGameUnlocked: boolean;
+    setIsGameUnlocked: (
+        value: boolean | ((prevValue: boolean) => boolean)
+    ) => void;
 }
 
 export default function GenericSplash(props: Props) {
@@ -43,6 +47,9 @@ export default function GenericSplash(props: Props) {
             props.setCurrDungeonNum(1);
             props.setLevel(1);
             props.setCurrentAppState("titleScreen");
+        } else if (!props.isGameUnlocked) {
+            props.setCurrentAppState("todoList");
+            props.setIsGameUnlocked(true);
         } else {
             props.setCurrentAppState("game");
         }

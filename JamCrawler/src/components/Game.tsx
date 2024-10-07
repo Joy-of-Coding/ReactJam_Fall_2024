@@ -309,14 +309,7 @@ export default function Game({
             <h1 className="grit">Get'er Done-geon Crawler</h1>
 
             <div className="game-board" tabIndex={0} onKeyDown={handleKeyPress}>
-                <div className="column">
-                    <TodoList
-                        todos={todos}
-                        addTodo={addTodo}
-                        toggleTodo={toggleTodo}
-                        deleteTodo={deleteTodo}
-                    />
-                </div>
+                <div className="column"></div>
 
                 <div className="dungeon-container column-2">
                     <h2>Level {currDungeonNum}</h2>
