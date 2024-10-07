@@ -11,8 +11,6 @@ import InfoScreen from "./components/Instruction/InfoScreen.tsx";
 import TodoList from "./components/TodoList.tsx"; // SAM - Import TodoList
 // import Modal from  "./components/Modal.tsx"; // SAM - Import Modal
 
-
-
 function App() {
     const [currentAppState, setCurrentAppState] =
         useState<string>("titleScreen");
@@ -39,44 +37,43 @@ function App() {
     const [dungeon, setDungeon] = useState<DungeonGrid>([]);
     const [currDungeonNum, setCurrDungeonNum] = useState<number>(1);
     const [level, setLevel] = useState<number>(1);
-        // SAM - New state to track if the game is unlocked
-        const [isGameUnlocked, setIsGameUnlocked] = useState(false);
+    // SAM - New state to track if the game is unlocked
+    const [isGameUnlocked, setIsGameUnlocked] = useState(false);
 
-        // SAM - TodoList state to track todos
-        const [todos, setTodos] = useState<Todo[]>([]);
-    
-        // SAM - Function to add a new todo
-        const addTodo = (text: string, priority: "low" | "medium" | "high") => {
-            if (todos.length < 3) {
-                const newTodo: Todo = {
-                    id: Date.now(),
-                    text,
-                    completed: false,
-                    priority,
-                };
-                setTodos([...todos, newTodo]);
-            }
-        };
-    
-        // SAM - Function to toggle todo completion
-        const toggleTodo = (id: number) => {
-            const updatedTodos = todos.map((todo) =>
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
-            );
-            setTodos(updatedTodos);
-    
-            // SAM - Check if all todos are complete to unlock the game
-            const completedTasks = updatedTodos.filter((todo) => todo.completed);
-            if (completedTasks.length === 3) {
-                setIsGameUnlocked(true); // SAM - Unlock the game
-            }
-        };
+    // SAM - TodoList state to track todos
+    const [todos, setTodos] = useState<Todo[]>([]);
 
-         // SAM - Conditionally render Game component based on isGameUnlocked state
+    // SAM - Function to add a new todo
+    const addTodo = (text: string, priority: "low" | "medium" | "high") => {
+        if (todos.length < 3) {
+            const newTodo: Todo = {
+                id: Date.now(),
+                text,
+                completed: false,
+                priority,
+            };
+            setTodos([...todos, newTodo]);
+        }
+    };
+
+    // SAM - Function to toggle todo completion
+    const toggleTodo = (id: number) => {
+        const updatedTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        );
+        setTodos(updatedTodos);
+
+        // SAM - Check if all todos are complete to unlock the game
+        const completedTasks = updatedTodos.filter((todo) => todo.completed);
+        if (completedTasks.length === 3) {
+            setCurrentAppState("game"); // SAM - Unlock the game
+        }
+    };
+
+    // SAM - Conditionally render Game component based on isGameUnlocked state
     return (
         <>
             <div>
-                {/* Placeholder wrapping the Game component */}
                 <div className="game-container">
                     {currentAppState == "titleScreen" && (
                         <TitleScreen setCurrentAppState={setCurrentAppState} />
@@ -87,7 +84,6 @@ function App() {
                     {currentAppState == "InfoScreen" && (
                         <InfoScreen setCurrentAppState={setCurrentAppState} />
                     )}
-
                     {currentAppState == "introSplash" && (
                         <IntroSplash setCurrentAppState={setCurrentAppState} />
                     )}
@@ -99,12 +95,11 @@ function App() {
                             setMonster={setMonster}
                             setCurrDungeonNum={setCurrDungeonNum}
                             setLevel={setLevel}
+                            isGameUnlocked={isGameUnlocked}
+                            setIsGameUnlocked={setIsGameUnlocked}
                         />
                     )}
-                   
-                   
-                    {/* SAM - Only render Game if game is unlocked */}
-                    {isGameUnlocked && currentAppState === "game" && (
+                    {currentAppState === "game" && (
                         <Game
                             setCurrentAppState={setCurrentAppState}
                             player={player}
@@ -117,20 +112,8 @@ function App() {
                             level={level}
                             setLevel={setLevel}
                             setCurrDungeonNum={setCurrDungeonNum}
-
                         />
-                        {/* SAM - Render TodoList until game is unlocked */}
-                    {!isGameUnlocked && (
-                        <TodoList
-                            todos={todos}
-                            setTodos={setTodos}
-                            addTodo={addTodo}
-                            toggleTodo={toggleTodo}
-
                     )}
-
-
-
 
                     {currentAppState == "combat" && (
                         <CombatEncounter
@@ -142,6 +125,15 @@ function App() {
                             currDungeonNum={currDungeonNum}
                             setCurrDungeonNum={setCurrDungeonNum}
                             setLevel={setLevel}
+                        />
+                    )}
+                    {currentAppState == "todoList" && (
+                        <TodoList
+                            todos={todos}
+                            setTodos={setTodos}
+                            addTodo={addTodo}
+                            toggleTodo={toggleTodo}
+                            setCurrentAppState={setCurrentAppState}
                         />
                     )}
                 </div>
