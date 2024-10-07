@@ -1,100 +1,60 @@
-import React, { useState } from 'react';
-import './TodoList.css';
+import React, { useState } from "react";
+import { Todo } from "../types/types";
+import "./TodoList.css";
 
-interface Todo {
-  text: string;
-  priority: 'high' | 'medium' | 'low';
-  complete: boolean;
+interface TodoListProps {
+    todos: Todo[];
+    addTodo: (text: string, priority: "low" | "medium" | "high") => void;
+    toggleTodo: (id: number) => void;
 }
 
-const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState<string>('');
-  const [priority, setPriority] = useState<'high' | 'medium' | 'low'>('low');
+const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, toggleTodo }) => {
+    const [newTodo, setNewTodo] = useState<string>('');
+    const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('low');
 
-  const addTodo = () => {
-    if (newTodo && todos.length < 3) {
-      const newTask: Todo = { text: newTodo, priority, complete: false };
-      setTodos([...todos, newTask]);
-      setNewTodo('');
-    }
-  };
+    // Add todo (limited to 3 tasks)
+    const handleAddTodo = () => {
+        if (todos.length < 3) {
+            addTodo(newTodo, priority);
+            setNewTodo(''); // Reset input after adding
+        }
+    };
 
-  const removeTodo = (index: number) => {
-    const updatedTodos = todos.filter((_, i) => i !== index);
-    setTodos(updatedTodos);
-  };
-
-  const toggleComplete = (index: number) => {
-    const updatedTodos = [...todos];
-    updatedTodos[index].complete = !updatedTodos[index].complete;
-    setTodos(updatedTodos);
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return '#ff6666'; // Red
-      case 'medium':
-        return '#ffb066'; // Yellow
-      case 'low':
-        return '#114d3b'; // Green
-      default:
-        return '#ffffff'; // Default white
-    }
-  };
-
-  return (
-    <div>
-      <h1>To-do List</h1>
-      <label>Enter 3 Tasks</label>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Enter your task"
-      />
-      <label htmlFor="priority" className="visually-hidden">Priority</label>
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as 'high' | 'medium' | 'low')}
-      >
-        <option className="hRed" value="high">H</option>
-        <option className="mYellow" value="medium">M</option>
-        <option className="LGreen" value="low">L</option>
-      </select>
-      <button id="add-button" onClick={addTodo}>Add</button>
-
-      <ul className="todo-list">
-        {todos.map((todo, index) => (
-          <li
-            key={index}
-            className={`priority-${todo.priority}`}
-            style={{
-              backgroundColor: getPriorityColor(todo.priority),
-              textDecoration: todo.complete ? 'line-through' : 'none',
-              borderBottom: todo.complete ? '2px solid black' : 'none',
-            }}
-          >
+    return (
+        <div className="todo-container">
+            <h1 style={{ color: "black" }}>To-do List</h1>
             <input
-              type="checkbox"
-              checked={todo.complete}
-              onChange={() => toggleComplete(index)}
-              className="todo-checkbox"
+                type="text"
+                value={newTodo}
+                onChange={(e) => setNewTodo(e.target.value)}
+                placeholder="Enter your task (max 3)"
             />
-            {todo.text}
-            <button id="Del" onClick={() => removeTodo(index)}>X</button>
-          </li>
-        ))}
-      </ul>
+            <select
+                value={priority}
+                onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
+            >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button onClick={handleAddTodo} disabled={todos.length >= 3}>
+                {todos.length >= 3 ? 'Task Limit Reached' : 'Add Task'}
+            </button>
 
-      {todos.every(todo => todo.complete) && (
-        <div className="congrats-message">
-          <h2>Congratulations! Dungeon Time!</h2>
+            <ul className="todo-list">
+                {todos.map((todo) => (
+                    <li key={todo.id}>
+                        <span>{todo.text}</span>
+                        <input
+                            type="checkbox"
+                            checked={todo.completed}
+                            onChange={() => toggleTodo(todo.id)}
+                        />
+                    </li>
+                ))}
+            </ul>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default TodoList;
