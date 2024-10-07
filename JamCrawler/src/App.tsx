@@ -118,7 +118,6 @@ function App() {
                     {currentAppState == "combat" && (
                         <CombatEncounter
                             player={player}
-                            monster={monster}
                             setPlayer={setPlayer}
                             setMonster={setMonster}
                             setCurrentAppState={setCurrentAppState}
@@ -130,7 +129,6 @@ function App() {
                     {currentAppState == "todoList" && (
                         <TodoList
                             todos={todos}
-                            setTodos={setTodos}
                             addTodo={addTodo}
                             toggleTodo={toggleTodo}
                             setCurrentAppState={setCurrentAppState}

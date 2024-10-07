@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
@@ -44,10 +43,9 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                 {/* Developer & Credits List */}
                 <motion.ul className="text-lg mb-4">
                     <li>
-                    <div>
-    <strong>Developers:</strong>
-</div>
-                    
+                        <div>
+                            <strong>Developers:</strong>
+                        </div>
                         <br /> Sam Crowe
                         <br /> Braden Kartchner
                         <br /> Jon Adams
@@ -58,7 +56,7 @@ export default function CreditsScreen({ setCurrentAppState }: Props) {
                         <br /> Lisa Dean
                         <br /> Steven Daniel
                         <br /> Timothy Batchelder
-                        <br />    <p></p>
+                        <br /> <p></p>
                     </li>
                     <li>Special Thanks: Katrina Wright, Suzanne Atkinson</li>
                 </motion.ul>

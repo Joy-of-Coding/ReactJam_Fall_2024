@@ -10,16 +10,15 @@ const SKELETON_ICON = "💀";
 const OGRE_ICON = "👹";
 const DROW_ICON = "🧌";
 const MONSTER_ARRAY = [
-  SNAKE_ICON,
-  ZOMBIE_ICON,
-  SKELETON_ICON,
-  OGRE_ICON,
-  DROW_ICON,
+    SNAKE_ICON,
+    ZOMBIE_ICON,
+    SKELETON_ICON,
+    OGRE_ICON,
+    DROW_ICON,
 ];
 
 interface CombatProps {
     player: Player;
-    monster: Monster;
     setPlayer: (value: Player | ((prevValue: Player) => Player)) => void;
     setMonster: (value: Monster | ((prevValue: Monster) => Monster)) => void;
     setCurrentAppState: (
@@ -34,7 +33,6 @@ interface CombatProps {
 
 export default function CombatEncounter({
     player,
-    monster,
     setPlayer,
     setMonster,
     setCurrentAppState,
@@ -65,18 +63,17 @@ export default function CombatEncounter({
     /* */
 
     //console.log("has weapon:", hasWeapon);
-    const [playerCombatStats, setPlayerCombatStats] =
-        useState<PlayerCombatStats>({
-            attack: hasWeapon
-                ? playerLevels[currDungeonNum - 1].strength + 2
-                : playerLevels[currDungeonNum - 1]
-                      .strength /* different stat for levels */,
-            defense: hasHelmet
-                ? playerLevels[currDungeonNum - 1].defense + 2
-                : playerLevels[currDungeonNum - 1].defense,
-            exp: 0 /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */,
-            health: 0 /* Using global health, this stat doesn't matter */,
-        });
+    const [playerCombatStats] = useState<PlayerCombatStats>({
+        attack: hasWeapon
+            ? playerLevels[currDungeonNum - 1].strength + 2
+            : playerLevels[currDungeonNum - 1]
+                  .strength /* different stat for levels */,
+        defense: hasHelmet
+            ? playerLevels[currDungeonNum - 1].defense + 2
+            : playerLevels[currDungeonNum - 1].defense,
+        exp: 0 /* the Defeat of Monster +1000 point to Experience and promotion to next level, automatically */,
+        health: 0 /* Using global health, this stat doesn't matter */,
+    });
     const [monsterCombatStats, setMonsterCombatStats] =
         useState<monsterCombatStats>({
             attack: monsterLevels[currDungeonNum - 1]
@@ -203,7 +200,9 @@ export default function CombatEncounter({
                     <span className="icons" id="farmer-char">
                         {PLAYER_CHAR}
                     </span>
-                    <span className="icons">{MONSTER_ARRAY[currDungeonNum -1]}</span>
+                    <span className="icons">
+                        {MONSTER_ARRAY[currDungeonNum - 1]}
+                    </span>
                     <span className="monster-stats">
                         <span>Attack: {monsterCombatStats.attack}</span>
                         <span>Defense: {monsterCombatStats.defense}</span>

@@ -6,16 +6,10 @@ interface TodoListProps {
     todos: Todo[];
     addTodo: (text: string, priority: "low" | "medium" | "high") => void;
     toggleTodo: (id: number) => void;
-    setTodos: (value: Todo[] | ((prevValue: Todo[]) => Todo[])) => void;
     setCurrentAppState: (value: string | ((value: string) => string)) => void;
 }
 
-const TodoList: React.FC<TodoListProps> = ({
-    todos,
-    addTodo,
-    toggleTodo,
-    setTodos,
-}) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, addTodo, toggleTodo }) => {
     const [newTodo, setNewTodo] = useState<string>("");
     const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
 

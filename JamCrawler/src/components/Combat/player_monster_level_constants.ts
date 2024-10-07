@@ -1,8 +1,3 @@
-import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
-import { getMonsterIconByLevel } from "../../Monsters/monsters";
-import { MONSTER_ICONS } from "../../Monsters/monsters";
-import { MONSTER_TYPES } from "../../constants/constants";
-
 export const playerLevels = [
     {
         /* Base level to start - level 1 */

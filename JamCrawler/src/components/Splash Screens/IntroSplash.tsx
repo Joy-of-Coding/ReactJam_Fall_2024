@@ -1,4 +1,3 @@
-import React from "react";
 import "./IntroSplash.css";
 
 interface Props {

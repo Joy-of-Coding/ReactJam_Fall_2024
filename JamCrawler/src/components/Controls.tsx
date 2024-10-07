@@ -6,15 +6,9 @@ type ControlsProps = {
     movePlayer: (dx: number, dy: number) => void;
     level: number;
     setLevel: (arg1: number) => void;
-    generateDungeon: () => void;
 };
 
-const Controls: React.FC<ControlsProps> = ({
-    movePlayer,
-    setLevel,
-    level,
-    generateDungeon,
-}) => (
+const Controls: React.FC<ControlsProps> = ({ movePlayer, setLevel, level }) => (
     <div>
         <div className="flex flex-col">
             <div className="flex flew-row">
