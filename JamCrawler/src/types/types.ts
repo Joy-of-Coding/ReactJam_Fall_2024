@@ -27,7 +27,7 @@ export type Monster = {
     inventory: Item[];
     isAlive: boolean;
 };
-
+  
 export type Todo = {
     id: number;
     text: string;

@@ -1,9 +1,21 @@
 import React, { useState } from "react";
 import "./CombatEncounter.css";
 import { Monster, Player } from "../../types/types";
-import { PLAYER_CHAR, MONSTER_TYPES } from "../../constants/constants";
+import { PLAYER_CHAR } from "../../constants/constants";
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
 import { playerLevels, monsterLevels } from "./player_monster_level_constants";
+const SNAKE_ICON = "🐍";
+const ZOMBIE_ICON = "🧟‍♂️";
+const SKELETON_ICON = "💀";
+const OGRE_ICON = "👹";
+const DROW_ICON = "🧌";
+const MONSTER_ARRAY = [
+  SNAKE_ICON,
+  ZOMBIE_ICON,
+  SKELETON_ICON,
+  OGRE_ICON,
+  DROW_ICON,
+];
 
 interface CombatProps {
     player: Player;
@@ -191,7 +203,7 @@ export default function CombatEncounter({
                     <span className="icons" id="farmer-char">
                         {PLAYER_CHAR}
                     </span>
-                    <span className="icons">{monster.symbol}</span>
+                    <span className="icons">{MONSTER_ARRAY[currDungeonNum -1]}</span>
                     <span className="monster-stats">
                         <span>Attack: {monsterCombatStats.attack}</span>
                         <span>Defense: {monsterCombatStats.defense}</span>
