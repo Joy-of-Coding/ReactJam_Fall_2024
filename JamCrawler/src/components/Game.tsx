@@ -177,6 +177,9 @@ export default function Game({
             if (cellContent === WALL_CHAR) {
                 return prev;
             }
+            if (cellContent === DOOR_CHAR && monster.isAlive) {
+                return prev;
+            }
 
             let newPlayer = {
                 ...prev,
@@ -217,34 +220,36 @@ export default function Game({
             combatNewPos.x == doorLocation.x &&
             combatNewPos.y == doorLocation.y
         ) {
-            console.log("level: ", level);
+            // console.log("level: ", level);
             // add stats to player, reset player position
-            setPlayer((prev) => {
-                // remove swords and helmets from player inventory
-                let newItems = prev.inventory.filter(
-                    (item) => item.name != "Sword" && item.name != "Helmet"
-                );
-                return {
+            if (!monster.isAlive) {
+                setPlayer((prev) => {
+                    // remove swords and helmets from player inventory
+                    let newItems = prev.inventory.filter(
+                        (item) => item.name != "Sword" && item.name != "Helmet"
+                    );
+                    return {
+                        ...prev,
+                        maxHealth: prev.maxHealth + 20,
+                        health: prev.health + 20,
+                        position: { x: 1, y: 1 },
+                        inventory: newItems,
+                        experience: prev.experience + 1000,
+                    };
+                });
+                // set monster state to alive
+                setMonster((prev) => ({
                     ...prev,
-                    maxHealth: prev.maxHealth + 20,
-                    health: prev.health + 20,
-                    position: { x: 1, y: 1 },
-                    inventory: newItems,
-                    experience: prev.experience + 1000,
-                };
-            });
-            // set monster state to alive
-            setMonster((prev) => ({
-                ...prev,
-                isAlive: true,
-                strength: monsterLevels[currDungeonNum].strength,
-                defense: monsterLevels[currDungeonNum].defense,
-                health: monsterLevels[currDungeonNum].hp,
-            }));
-            // increase dungeon number + 1 (should re-render dungeon as level 2)
-            setCurrDungeonNum((prev) => prev + 1);
-            // set current app state to generic splash screen
-            setCurrentAppState("genericSplash");
+                    isAlive: true,
+                    strength: monsterLevels[currDungeonNum].strength,
+                    defense: monsterLevels[currDungeonNum].defense,
+                    health: monsterLevels[currDungeonNum].hp,
+                }));
+                // increase dungeon number + 1 (should re-render dungeon as level 2)
+                setCurrDungeonNum((prev) => prev + 1);
+                // set current app state to generic splash screen
+                setCurrentAppState("genericSplash");
+            }
         }
         // check for combat
         if (
