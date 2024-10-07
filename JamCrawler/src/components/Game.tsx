@@ -85,7 +85,7 @@ export default function Game({
       ...prev,
       position: { x: monsterX, y: monsterY },
     }));
-    console.log("Monster placed at (${monsterX}, ${monsterY})");
+    console.log(`Monster placed at (${monsterX}, ${monsterY})`);
 
     // RIVER-Adding one sword and two potions to level 1
 
@@ -307,7 +307,7 @@ export default function Game({
 
         <div className="dungeon-container column-2">
           <h2>Level {currDungeonNum}</h2>
-          <Dungeon dungeon={dungeon} player={player} monster={monster} />
+          <Dungeon dungeon={dungeon} player={player} monster={monster} currDungeonNum={currDungeonNum} />
           <Controls
             movePlayer={movePlayer}
             level={level}

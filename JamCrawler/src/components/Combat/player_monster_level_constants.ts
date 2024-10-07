@@ -1,4 +1,7 @@
 import { PlayerCombatStats, monsterCombatStats } from "../../types/types";
+import { getMonsterIconByLevel } from "../../Monsters/monsters";
+import { MONSTER_ICONS } from "../../Monsters/monsters";
+import { MONSTER_TYPES } from "../../constants/constants";
 
 export const playerLevels = [
     {
@@ -42,6 +45,9 @@ export const playerLevels = [
 export const monsterLevels = [
     {
         /* Base level to start - level 1 */
+        name: "Snake",
+        symbol: "🐍",
+        level: 1,
         strength: 10,
         defense: 5,
         hp: 60,

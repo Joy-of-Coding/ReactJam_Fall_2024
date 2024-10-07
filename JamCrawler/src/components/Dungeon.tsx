@@ -2,16 +2,33 @@
 import React from "react";
 import { DungeonGrid, Player, Monster } from "../types/types";
 import "./Dungeon.css";
-import { MONSTER_ICONS } from "../Monsters/monsters";
-import { getMonsterIconByLevel } from "../Monsters/monsters";
+const SNAKE_ICON = "🐍";
+const ZOMBIE_ICON = "🧟‍♂️";
+const SKELETON_ICON = "💀";
+const OGRE_ICON = "👹";
+const DROW_ICON = "🧌";
+const MONSTER_ARRAY = [
+  SNAKE_ICON,
+  ZOMBIE_ICON,
+  SKELETON_ICON,
+  OGRE_ICON,
+  DROW_ICON,
+];
 
 type DungeonProps = {
   dungeon: DungeonGrid;
   player: Player;
   monster: Monster;
+  currDungeonNum: number;
 };
 
-const Dungeon: React.FC<DungeonProps> = ({ dungeon, player, monster }) => {
+const Dungeon: React.FC<DungeonProps> = ({
+  dungeon,
+  player,
+  monster,
+  currDungeonNum,
+}) => {
+  // console.log(MONSTER_ARRAY[currDungeonNum - 1]);
   return (
     <div className="dungeon">
       {dungeon.map((row, y) => (
@@ -30,7 +47,7 @@ const Dungeon: React.FC<DungeonProps> = ({ dungeon, player, monster }) => {
                 : x === monster.position.x &&
                   y === monster.position.y &&
                   monster.isAlive
-                ? getMonsterIconByLevel()
+                ? MONSTER_ARRAY[currDungeonNum - 1]
                 : cell}
             </span>
           ))}
