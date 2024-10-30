@@ -3,8 +3,7 @@
     margin-bottom: 1rem;
 }
 
-<<<<<<< HEAD
-.credits-background {
+<<<<<<< HEAD .credits-background {
     background-image: url('./skeleton.webp');
     background-size: cover;
     background-position: center;
@@ -15,14 +14,12 @@
     align-items: center;
 }
 
-=======
->>>>>>> 00aec7dc520bd31cc6d3e5068df306dae2910317
-.buttons-row {
+=======>>>>>>>00aec7dc520bd31cc6d3e5068df306dae2910317 .buttons-row {
     margin-top: 1rem;
     row-gap: 2rem;
 }
 
-.start-button {
+git status .start-button {
     margin-right: 2rem;
 }
 
@@ -30,11 +27,8 @@
     margin-left: 2rem;
 }
 
-<<<<<<< HEAD
-.picture {
-=======
-.picture{
->>>>>>> 00aec7dc520bd31cc6d3e5068df306dae2910317
-    height: 400px;
-    width: 400px;
-}
+<<<<<<< HEAD .picture {
+    =======.picture {
+        >>>>>>>00aec7dc520bd31cc6d3e5068df306dae2910317 height: 400px;
+        width: 400px;
+    }
